@@ -1,0 +1,46 @@
+{
+  "name": "gradient-wave",
+  "version": "1.0.0",
+  "description": "A svg based UI toolkits for gradients and shapes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run watch:css && webpack-dev-server --open --hot",
+    "build": "npm run build:css && webpack --mode production",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
+  },
+  "keywords": [
+    "Svg",
+    "Gradient",
+    "wave",
+    "shapes",
+    "UI"
+  ],
+  "author": "Anup Aglawe",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-color": "^2.18.1",
+    "react-dom": "^16.13.1",
+    "tailwind-percentage-heights-plugin": "^0.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.11.3",
+    "postcss-cli": "^8.0.0",
+    "postcss-loader": "^4.0.3",
+    "style-loader": "^1.3.0",
+    "tailwindcss": "^1.8.10",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

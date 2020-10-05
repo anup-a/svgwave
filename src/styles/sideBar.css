@@ -1,0 +1,44 @@
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type='range']::-webkit-slider-thumb {
+    width: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    cursor: ew-resize;
+    background: #fff;
+    box-shadow: -405px 0 0 400px #605e5c;
+    border-radius: 50%;
+  }
+
+  input[type='range']:focus {
+    outline: none;
+  }
+}
+
+.roll-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+button:focus,
+img:focus,
+.reroll:focus,
+.reroll {
+  outline: none !important;
+}
+
+.reroll {
+  animation: rotate-center 0.3s ease-in-out both;
+}
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.7);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
