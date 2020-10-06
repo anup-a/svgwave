@@ -17,7 +17,6 @@ function Home() {
   })
 
   const handleWaveConfig = (waveData) => {
-    console.log(waveData)
     setWave({
       ...wave,
       ...waveData,
