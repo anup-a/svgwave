@@ -4,7 +4,7 @@ import Water from './../assets/001-water.svg'
 import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
-function CustomBar({ handleWaveConfig, handleBGchange }) {
+function CustomBar({ handleWaveConfig, handleBGchange, exportSVG }) {
   const [waves, setWaves] = useState(5)
   const [layer, setLayer] = useState(2)
   const [animate, setAnimate] = useState(false)
@@ -31,6 +31,10 @@ function CustomBar({ handleWaveConfig, handleBGchange }) {
     const val = e.target.value
     setLayer(val)
     handleWaveConfig({ layerCount: val, height: HEIGHT_ARR[val - 2] })
+  }
+
+  const handleExportSvg = () => {
+    exportSVG()
   }
 
   return (
@@ -68,6 +72,16 @@ function CustomBar({ handleWaveConfig, handleBGchange }) {
       </button>
 
       <TwitterPicker color={color} onChangeComplete={handleColorChange} />
+
+      <div className="btn-grp">
+        <p>Export</p>
+        <button className="export-svg" onClick={handleExportSvg}>
+          SVG
+        </button>
+        {/* <div className="export-png" onClick={handleExportPng}>
+          PNG
+        </div> */}
+      </div>
     </div>
   )
 }
