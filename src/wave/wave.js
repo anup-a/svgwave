@@ -39,14 +39,10 @@ function generateClosedPath(
   strokeWidth,
 ) {
   const xPoints = curvePoints.map((p) => p.x)
-  console.log(xPoints)
   const yPoints = curvePoints.map((p) => p.y)
-  console.log(yPoints)
 
   const xControlPoints = computeControlPoints(xPoints)
-  console.log(xControlPoints)
   const yControlPoints = computeControlPoints(yPoints)
-  console.log(yControlPoints)
 
   let path =
     `M ${leftCornerPoint.x},${leftCornerPoint.y} ` +

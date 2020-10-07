@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
@@ -6,8 +6,9 @@ import { waveInit } from '../wave'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 
 function Home() {
-  const [bgColor, setBgColor] = useState('#0099ff33')
+  const [bgColor, setBgColor] = useState('#ff008033')
   const [showModal, setShowModal] = useState(false)
+  const svgElement = useRef(null)
 
   const [wave, setWave] = useState({
     height: 400,
@@ -16,7 +17,7 @@ function Home() {
     layerCount: 2,
     variance: 0.75,
     strokeWidth: 0,
-    fillColor: '#0099ff',
+    fillColor: '#ff0080',
     strokeColor: 'none',
   })
 
@@ -29,6 +30,7 @@ function Home() {
     <svg
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
+      ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
     >
       {path.map((p, index) => {
@@ -71,7 +73,12 @@ function Home() {
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
 
-        <Canvas waveConfig={wave} showModal={showModal} svg={svg} />
+        <Canvas
+          waveConfig={wave}
+          showModal={showModal}
+          svg={svg}
+          svgElement={svgElement}
+        />
         <CustomBar
           waveConfig={wave}
           handleWaveConfig={handleWaveConfig}
