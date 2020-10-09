@@ -4,6 +4,7 @@ import CustomBar from './customBar'
 import Navbar from './nav'
 import { waveInit } from '../wave'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
+import SVGCode from './svgCode'
 
 function Home() {
   const [bgColor, setBgColor] = useState('#ff008033')
@@ -61,7 +62,7 @@ function Home() {
   }
 
   const handleExportSVG = () => {
-    setShowModal(true)
+    setShowModal(!showModal)
   }
 
   return (
@@ -72,13 +73,14 @@ function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
+        {showModal && (
+          <SVGCode
+            code={svgElement.current.outerHTML}
+            toggleModal={handleExportSVG}
+          />
+        )}
 
-        <Canvas
-          waveConfig={wave}
-          showModal={showModal}
-          svg={svg}
-          svgElement={svgElement}
-        />
+        <Canvas svg={svg} />
         <CustomBar
           waveConfig={wave}
           handleWaveConfig={handleWaveConfig}
