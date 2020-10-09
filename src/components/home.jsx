@@ -5,6 +5,8 @@ import Navbar from './nav'
 import { waveInit } from '../wave'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 import SVGCode from './svgCode'
+import saveSvgAsPng from 'save-svg-as-png'
+import Alert from './alerts'
 
 function Home() {
   const [bgColor, setBgColor] = useState('#ff008033')
@@ -12,10 +14,10 @@ function Home() {
   const svgElement = useRef(null)
 
   const [wave, setWave] = useState({
-    height: 400,
+    height: 500,
     width: 1440,
     segmentCount: 4,
-    layerCount: 2,
+    layerCount: 3,
     variance: 0.75,
     strokeWidth: 0,
     fillColor: '#ff0080',
@@ -33,6 +35,7 @@ function Home() {
       xmlns={xmlns}
       ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
+      id="bg-svg"
     >
       {path.map((p, index) => {
         return (
@@ -65,6 +68,10 @@ function Home() {
     setShowModal(!showModal)
   }
 
+  const handleExportPNG = () => {
+    saveSvgAsPng.saveSvgAsPng(document.getElementById('bg-svg'), 'svg.png')
+  }
+
   return (
     <div className="relative h-screen">
       <Navbar />
@@ -86,6 +93,7 @@ function Home() {
           handleWaveConfig={handleWaveConfig}
           handleBGchange={changeBG}
           exportSVG={handleExportSVG}
+          exportPNG={handleExportPNG}
         />
       </div>
     </div>

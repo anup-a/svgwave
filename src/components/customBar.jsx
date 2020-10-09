@@ -4,9 +4,9 @@ import Water from './../assets/001-water.svg'
 import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
-function CustomBar({ handleWaveConfig, handleBGchange, exportSVG }) {
+function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
   const [waves, setWaves] = useState(5)
-  const [layer, setLayer] = useState(2)
+  const [layer, setLayer] = useState(3)
   const [animate, setAnimate] = useState(false)
   const [color, setColor] = useState('#0099ff')
 
@@ -37,7 +37,9 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG }) {
     exportSVG()
   }
 
-  const handleExportPng = () => {}
+  const handleExportPng = () => {
+    exportPNG()
+  }
 
   return (
     <div className="z-10 flex flex-col items-center w-1/5 p-5 m-5 bg-white rounded-md h-4/5 custom-bar justify-evenly">

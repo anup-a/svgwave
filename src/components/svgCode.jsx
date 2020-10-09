@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import copyBtn from './../assets/001-copy.svg'
 
 function SVGCode({ code, toggleModal }) {
+  const [copySuccess, setCopySuccess] = useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code)
+    displaySuccessModal()
+  }
+
+  const displaySuccessModal = () => {
+    setCopySuccess(true)
+    setTimeout(() => {
+      setCopySuccess(false)
+      toggleModal()
+    }, 1000)
+  }
+
   return (
     <div class="fixed z-20 inset-0 overflow-y-auto">
       <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -25,6 +40,11 @@ function SVGCode({ code, toggleModal }) {
                 >
                   Export SVG Code
                 </h3>
+                {copySuccess && (
+                  <div className="absolute right-0 px-3 py-2 mt-4 mr-16 bg-gray-100 rounded-md">
+                    Copied
+                  </div>
+                )}
                 <div class="mt-6 overflow-y-auto h-40 rounded-lg">
                   <pre className="p-3 whitespace-pre-line bg-black">
                     <code className="text-white ">{code}</code>
@@ -37,9 +57,10 @@ function SVGCode({ code, toggleModal }) {
             <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
               <button
                 type="button"
+                onClick={handleCopy}
                 class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
               >
-                <img src={copyBtn} width="20px" alt="" /> Copy
+                <img src={copyBtn} width="20px" alt="" className="mr-2" /> Copy
               </button>
             </span>
             <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">

@@ -23,6 +23,7 @@
     "react": "^16.13.1",
     "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
+    "save-svg-as-png": "^1.4.17",
     "tailwind-percentage-heights-plugin": "^0.1.4"
   },
   "devDependencies": {
