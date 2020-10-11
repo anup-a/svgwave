@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { highlightCode } from '../helpers/highlighter'
 import copyBtn from './../assets/001-copy.svg'
+
+import './../styles/highlight.css'
 
 function SVGCode({ code, toggleModal }) {
   const [copySuccess, setCopySuccess] = useState(false)

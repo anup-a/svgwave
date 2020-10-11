@@ -1,0 +1,19 @@
+.highlight-symbol {
+    color: blue;
+}
+
+.highlight-svg {
+    color: yellow;
+}
+
+.highlight-path {
+    color: green;
+}
+
+.highlight-value {
+    color: red
+}
+
+.highlight-key {
+    color: rebeccapurple;
+}
