@@ -42,7 +42,7 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
   }
 
   return (
-    <div className="z-10 flex flex-col items-center w-1/5 p-5 m-5 bg-white rounded-md h-4/5 custom-bar justify-evenly">
+    <div className="z-10 flex flex-col items-center w-1/5 p-5 m-5 bg-white rounded-md shadow-lg h-4/5 custom-bar justify-evenly dark:bg-darkish-black dark:text-white">
       <div className="text-center waves-section">
         <label
           htmlFor="waves"
@@ -95,19 +95,20 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
         color={color}
         onChangeComplete={handleColorChange}
         width="100%"
+        styles={{ background: '#000' }}
       />
 
       <div className="flex flex-col w-full mt-2">
         <p className="text-sm tracking-widest text-center uppercase ">Export</p>
         <div className="flex pt-2 mt-2 justify-evenly btn-grp">
           <button
-            className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-svg"
+            className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-svg dark:text-black"
             onClick={handleExportSvg}
           >
             SVG
           </button>
           <button
-            className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png"
+            className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black"
             onClick={handleExportPng}
           >
             PNG

@@ -6,11 +6,11 @@ import { waveInit } from '../wave'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
-import Alert from './alerts'
 
-function Home() {
+function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff008033')
   const [showModal, setShowModal] = useState(false)
+
   const svgElement = useRef(null)
 
   const [wave, setWave] = useState({
@@ -31,11 +31,12 @@ function Home() {
 
   const svg = (
     <svg
+      height="100%"
+      width="100%"
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
       ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
-      id="bg-svg"
     >
       {path.map((p, index) => {
         return (
@@ -73,11 +74,11 @@ function Home() {
   }
 
   return (
-    <div className="relative h-screen">
-      <Navbar />
+    <div className="relative h-screen dark:bg-darkish-black">
+      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} />
       <div
-        className="flex items-center justify-center h-screen py-5"
-        style={{ backgroundColor: bgColor }}
+        className="flex items-center justify-center h-screen py-5 dark:bg-darkish-black"
+        style={{ backgroundColor: isDark ? '#131e2b66' : bgColor }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
         {showModal && (
@@ -94,6 +95,7 @@ function Home() {
           handleBGchange={changeBG}
           exportSVG={handleExportSVG}
           exportPNG={handleExportPNG}
+          isDark={isDark}
         />
       </div>
     </div>

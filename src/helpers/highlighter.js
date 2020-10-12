@@ -13,23 +13,23 @@ export const highlightCode = (codeStr) => {
   while (j < codeStr.length) {
     let current = codeStr.slice(i, j)
     if (re_symbols.test(current)) {
-      newStr += `<span classname="highlight-symbol">${current}</span>`
+      newStr += `<span classname="highlight-symbol">"${current}"</span>`
       i = j
       j = j + 1
     } else if (re_svg.test(current)) {
-      newStr += `<span classname="highlight-svg">${current}</span>`
+      newStr += `<span classname="highlight-svg">"${current}"</span>`
       i = j
       j = j + 1
     } else if (re_path.test(current)) {
-      newStr += `<span classname="highlight-path">${current}</span>`
+      newStr += `<span classname="highlight-path">"${current}"</span>`
       i = j
       j = j + 1
     } else if (re_values.test(current)) {
-      newStr += `<span classname="highlight-value">${current}</span>`
+      newStr += `<span classname="highlight-value">"${current}"</span>`
       i = j
       j = j + 1
     } else if (re_keys.test(current)) {
-      newStr += `<span classname="highlight-key">${current}</span>`
+      newStr += `<span classname="highlight-key">"${current}"</span>`
       i = j
       j = j + 1
     } else {
