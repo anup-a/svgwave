@@ -4,8 +4,8 @@ import Github from './../assets/001-github.svg'
 import underWave from './../assets/underwave.png'
 
 import Logo from './logo';
-import light from './../assets/1-01.svg'
-import dark from './../assets/2-01.svg'
+import light from './../assets/3-01.svg'
+import dark from './../assets/4-01.svg'
 import './../styles/nav.css';
 
 function Navbar({ isDark, toggleDarkMode, color }) {
@@ -13,10 +13,10 @@ function Navbar({ isDark, toggleDarkMode, color }) {
     <div className="fixed flex items-center justify-between w-full h-16 bg-white shadow-lg dark:bg-darkish-black dark:text-white">
       <div className="flex items-center px-3 mx-3 font-sans text-lg font-bold nav-item max-h-16">
         {/* <Logo color={color} /> */}
-        <img src={isDark ? dark : light} alt="" width="80px"/>
+        <img src={isDark ? dark : light} alt="" width="60px"/>
         <div className="relative logo-name">
-        <span className="font-bold text-black nav-logo dark:text-white"> Svg </span>
-        <span className="font-bold text-black nav-logo dark:text-white"> Wave </span>
+        <span className="text-black nav-logo dark:text-white"> Svg </span>
+        <span className="text-black nav-logo dark:text-white"> Wave </span>
       
         </div>
       </div>
