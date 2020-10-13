@@ -2,6 +2,7 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const webpack = require('webpack')
 
 
@@ -70,5 +71,6 @@ module.exports = {
     }
   }),
   new CompressionPlugin(),
+  new OptimizeCSSAssetsPlugin({}),
   ],
 };
