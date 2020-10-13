@@ -8,7 +8,7 @@
     "start": "npm run watch:css && webpack-dev-server --open --hot",
     "build": "npm run build:css && webpack --mode production --devtool source-map",
     "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
   },
   "keywords": [
     "Svg",
