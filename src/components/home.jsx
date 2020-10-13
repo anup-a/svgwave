@@ -77,7 +77,7 @@ function Home({ isDark, toggleDarkMode }) {
     <div className="relative h-screen dark:bg-darkish-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor}/>
       <div
-        className="flex flex-col-reverse items-center justify-center h-screen py-5 dark:bg-darkish-black md:flex-row"
+        className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
         style={{ backgroundColor: isDark ? '#131e2b66' : `${bgColor}33` }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
@@ -87,16 +87,21 @@ function Home({ isDark, toggleDarkMode }) {
             toggleModal={handleExportSVG}
           />
         )}
+        <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 center-container md:flex-row ">
+          <Canvas svg={svg} />
+          <CustomBar
+            waveConfig={wave}
+            handleWaveConfig={handleWaveConfig}
+            handleBGchange={changeBG}
+            exportSVG={handleExportSVG}
+            exportPNG={handleExportPNG}
+            isDark={isDark}
+          />
+        </div>
+        <div className="z-20 flex h-12 text-lg font-bold text-black footer dark:text-white">
+          Made with ❤ - by <a href="https://www.anup.tech" className="ml-2 underline"> Anup</a>
+        </div>
 
-        <Canvas svg={svg} />
-        <CustomBar
-          waveConfig={wave}
-          handleWaveConfig={handleWaveConfig}
-          handleBGchange={changeBG}
-          exportSVG={handleExportSVG}
-          exportPNG={handleExportPNG}
-          isDark={isDark}
-        />
       </div>
     </div>
   )

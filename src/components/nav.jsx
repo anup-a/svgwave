@@ -21,12 +21,15 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         </div>
       </div>
       <div className="flex items-center nav-item ">
+        <a href="https://github.com/anup-a/svgwave">
         <img
           src={Github}
           alt="Github logo"
           width="30"
           style={{ filter: isDark ? 'invert(1)' : '', marginRight: '2rem' }}
         />
+        </a>
+        
         <DarkModeSwitch
           style={{ marginRight: '2rem' }}
           checked={isDark}
