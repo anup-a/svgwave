@@ -1,0 +1,13 @@
+.nav-logo {
+    font-family: 'Charmonman', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2mm;
+
+}
+
+.nav-underwave {
+    top: 20px;
+    left: 30px;
+    z-index: -1;
+}

@@ -8,7 +8,7 @@ import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
 
 function Home({ isDark, toggleDarkMode }) {
-  const [bgColor, setBgColor] = useState('#ff008033')
+  const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
 
   const svgElement = useRef(null)
@@ -61,7 +61,7 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   const changeBG = (color) => {
-    color = color + '33'
+    color = color
     setBgColor(color)
   }
 
@@ -75,10 +75,10 @@ function Home({ isDark, toggleDarkMode }) {
 
   return (
     <div className="relative h-screen dark:bg-darkish-black">
-      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} />
+      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor}/>
       <div
         className="flex flex-col-reverse items-center justify-center h-screen py-5 dark:bg-darkish-black md:flex-row"
-        style={{ backgroundColor: isDark ? '#131e2b66' : bgColor }}
+        style={{ backgroundColor: isDark ? '#131e2b66' : `${bgColor}33` }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
         {showModal && (
