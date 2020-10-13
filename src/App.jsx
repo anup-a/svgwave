@@ -3,7 +3,7 @@ import Home from './components/home'
 import './styles/main.css'
 
 function App() {
-  const [isDark, setIsDark] = useState(true)
+  const [isDark, setIsDark] = useState(false)
   const onChangeTheme = (arg) => {
     setIsDark(arg)
   }

@@ -6,6 +6,10 @@ module.exports = {
         'darkish-blue': '#182635',
         'darkish-black': '#0e141b',
       },
+      width: {
+        '7/10' : '70%',
+        '3/10' : '30%',
+      }
     },
     fontFamily: {
       sans: [

@@ -77,7 +77,7 @@ function Home({ isDark, toggleDarkMode }) {
     <div className="relative h-screen dark:bg-darkish-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} />
       <div
-        className="flex items-center justify-center h-screen py-5 dark:bg-darkish-black"
+        className="flex flex-col-reverse items-center justify-center h-screen py-5 dark:bg-darkish-black md:flex-row"
         style={{ backgroundColor: isDark ? '#131e2b66' : bgColor }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
