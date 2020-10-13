@@ -9,6 +9,9 @@ module.exports = {
       width: {
         '7/10' : '70%',
         '3/10' : '30%',
+      },
+      screens: {
+        'xs' : '362px',
       }
     },
     fontFamily: {

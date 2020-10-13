@@ -42,7 +42,7 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
   }
 
   return (
-    <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar sm:justify-evenly dark:bg-darkish-black dark:text-white">
+    <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
       <div className="text-center waves-section">
         <label
           htmlFor="waves"
