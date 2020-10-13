@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { h } from 'preact';
+import { useState} from 'preact/hooks'
 import Home from './components/home'
 import './styles/main.css'
 

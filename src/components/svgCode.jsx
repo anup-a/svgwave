@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { h } from 'preact';
+import { useState } from 'preact/hooks'
 import { highlightCode } from '../helpers/highlighter'
 import copyBtn from './../assets/001-copy.svg'
 

@@ -1,6 +1,9 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
+const webpack = require('webpack')
+
 
 module.exports = {
   mode: "development",
@@ -47,7 +50,12 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: [".js", ".jsx"] },
+  resolve: { extensions: [".js", ".jsx"] , 
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
+  }
+},
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].bundle.css",
@@ -56,5 +64,11 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "./src/index.html",
     }),
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }),
+  new CompressionPlugin(),
   ],
 };

@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact';
 import { shadeColor } from './../helpers/colorBlender';
 
 function Logo({ color}) {

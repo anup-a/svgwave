@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { h } from 'preact';
+import { useState } from 'preact/hooks'
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
 import { TwitterPicker } from 'react-color'

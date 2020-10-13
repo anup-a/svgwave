@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import { h } from 'preact';
+import { useRef, useState } from 'preact/hooks'
 import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
@@ -33,6 +34,7 @@ function Home({ isDark, toggleDarkMode }) {
     <svg
       height="100%"
       width="100%"
+      id="bg-svg"
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
       ref={svgElement}

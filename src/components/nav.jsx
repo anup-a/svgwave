@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact';
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Github from './../assets/001-github.svg'
 import underWave from './../assets/underwave.png'
@@ -12,8 +12,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
   return (
     <div className="fixed flex items-center justify-between w-full h-16 bg-white shadow-lg dark:bg-darkish-black dark:text-white">
       <div className="flex items-center px-3 mx-3 font-sans text-lg font-bold nav-item max-h-16">
-        {/* <Logo color={color} /> */}
-        <img src={isDark ? dark : light} alt="" width="60px"/>
+        <img src={isDark ? dark : light} alt="" width="80"/>
         <div className="relative logo-name">
         <span className="text-black nav-logo dark:text-white"> Svg </span>
         <span className="text-black nav-logo dark:text-white"> Wave </span>
