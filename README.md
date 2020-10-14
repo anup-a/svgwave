@@ -1,4 +1,4 @@
-# SVG Wave - A tiny SVG wave generator - [App](www.svgwave.in)
+# 🌊 [SVG Wave](www.svgwave.in) - A tiny SVG wave generator - 
 
 ![](./svgwavecover.png)
 
