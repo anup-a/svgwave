@@ -63,7 +63,8 @@ module.exports = {
       chunkFilename: "[id].css",
     }),
     new HTMLWebpackPlugin({
-      template: "./src/index.html",
+      favicon: "./src/assets/3-01.svg",
+      template: "./src/index.html"
     }),
     new webpack.DefinePlugin({ // <-- key to reducing React's size
     'process.env': {
