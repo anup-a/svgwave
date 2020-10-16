@@ -45,10 +45,10 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
   const twitterPickerStyle = {
     default: {
       card: {
-        backgroundColor: '#605F5C'
+        backgroundColor: 'hsl(210,38%,15%)'
       },
       triangle: {
-        borderColor: 'transparent transparent #605F5C',
+        borderColor: 'transparent transparent hsl(210,38%,15%)',
       },
     }
   }
