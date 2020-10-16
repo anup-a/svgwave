@@ -1,5 +1,5 @@
-import { h } from 'preact';
-import { useRef, useState } from 'preact/hooks'
+import { h } from 'preact'
+import { useRef, useState, useEffect } from 'preact/hooks'
 import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
@@ -25,8 +25,13 @@ function Home({ isDark, toggleDarkMode }) {
     strokeColor: 'none',
   })
 
-  const waveSvg = waveInit(wave)
-  const { height, width, xmlns, path } = waveSvg.svg
+  const [waveSvg, setWaveSvg] = useState(waveInit(wave))
+
+  useEffect(() => {
+    setWaveSvg(waveInit(wave))
+  }, [wave])
+
+  const { height, xmlns, path } = waveSvg.svg
   const num_waves = path.length
   const opac = OPACITY_ARR.slice(MAX_WAVES - num_waves)
 
@@ -77,7 +82,7 @@ function Home({ isDark, toggleDarkMode }) {
 
   return (
     <div className="relative h-screen dark:bg-darkish-black">
-      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor}/>
+      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <div
         className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
         style={{ backgroundColor: isDark ? '#131e2b66' : `${bgColor}33` }}
@@ -103,7 +108,6 @@ function Home({ isDark, toggleDarkMode }) {
         <div className="z-20 flex h-12 text-lg font-bold text-black footer dark:text-white">
           Made with ❤ - by <a href="https://www.anup.tech" className="ml-2 underline"> Anup</a>
         </div>
-
       </div>
     </div>
   )
