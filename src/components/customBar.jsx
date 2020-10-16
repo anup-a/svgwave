@@ -9,6 +9,7 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
   const [waves, setWaves] = useState(5)
   const [layer, setLayer] = useState(3)
   const [animate, setAnimate] = useState(false)
+  const [height, setHeight] = useState(2)
   const [color, setColor] = useState('#0099ff')
 
   const handleChange = (e) => {
@@ -32,6 +33,12 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
     const val = e.target.value
     setLayer(val)
     handleWaveConfig({ layerCount: val, height: HEIGHT_ARR[val - 2] })
+  }
+
+  const handleHeightChange = (e) => {
+    const val = e.target.value
+    setHeight(val)
+    handleWaveConfig({height: HEIGHT_ARR[val]})
   }
 
   const handleExportSvg = () => {
@@ -90,6 +97,25 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
           name="layers"
           min="2"
           max="5"
+          step="1"
+        />
+      </div>
+      <div className="text-center waves-section">
+        <label
+          htmlFor="waves"
+          className="text-sm tracking-widest text-center uppercase"
+        >
+          Height
+        </label>
+        <input
+          className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+          value={height}
+          onChange={handleHeightChange}
+          type="range"
+          id="height"
+          name="height"
+          min={0}
+          max={3}
           step="1"
         />
       </div>
