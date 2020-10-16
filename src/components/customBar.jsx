@@ -5,7 +5,7 @@ import Water from './../assets/001-water.svg'
 import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
-function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
+function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
   const [waves, setWaves] = useState(5)
   const [layer, setLayer] = useState(3)
   const [animate, setAnimate] = useState(false)
@@ -40,6 +40,17 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
 
   const handleExportPng = () => {
     exportPNG()
+  }
+
+  const twitterPickerStyle = {
+    default: {
+      card: {
+        backgroundColor: 'hsl(210,38%,15%)'
+      },
+      triangle: {
+        borderColor: 'transparent transparent hsl(210,38%,15%)',
+      },
+    }
   }
 
   return (
@@ -96,7 +107,7 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG }) {
         color={color}
         onChangeComplete={handleColorChange}
         width="100%"
-        styles={{ background: '#000' }}
+        styles={isDark ? twitterPickerStyle : {}}
       />
 
       <div className="flex flex-col w-full mt-2">
