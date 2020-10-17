@@ -3,7 +3,6 @@ import { useRef, useState, useEffect } from 'preact/hooks'
 import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
-import Loader from './loader'
 import { waveInit } from '../wave'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 import SVGCode from './svgCode'
@@ -27,11 +26,9 @@ function Home({ isDark, toggleDarkMode }) {
   })
 
   const [waveSvg, setWaveSvg] = useState(waveInit(wave))
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setWaveSvg(waveInit(wave))
-    setLoading(false)
   }, [wave])
 
   const { height, xmlns, path } = waveSvg.svg
@@ -82,8 +79,6 @@ function Home({ isDark, toggleDarkMode }) {
   const handleExportPNG = () => {
     saveSvgAsPng.saveSvgAsPng(document.getElementById('bg-svg'), 'svg.png')
   }
-
-  if (loading) return <Loader />
 
   return (
     <div className="relative h-screen dark:bg-darkish-black">
