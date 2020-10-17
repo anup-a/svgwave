@@ -42,6 +42,7 @@
     />
     <meta property="twitter:image" content="./assets/bg.png" />
     <link rel="shortcut icon" href="./assets/3-01.svg" />
+    <link rel="stylesheet" href="/styles/loader.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -60,5 +61,23 @@
   </head>
   <body>
     <div id="app"></div>
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
   </body>
+
+  <script>
+    document.onreadystatechange = function () {
+      const state = document.readyState
+      if (state === 'interactive') {
+        document.querySelector('#app').style.display = 'none'
+      } else if (state === 'complete') {
+        // setTimeout can be used to test the loader.
+        // setTimeout(function () {
+        document.querySelector('.loader-container').style.display = 'none'
+        document.querySelector('#app').style.display = 'block'
+        // }, 3000)
+      }
+    }
+  </script>
 </html>
