@@ -758,6 +758,10 @@ video {
   cursor: pointer;
 }
 
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -956,8 +960,7 @@ video {
 }
 
 .focus\:outline-none:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+  outline: 0;
 }
 
 .overflow-hidden {
