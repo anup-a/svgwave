@@ -1,12 +1,13 @@
 import { h } from 'preact';
-import { useState} from 'preact/hooks'
 import Home from './components/home'
+import { useDarkModeState }  from './hooks/useDarkMode'
 import './styles/main.css'
 
 function App() {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useDarkModeState()
+  
   const onChangeTheme = (arg) => {
-    setIsDark(arg)
+     setIsDark(arg)
   }
 
   return (
