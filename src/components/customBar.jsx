@@ -1,8 +1,9 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks'
+import { TwitterPicker } from 'react-color'
+
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
-import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
 function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
