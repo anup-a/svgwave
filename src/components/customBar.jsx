@@ -30,10 +30,13 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
       segmentCount,
       layerCount,
       height: HEIGHT_ARR[height],
-      fillColor,
     })
-    onBGChange(fillColor)
-  }, [segmentCount, layerCount, height, fillColor, animate])
+  }, [segmentCount, layerCount, height, animate])
+
+  const handleColorChange = (hex) => {
+    setFillColor(hex)
+    onBGChange(hex)
+  }
 
 
   return (
@@ -107,7 +110,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
 
       <TwitterPicker
         color={fillColor}
-        onChangeComplete={({ hex }) => setFillColor(hex)}
+        onChangeComplete={({ hex }) => handleColorChange(hex)}
         width="100%"
         styles={isDark ? twitterPickerStyle : {}}
       />
