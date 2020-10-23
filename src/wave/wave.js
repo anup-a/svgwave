@@ -26,7 +26,7 @@ function generatePoints(width, height, segmentCount, layerCount, variance) {
     pointsPerLayer.push({ x: width, y: Math.floor(y) })
     points.push(pointsPerLayer)
   }
-  console.log(points)
+  // console.log(points)
   return points
 }
 
@@ -37,6 +37,7 @@ function generateClosedPath(
   filleColor,
   strokeColor,
   strokeWidth,
+  transform
 ) {
   const xPoints = curvePoints.map((p) => p.x)
   const yPoints = curvePoints.map((p) => p.y)
@@ -73,6 +74,7 @@ function generateClosedPath(
     strokeColor: strokeColor,
     strokeWidth: strokeWidth,
     d: path,
+    transform: transform
   }
 }
 
@@ -107,6 +109,7 @@ export class Wavery {
           this.properties.fillColor,
           this.properties.strokeColor,
           this.properties.strokeWidth,
+          this.properties.transform
         ),
       )
     }

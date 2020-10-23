@@ -54,6 +54,7 @@ function Home({ isDark, toggleDarkMode }) {
             strokeWidth={p.strokeWidth}
             fill={`${p.fill}${opac[index]}`}
             className="transition-all duration-300 ease-in-out delay-150"
+            transform={p.transform}
           ></path>
         )
       })}
@@ -65,6 +66,17 @@ function Home({ isDark, toggleDarkMode }) {
       ...wave,
       ...waveData,
     })
+  }
+
+  const handleWaveTransform = () => {
+    if(waveSvg.svg.path[0].transform) {
+      setWaveSvg(waveInit({ ...wave, }))
+    } else {
+      const cw = waveSvg.svg.width / 2;
+      const ch = waveSvg.svg.height / 2;
+      const data = { transform: `rotate(-180 ${cw} ${ch})` }
+      setWaveSvg(waveInit({ ...wave, ...data  }))
+    }
   }
 
   const changeBG = (color) => {
@@ -97,6 +109,7 @@ function Home({ isDark, toggleDarkMode }) {
         <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 center-container md:flex-row ">
           <Canvas svg={svg} />
           <CustomBar
+            handleWaveTransform={handleWaveTransform}
             waveConfig={wave}
             handleWaveConfig={handleWaveConfig}
             handleBGchange={changeBG}

@@ -5,7 +5,7 @@ import Water from './../assets/001-water.svg'
 import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
-function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
+function CustomBar({ handleWaveTransform, handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
   const [waves, setWaves] = useState(5)
   const [layer, setLayer] = useState(3)
   const [animate, setAnimate] = useState(false)
@@ -27,6 +27,10 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
   const handleRandomWave = () => {
     setAnimate(true)
     handleWaveConfig()
+  }
+
+  const handleFlipWave = () => {
+    handleWaveTransform()
   }
 
   const handleLayerChange = (e) => {
@@ -126,6 +130,12 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
           alt="Wave logo"
           onClick={handleRandomWave}
           onAnimationEnd={() => setAnimate(false)}
+        />
+      </button>
+      <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
+        <img
+          alt="Flip Wave"
+          onClick={handleFlipWave}
         />
       </button>
 
