@@ -1,27 +1,15 @@
 import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
-import { TwitterPicker } from 'react-color'
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
 import { HEIGHT_ARR } from '../constants'
-
-const twitterPickerStyle = {
-  default: {
-    card: {
-      backgroundColor: 'hsl(210,38%,15%)',
-    },
-    triangle: {
-      borderColor: 'transparent transparent hsl(210,38%,15%)',
-    },
-  },
-}
+import ColorTool from './colorTool'
 
 function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
   const [height, setHeight] = useState(2)
-  const [fillColor, setFillColor] = useState('#ff0080')
 
   useEffect(() => {
     if (animate) return
@@ -32,12 +20,6 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
       height: HEIGHT_ARR[height],
     })
   }, [segmentCount, layerCount, height, animate])
-
-  const handleColorChange = (hex) => {
-    setFillColor(hex)
-    onBGChange(hex)
-  }
-
 
   return (
     <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
@@ -51,7 +33,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
           value={segmentCount}
-          onChange={e => setSegmentCount(e.target.value)}
+          onChange={(e) => setSegmentCount(e.target.value)}
           type="range"
           id="waves"
           name="waves"
@@ -70,7 +52,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
           value={layerCount}
-          onChange={e => setLayoutCount(e.target.value)}
+          onChange={(e) => setLayoutCount(e.target.value)}
           type="range"
           id="layers"
           name="layers"
@@ -89,7 +71,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
           value={height}
-          onChange={e => setHeight(e.target.value)}
+          onChange={(e) => setHeight(e.target.value)}
           type="range"
           id="height"
           name="height"
@@ -108,12 +90,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
         />
       </button>
 
-      <TwitterPicker
-        color={fillColor}
-        onChangeComplete={({ hex }) => handleColorChange(hex)}
-        width="100%"
-        styles={isDark ? twitterPickerStyle : {}}
-      />
+      <ColorTool onBGChange={onBGChange} isDark={isDark} />
 
       <div className="flex flex-col w-full mt-2">
         <p className="text-sm tracking-widest text-center uppercase ">Export</p>

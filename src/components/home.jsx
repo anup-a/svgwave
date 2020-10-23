@@ -11,6 +11,12 @@ import saveSvgAsPng from 'save-svg-as-png'
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
+  const [gradient, setGradient] = useState(true)
+
+  const [grad, setGrad] = useState({
+    colorOne: 'rgba(0,43,220,1)',
+    colorTwo: 'rgba(50,222,212,1)',
+  })
 
   const svgElement = useRef(null)
 
@@ -45,6 +51,15 @@ function Home({ isDark, toggleDarkMode }) {
       ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
     >
+      {gradient && (
+        <defs>
+          <linearGradient id="gradient">
+            <stop offset="5%" stop-color={grad.colorOne} />
+            <stop offset="95%" stop-color={grad.colorTwo} />
+          </linearGradient>
+        </defs>
+      )}
+
       {path.map((p, index) => {
         return (
           <path
@@ -52,14 +67,14 @@ function Home({ isDark, toggleDarkMode }) {
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={`${bgColor}${opac[index]}`}
+            fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
             className="transition-all duration-300 ease-in-out delay-150"
           ></path>
         )
       })}
     </svg>
   )
-  
+
   const handleWaveConfig = (waveData) => {
     setWave({
       ...wave,

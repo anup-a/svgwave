@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: false,
     content: [
       './src/**/*.html', 
     './src/**/*.jsx'],
@@ -16,6 +16,7 @@ module.exports = {
       width: {
         '7/10' : '70%',
         '3/10' : '30%',
+        '1/2' : '50%',
       },
       screens: {
         'xs' : '362px',
