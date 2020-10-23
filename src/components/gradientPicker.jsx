@@ -3,6 +3,16 @@ import { useState } from 'preact/hooks'
 import { gradColorNum } from '../constants'
 import { TwitterPicker } from 'react-color'
 
+import './../styles/sideBar.css'
+
+const twitterPickerStyle = {
+  default: {
+    card: {
+      boxShadow: 'none',
+    },
+  },
+}
+
 function GradientPicker({ gradColors, onGradColorsChange }) {
   const [colorOne, setColorOne] = useState(gradColors.colorOne)
   const [colorTwo, setColorTwo] = useState(gradColors.colorTwo)
@@ -36,6 +46,7 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
       width="100%"
       z-index="20"
       triangle="hide"
+      styles={twitterPickerStyle}
     />
   )
   const isOneSelected = currentColor === gradColorNum.ONE
@@ -79,7 +90,7 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
   )
 
   return (
-    <div className="flex flex-col w-full bg-white shadow-lg">
+    <div className="flex flex-col w-full bg-white rounded-lg custom-shadow scale-in-center">
       <div className="flex">
         {colorBoxes}
         {gradientBox}

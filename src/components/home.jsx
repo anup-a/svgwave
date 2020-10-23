@@ -11,7 +11,7 @@ import saveSvgAsPng from 'save-svg-as-png'
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
-  const [gradient, setGradient] = useState(true)
+  const [gradient, setGradient] = useState(false)
 
   const [gradColors, setGradColors] = useState({
     colorOne: '#002bdc',
@@ -113,7 +113,13 @@ function Home({ isDark, toggleDarkMode }) {
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <div
         className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
-        style={{ backgroundColor: isDark ? '#131e2b66' : `${bgColor}33` }}
+        style={{
+          background: isDark
+            ? '#131e2b66'
+            : gradient
+            ? `linear-gradient(90deg, ${gradColors.colorOne}33 0%, ${gradColors.colorTwo}33 100%)`
+            : `${bgColor}33`,
+        }}
       >
         <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
         {showModal && (

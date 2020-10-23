@@ -5,6 +5,8 @@ import { TwitterPicker } from 'react-color'
 import { colorToolMode } from '../constants'
 import GradientPicker from './gradientPicker'
 
+import CloseSVG from './../assets/001-cross-sign.svg'
+
 const twitterPickerStyle = {
   default: {
     card: {
@@ -27,7 +29,7 @@ function ColorTool({
   const [colorTool, setColorTool] = useState(
     gradient ? colorToolMode.GRADIENT : colorToolMode.COLOR,
   )
-  const [showTool, setShowTool] = useState(true)
+  const [showTool, setShowTool] = useState(false)
   const [fillColor, setFillColor] = useState('#ff0080')
 
   const handleColorChange = (hex) => {
@@ -38,11 +40,16 @@ function ColorTool({
 
   const handleColorTool = (colorStatus) => {
     setColorTool(colorStatus)
+    if (colorStatus === colorToolMode.GRADIENT) {
+      onGradientToggle(true)
+    } else {
+      onGradientToggle(false)
+    }
   }
 
   const handleToggleTool = (e, colorStatus) => {
     e.stopPropagation()
-    setColorTool(colorStatus)
+    handleColorTool(colorStatus)
     setShowTool(true)
   }
 
@@ -83,12 +90,10 @@ function ColorTool({
               isGradient
                 ? {
                     background: '#718096',
-                    background:
-                      'linear-gradient(90deg, rgba(0,43,220,1) 0%, rgba(50,222,212,1) 100%)',
+                    background: `linear-gradient(90deg, ${gradColors.colorOne} 0%, ${gradColors.colorTwo} 100%)`,
                   }
                 : {
-                    background:
-                      'linear-gradient(90deg, rgba(0,43,220,1) 0%, rgba(50,222,212,1) 100%)',
+                    background: `linear-gradient(90deg, ${gradColors.colorOne} 0%, ${gradColors.colorTwo} 100%)`,
                   }
             }
           ></div>
@@ -104,9 +109,9 @@ function ColorTool({
         <div className="absolute w-full color-tool">
           <button
             onClick={() => setShowTool(false)}
-            className="absolute bottom-0 right-0 z-20 m-3"
+            className="absolute bottom-0 right-0 z-20 m-3 scale-in-center"
           >
-            X
+            <img src={CloseSVG} alt="close svg" width="10" />
           </button>
           {colorTool === colorToolMode.COLOR && (
             <TwitterPicker
@@ -115,6 +120,7 @@ function ColorTool({
               width="100%"
               z-index="20"
               styles={isDark ? twitterPickerStyle : {}}
+              className="scale-in-center"
             />
           )}
           {colorTool === colorToolMode.GRADIENT && (

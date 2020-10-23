@@ -33,63 +33,66 @@ function CustomBar({
 
   return (
     <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
-      <div className="text-center waves-section">
-        <label
-          htmlFor="waves"
-          className="text-sm tracking-widest text-center uppercase"
-        >
-          Waves
-        </label>
-        <input
-          className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
-          value={segmentCount}
-          onChange={(e) => setSegmentCount(e.target.value)}
-          type="range"
-          id="waves"
-          name="waves"
-          min="1"
-          max="20"
-          step="1"
-        />
+      <div className="flex flex-col">
+        <div className="text-center waves-section">
+          <label
+            htmlFor="waves"
+            className="text-sm tracking-widest text-center uppercase"
+          >
+            Waves
+          </label>
+          <input
+            className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+            value={segmentCount}
+            onChange={(e) => setSegmentCount(e.target.value)}
+            type="range"
+            id="waves"
+            name="waves"
+            min="1"
+            max="20"
+            step="1"
+          />
+        </div>
+        <div className="text-center layers-section">
+          <label
+            htmlFor="layers"
+            className="text-sm tracking-widest text-center uppercase"
+          >
+            Layers
+          </label>
+          <input
+            className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+            value={layerCount}
+            onChange={(e) => setLayoutCount(e.target.value)}
+            type="range"
+            id="layers"
+            name="layers"
+            min="2"
+            max="5"
+            step="1"
+          />
+        </div>
+        <div className="text-center waves-section">
+          <label
+            htmlFor="waves"
+            className="text-sm tracking-widest text-center uppercase"
+          >
+            Height
+          </label>
+          <input
+            className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            type="range"
+            id="height"
+            name="height"
+            min={0}
+            max={3}
+            step="1"
+          />
+        </div>
       </div>
-      <div className="text-center layers-section">
-        <label
-          htmlFor="layers"
-          className="text-sm tracking-widest text-center uppercase"
-        >
-          Layers
-        </label>
-        <input
-          className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
-          value={layerCount}
-          onChange={(e) => setLayoutCount(e.target.value)}
-          type="range"
-          id="layers"
-          name="layers"
-          min="2"
-          max="5"
-          step="1"
-        />
-      </div>
-      <div className="text-center waves-section">
-        <label
-          htmlFor="waves"
-          className="text-sm tracking-widest text-center uppercase"
-        >
-          Height
-        </label>
-        <input
-          className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-          type="range"
-          id="height"
-          name="height"
-          min={0}
-          max={3}
-          step="1"
-        />
-      </div>
+
       <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
         <img
           src={Water}
