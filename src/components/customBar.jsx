@@ -24,6 +24,8 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
   const [fillColor, setFillColor] = useState('#0099ff')
 
   useEffect(() => {
+    if (animate) return
+
     onWaveConfig({
       segmentCount,
       layerCount,
@@ -98,7 +100,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
           src={Water}
           className={animate && 'reroll'}
           alt="Wave logo"
-          onClick={() => setAnimate(!animate)}
+          onClick={() => setAnimate(true)}
           onAnimationEnd={() => setAnimate(false)}
         />
       </button>
