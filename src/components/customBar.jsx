@@ -21,7 +21,7 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
   const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
   const [height, setHeight] = useState(2)
-  const [fillColor, setFillColor] = useState('#0099ff')
+  const [fillColor, setFillColor] = useState('#ff0080')
 
   useEffect(() => {
     if (animate) return
