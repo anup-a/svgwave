@@ -67,9 +67,8 @@ function Home({ isDark, toggleDarkMode }) {
     })
   }
 
-  const changeBG = (color) => {
-    color = color
-    setBgColor(color)
+  const handleBGChange = (color) => {
+    bgColor !== color && setBgColor(color)
   }
 
   const handleExportSVG = () => {
@@ -98,8 +97,8 @@ function Home({ isDark, toggleDarkMode }) {
           <Canvas svg={svg} />
           <CustomBar
             waveConfig={wave}
-            handleWaveConfig={handleWaveConfig}
-            handleBGchange={changeBG}
+            onWaveConfig={handleWaveConfig}
+            onBGChange={handleBGChange}
             exportSVG={handleExportSVG}
             exportPNG={handleExportPNG}
             isDark={isDark}

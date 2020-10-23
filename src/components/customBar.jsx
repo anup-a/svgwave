@@ -1,65 +1,40 @@
-import { h } from 'preact';
-import { useState } from 'preact/hooks'
+import { h } from 'preact'
+import { useState, useEffect } from 'preact/hooks'
 import { TwitterPicker } from 'react-color'
-
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
 import { HEIGHT_ARR } from '../constants'
 
-function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
-  const [waves, setWaves] = useState(5)
-  const [layer, setLayer] = useState(3)
+const twitterPickerStyle = {
+  default: {
+    card: {
+      backgroundColor: 'hsl(210,38%,15%)',
+    },
+    triangle: {
+      borderColor: 'transparent transparent hsl(210,38%,15%)',
+    },
+  },
+}
+
+function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
+  const [segmentCount, setSegmentCount] = useState(5)
+  const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
   const [height, setHeight] = useState(2)
-  const [color, setColor] = useState('#0099ff')
+  const [fillColor, setFillColor] = useState('#ff0080')
 
-  const handleChange = (e) => {
-    const val = e.target.value
-    setWaves(val)
-    handleWaveConfig({ segmentCount: val })
-  }
+  useEffect(() => {
+    if (animate) return
 
-  const handleColorChange = ({ hex }) => {
-    setColor(hex)
-    handleWaveConfig({ fillColor: hex })
-    handleBGchange(hex)
-  }
+    onWaveConfig({
+      segmentCount,
+      layerCount,
+      height: HEIGHT_ARR[height],
+      fillColor,
+    })
+    onBGChange(fillColor)
+  }, [segmentCount, layerCount, height, fillColor, animate])
 
-  const handleRandomWave = () => {
-    setAnimate(true)
-    handleWaveConfig()
-  }
-
-  const handleLayerChange = (e) => {
-    const val = e.target.value
-    setLayer(val)
-    handleWaveConfig({ layerCount: val, height: HEIGHT_ARR[val - 2] })
-  }
-
-  const handleHeightChange = (e) => {
-    const val = e.target.value
-    setHeight(val)
-    handleWaveConfig({height: HEIGHT_ARR[val]})
-  }
-
-  const handleExportSvg = () => {
-    exportSVG()
-  }
-
-  const handleExportPng = () => {
-    exportPNG()
-  }
-
-  const twitterPickerStyle = {
-    default: {
-      card: {
-        backgroundColor: 'hsl(210,38%,15%)'
-      },
-      triangle: {
-        borderColor: 'transparent transparent hsl(210,38%,15%)',
-      },
-    }
-  }
 
   return (
     <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
@@ -72,8 +47,8 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
         </label>
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
-          value={waves}
-          onChange={handleChange}
+          value={segmentCount}
+          onChange={e => setSegmentCount(e.target.value)}
           type="range"
           id="waves"
           name="waves"
@@ -91,8 +66,8 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
         </label>
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
-          value={layer}
-          onChange={handleLayerChange}
+          value={layerCount}
+          onChange={e => setLayoutCount(e.target.value)}
           type="range"
           id="layers"
           name="layers"
@@ -111,7 +86,7 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
         <input
           className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
           value={height}
-          onChange={handleHeightChange}
+          onChange={e => setHeight(e.target.value)}
           type="range"
           id="height"
           name="height"
@@ -125,14 +100,14 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
           src={Water}
           className={animate && 'reroll'}
           alt="Wave logo"
-          onClick={handleRandomWave}
+          onClick={() => setAnimate(true)}
           onAnimationEnd={() => setAnimate(false)}
         />
       </button>
 
       <TwitterPicker
-        color={color}
-        onChangeComplete={handleColorChange}
+        color={fillColor}
+        onChangeComplete={({ hex }) => setFillColor(hex)}
         width="100%"
         styles={isDark ? twitterPickerStyle : {}}
       />
@@ -142,13 +117,13 @@ function CustomBar({ handleWaveConfig, handleBGchange, exportSVG, exportPNG, isD
         <div className="flex pt-2 mt-2 justify-evenly btn-grp">
           <button
             className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-svg dark:text-black"
-            onClick={handleExportSvg}
+            onClick={() => exportSVG()}
           >
             SVG
           </button>
           <button
             className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black"
-            onClick={handleExportPng}
+            onClick={() => exportPNG()}
           >
             PNG
           </button>
