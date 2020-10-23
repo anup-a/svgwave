@@ -3,18 +3,26 @@ import { useState } from 'preact/hooks'
 import { gradColorNum } from '../constants'
 import { TwitterPicker } from 'react-color'
 
-function GradientPicker() {
-  const [colorOne, setColorOne] = useState('rgba(0,43,220,1)')
-  const [colorTwo, setColorTwo] = useState('rgba(50,222,212,1)')
+function GradientPicker({ gradColors, onGradColorsChange }) {
+  const [colorOne, setColorOne] = useState(gradColors.colorOne)
+  const [colorTwo, setColorTwo] = useState(gradColors.colorTwo)
   const [currentColor, setCurrentColor] = useState(gradColorNum.ONE)
 
   const handleColorChange = (hex) => {
     switch (currentColor) {
       case gradColorNum.ONE:
         setColorOne(hex)
+        onGradColorsChange({
+          ...gradColors,
+          colorOne: hex,
+        })
         break
       case gradColorNum.TWO:
         setColorTwo(hex)
+        onGradColorsChange({
+          ...gradColors,
+          colorTwo: hex,
+        })
         break
       default:
         break

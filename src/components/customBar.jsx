@@ -5,7 +5,17 @@ import Water from './../assets/001-water.svg'
 import { HEIGHT_ARR } from '../constants'
 import ColorTool from './colorTool'
 
-function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
+function CustomBar({
+  onWaveConfig,
+  onBGChange,
+  exportSVG,
+  exportPNG,
+  isDark,
+  onGradColorsChange,
+  onGradientToggle,
+  gradient,
+  gradColors,
+}) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
@@ -90,7 +100,14 @@ function CustomBar({ onWaveConfig, onBGChange, exportSVG, exportPNG, isDark }) {
         />
       </button>
 
-      <ColorTool onBGChange={onBGChange} isDark={isDark} />
+      <ColorTool
+        onBGChange={onBGChange}
+        isDark={isDark}
+        onGradColorsChange={onGradColorsChange}
+        onGradientToggle={onGradientToggle}
+        gradient={gradient}
+        gradColors={gradColors}
+      />
 
       <div className="flex flex-col w-full mt-2">
         <p className="text-sm tracking-widest text-center uppercase ">Export</p>

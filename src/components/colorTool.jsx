@@ -16,8 +16,17 @@ const twitterPickerStyle = {
   },
 }
 
-function ColorTool({ onBGChange, isDark }) {
-  const [colorTool, setColorTool] = useState(colorToolMode.GRADIENT)
+function ColorTool({
+  onBGChange,
+  isDark,
+  onGradColorsChange,
+  onGradientToggle,
+  gradient,
+  gradColors,
+}) {
+  const [colorTool, setColorTool] = useState(
+    gradient ? colorToolMode.GRADIENT : colorToolMode.COLOR,
+  )
   const [showTool, setShowTool] = useState(true)
   const [fillColor, setFillColor] = useState('#ff0080')
 
@@ -108,7 +117,12 @@ function ColorTool({ onBGChange, isDark }) {
               styles={isDark ? twitterPickerStyle : {}}
             />
           )}
-          {colorTool === colorToolMode.GRADIENT && <GradientPicker />}
+          {colorTool === colorToolMode.GRADIENT && (
+            <GradientPicker
+              onGradColorsChange={onGradColorsChange}
+              gradColors={gradColors}
+            />
+          )}
         </div>
       )}
     </div>

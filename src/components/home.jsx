@@ -13,9 +13,9 @@ function Home({ isDark, toggleDarkMode }) {
   const [showModal, setShowModal] = useState(false)
   const [gradient, setGradient] = useState(true)
 
-  const [grad, setGrad] = useState({
-    colorOne: 'rgba(0,43,220,1)',
-    colorTwo: 'rgba(50,222,212,1)',
+  const [gradColors, setGradColors] = useState({
+    colorOne: '#002bdc',
+    colorTwo: '#32ded4',
   })
 
   const svgElement = useRef(null)
@@ -51,17 +51,31 @@ function Home({ isDark, toggleDarkMode }) {
       ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
     >
-      {gradient && (
-        <defs>
-          <linearGradient id="gradient">
-            <stop offset="5%" stop-color={grad.colorOne} />
-            <stop offset="95%" stop-color={grad.colorTwo} />
-          </linearGradient>
-        </defs>
-      )}
-
       {path.map((p, index) => {
-        return (
+        return gradient ? (
+          [
+            <defs>
+              <linearGradient id={`gradient`}>
+                <stop
+                  offset="5%"
+                  stop-color={`${gradColors.colorOne}${opac[index]}`}
+                />
+                <stop
+                  offset="95%"
+                  stop-color={`${gradColors.colorTwo}${opac[index]}`}
+                />
+              </linearGradient>
+            </defs>,
+            <path
+              key={index}
+              d={p.d}
+              stroke={p.strokeColor}
+              strokeWidth={p.strokeWidth}
+              fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
+              className="transition-all duration-300 ease-in-out delay-150"
+            ></path>,
+          ]
+        ) : (
           <path
             key={index}
             d={p.d}
@@ -114,9 +128,13 @@ function Home({ isDark, toggleDarkMode }) {
             waveConfig={wave}
             onWaveConfig={handleWaveConfig}
             onBGChange={handleBGChange}
+            onGradColorsChange={setGradColors}
+            onGradientToggle={setGradient}
             exportSVG={handleExportSVG}
             exportPNG={handleExportPNG}
             isDark={isDark}
+            gradient={gradient}
+            gradColors={gradColors}
           />
         </div>
         <div className="z-20 flex h-12 text-lg font-bold text-black footer dark:text-white">
