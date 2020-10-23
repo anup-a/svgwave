@@ -52,14 +52,14 @@ function Home({ isDark, toggleDarkMode }) {
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={`${p.fill}${opac[index]}`}
+            fill={`${bgColor}${opac[index]}`}
             className="transition-all duration-300 ease-in-out delay-150"
           ></path>
         )
       })}
     </svg>
   )
-
+  
   const handleWaveConfig = (waveData) => {
     setWave({
       ...wave,

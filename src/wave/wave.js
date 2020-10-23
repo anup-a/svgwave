@@ -26,7 +26,6 @@ function generatePoints(width, height, segmentCount, layerCount, variance) {
     pointsPerLayer.push({ x: width, y: Math.floor(y) })
     points.push(pointsPerLayer)
   }
-  console.log(points)
   return points
 }
 
