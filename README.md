@@ -45,4 +45,9 @@ Give a star if you like It.👍
 
 ### Contributors
 
-- your name is soon to be here. 😀
+- [anup-a](https://github.com/anup-a)
+- [kychok98](https://github.com/kychok98)
+- [yencolon](https://github.com/yencolon)
+- [Remakh](https://github.com/Remakh)
+- [ansh-les](https://github.com/ansh-les)
+- [ansh-saini](https://github.com/ansh-saini)
