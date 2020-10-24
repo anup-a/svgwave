@@ -1,19 +1,16 @@
 import { h } from 'preact'
 import { useState } from 'preact/hooks'
-import { gradColorNum } from '../constants'
+import {
+  colorPickerDarkStyle,
+  gradColorNum,
+  gradientPickerStyle,
+} from '../constants'
 import { TwitterPicker } from 'react-color'
 
 import './../styles/sideBar.css'
+import { useDarkModeState } from './../hooks/useDarkMode'
 
-const twitterPickerStyle = {
-  default: {
-    card: {
-      boxShadow: 'none',
-    },
-  },
-}
-
-function GradientPicker({ gradColors, onGradColorsChange }) {
+function GradientPicker({ gradColors, onGradColorsChange, isDark }) {
   const [colorOne, setColorOne] = useState(gradColors.colorOne)
   const [colorTwo, setColorTwo] = useState(gradColors.colorTwo)
   const [currentColor, setCurrentColor] = useState(gradColorNum.ONE)
@@ -46,7 +43,7 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
       width="100%"
       z-index="20"
       triangle="hide"
-      styles={twitterPickerStyle}
+      styles={isDark ? colorPickerDarkStyle : gradientPickerStyle}
     />
   )
   const isOneSelected = currentColor === gradColorNum.ONE
@@ -54,8 +51,8 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
   const colorBoxes = (
     <div className="flex w-1/2 m-0 my-3 justify-evenly">
       <div
-        className={`flex items-center justify-center w-10 h-10 bg-white border-2 cursor-pointer ${
-          isOneSelected && 'border-indigo-900'
+        className={`flex items-center justify-center w-10 h-10 bg-white dark:bg-darkish-blue cursor-pointer ${
+          isOneSelected && 'border-2 border-indigo-900 dark:border-white'
         } rounded-md shadow-lg color-btn`}
         onClick={() => setCurrentColor(gradColorNum.ONE)}
       >
@@ -65,8 +62,8 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
         ></div>
       </div>
       <div
-        className={`flex items-center justify-center w-10 h-10 bg-white border-2 cursor-pointer ${
-          !isOneSelected && 'border-indigo-900'
+        className={`flex items-center justify-center w-10 h-10 bg-white dark:bg-darkish-blue cursor-pointer ${
+          !isOneSelected && 'border-2 border-indigo-900 dark:border-white'
         } rounded-md shadow-lg color-btn`}
         onClick={() => setCurrentColor(gradColorNum.TWO)}
       >
@@ -79,7 +76,7 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
   )
 
   const gradientBox = (
-    <div className="flex items-center justify-center w-1/2 h-12 m-2 bg-white rounded-md ">
+    <div className="flex items-center justify-center w-1/2 h-12 m-2 rounded-md ">
       <div
         className="w-full h-10 rounded-md shadow-md"
         style={{
@@ -90,7 +87,7 @@ function GradientPicker({ gradColors, onGradColorsChange }) {
   )
 
   return (
-    <div className="flex flex-col w-full bg-white rounded-lg custom-shadow scale-in-center">
+    <div className="flex flex-col w-full bg-white rounded-lg custom-shadow scale-in-center dark:bg-darkish-blue">
       <div className="flex">
         {colorBoxes}
         {gradientBox}

@@ -2,21 +2,11 @@ import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import { TwitterPicker } from 'react-color'
 
-import { colorToolMode } from '../constants'
+import { colorToolMode, gradientPickerStyle } from '../constants'
 import GradientPicker from './gradientPicker'
 
 import CloseSVG from './../assets/001-cross-sign.svg'
-
-const twitterPickerStyle = {
-  default: {
-    card: {
-      backgroundColor: 'hsl(210,38%,15%)',
-    },
-    triangle: {
-      borderColor: 'transparent transparent hsl(210,38%,15%)',
-    },
-  },
-}
+import { colorPickerDarkStyle } from './../constants'
 
 function ColorTool({
   onBGChange,
@@ -60,7 +50,13 @@ function ColorTool({
       <div
         className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
         onClick={() => handleColorTool(colorToolMode.COLOR)}
-        style={!isGradient && { background: '#edf2f7' }}
+        style={
+          !isGradient
+            ? isDark
+              ? { background: '#182635' }
+              : { background: '#edf2f7' }
+            : {}
+        }
       >
         <div className="flex items-center justify-center w-12 h-12 bg-white border-2 border-indigo-900 rounded-full shadow-lg color-btn">
           <div
@@ -80,7 +76,13 @@ function ColorTool({
       <div
         className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
         onClick={() => handleColorTool(colorToolMode.GRADIENT)}
-        style={isGradient && { background: '#edf2f7' }}
+        style={
+          isGradient
+            ? isDark
+              ? { background: '#182635' }
+              : { background: '#edf2f7' }
+            : {}
+        }
       >
         <div className="flex items-center justify-center w-12 h-12 bg-white border-2 border-indigo-900 rounded-full shadow-lg color-btn">
           <div
@@ -119,7 +121,8 @@ function ColorTool({
               onChangeComplete={({ hex }) => handleColorChange(hex)}
               width="100%"
               z-index="20"
-              styles={isDark ? twitterPickerStyle : {}}
+              triangle="hide"
+              styles={isDark ? colorPickerDarkStyle : gradientPickerStyle}
               className="scale-in-center"
             />
           )}
@@ -127,6 +130,7 @@ function ColorTool({
             <GradientPicker
               onGradColorsChange={onGradColorsChange}
               gradColors={gradColors}
+              isDark={isDark}
             />
           )}
         </div>
