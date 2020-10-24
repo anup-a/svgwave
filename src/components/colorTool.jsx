@@ -6,6 +6,8 @@ import { colorToolMode, gradientPickerStyle } from '../constants'
 import GradientPicker from './gradientPicker'
 
 import CloseSVG from './../assets/001-cross-sign.svg'
+import CloseWhiteSVG from './../assets/cross_white.svg'
+
 import { colorPickerDarkStyle } from './../constants'
 
 function ColorTool({
@@ -26,6 +28,7 @@ function ColorTool({
     setFillColor(hex)
     onBGChange(hex)
     setColorTool(colorToolMode.NONE)
+    setShowTool(false)
   }
 
   const handleColorTool = (colorStatus) => {
@@ -113,7 +116,11 @@ function ColorTool({
             onClick={() => setShowTool(false)}
             className="absolute bottom-0 right-0 z-20 m-3 scale-in-center"
           >
-            <img src={CloseSVG} alt="close svg" width="10" />
+            {isDark ? (
+              <img src={CloseWhiteSVG} alt="close svg" width="10" />
+            ) : (
+              <img src={CloseSVG} alt="close svg" width="10" />
+            )}
           </button>
           {colorTool === colorToolMode.COLOR && (
             <TwitterPicker
