@@ -1,4 +1,4 @@
-# 🌊 [SVG Wave](www.svgwave.in) - A tiny, customizable gradient SVG wave generator
+# 🌊 [SVG Wave](https://www.svgwave.in) - A tiny, customizable gradient SVG wave generator
 
 ![](./svgwavecover.png)
 
