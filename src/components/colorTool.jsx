@@ -2,7 +2,11 @@ import { h } from 'preact'
 import { useState } from 'preact/hooks'
 import { TwitterPicker } from 'react-color'
 
-import { colorToolMode, gradientPickerStyle } from '../constants'
+import {
+  colorToolMode,
+  gradientPickerStyle,
+  colorPickerLightStyle,
+} from '../constants'
 import GradientPicker from './gradientPicker'
 
 import CloseSVG from './../assets/001-cross-sign.svg'
@@ -47,6 +51,7 @@ function ColorTool({
   }
 
   const isGradient = colorTool === colorToolMode.GRADIENT
+  const isColor = colorTool === colorToolMode.COLOR
 
   return (
     <div className="relative flex items-center w-full justify-evenly">
@@ -114,7 +119,7 @@ function ColorTool({
         <div className="absolute w-full color-tool">
           <button
             onClick={() => setShowTool(false)}
-            className="absolute bottom-0 right-0 z-20 m-3 scale-in-center"
+            className="absolute top-0 right-0 z-20 m-3 scale-in-center"
           >
             {isDark ? (
               <img src={CloseWhiteSVG} alt="close svg" width="10" />
@@ -122,18 +127,24 @@ function ColorTool({
               <img src={CloseSVG} alt="close svg" width="10" />
             )}
           </button>
-          {colorTool === colorToolMode.COLOR && (
+          {isColor && (
             <TwitterPicker
               color={fillColor}
               onChangeComplete={({ hex }) => handleColorChange(hex)}
               width="100%"
               z-index="20"
               triangle="hide"
-              styles={isDark ? colorPickerDarkStyle : gradientPickerStyle}
-              className="scale-in-center"
+              styles={
+                isDark
+                  ? colorPickerDarkStyle
+                  : isColor
+                  ? colorPickerLightStyle
+                  : gradientPickerStyle
+              }
+              className="py-6 scale-in-center"
             />
           )}
-          {colorTool === colorToolMode.GRADIENT && (
+          {isGradient && (
             <GradientPicker
               onGradColorsChange={onGradColorsChange}
               gradColors={gradColors}

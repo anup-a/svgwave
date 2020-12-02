@@ -21,7 +21,18 @@ export const colorPickerDarkStyle = {
   default: {
     card: {
       boxShadow: 'none',
+      borderRadius: '.5rem',
       backgroundColor: 'hsl(210,38%,15%)',
+    },
+  },
+}
+
+export const colorPickerLightStyle = {
+  default: {
+    card: {
+      border: 'none',
+      borderRadius: '.5rem',
+      boxShadow: '0 16px 40px rgba(0,0,0,0.12)',
     },
   },
 }
