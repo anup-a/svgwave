@@ -1,9 +1,7 @@
 module.exports = {
   purge: {
-    enabled: false,
-    content: [
-      './src/**/*.html', 
-    './src/**/*.jsx'],
+    enabled: true,
+    content: ['./src/**/*.html', './src/**/*.jsx'],
   },
 
   theme: {
@@ -14,13 +12,13 @@ module.exports = {
         'darkish-black': '#0e141b',
       },
       width: {
-        '7/10' : '70%',
-        '3/10' : '30%',
-        '1/2' : '50%',
+        '7/10': '70%',
+        '3/10': '30%',
+        '1/2': '50%',
       },
       screens: {
-        'xs' : '362px',
-      }
+        xs: '362px',
+      },
     },
     fontFamily: {
       sans: [

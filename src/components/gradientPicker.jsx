@@ -87,7 +87,7 @@ function GradientPicker({ gradColors, onGradColorsChange, isDark }) {
   )
 
   return (
-    <div className="flex flex-col w-full bg-white rounded-lg custom-shadow scale-in-center dark:bg-darkish-blue">
+    <div className="flex flex-col w-full py-6 bg-white rounded-lg custom-shadow scale-in-center dark:bg-darkish-blue">
       <div className="flex">
         {colorBoxes}
         {gradientBox}

@@ -11,7 +11,7 @@ import saveSvgAsPng from 'save-svg-as-png'
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
-  const [gradient, setGradient] = useState(false)
+  const [gradient, setGradient] = useState(true)
 
   const [gradColors, setGradColors] = useState({
     colorOne: '#002bdc',
