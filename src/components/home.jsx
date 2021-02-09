@@ -144,11 +144,7 @@ function Home({ isDark, toggleDarkMode }) {
           />
         </div>
         <div className="z-20 flex h-12 text-lg font-bold text-black footer dark:text-white">
-          Made with ❤ - by{' '}
-          <a href="https://www.anup.tech" className="ml-2 underline">
-            {' '}
-            Anup
-          </a>
+          Made with ❤ in India
         </div>
       </div>
     </div>
