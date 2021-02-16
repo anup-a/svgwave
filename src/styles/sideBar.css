@@ -20,6 +20,10 @@
   height: 3.5rem;
 }
 
+.custom-shadow {
+  box-shadow:0 16px 40px rgba(0,0,0,0.12);border:0;
+}
+
 button:focus,
 img:focus,
 .reroll:focus,
@@ -55,3 +59,7 @@ img:focus,
   transform: scaleY(1);
   transition: all 300ms; 
 }
+
+.scale-in-center{animation:scale-in-center 0.3s cubic-bezier(.25,.46,.45,.94) both}
+
+@keyframes scale-in-center{0%{transform:scale(0);opacity:1}100%{transform:scale(1);opacity:1}}
