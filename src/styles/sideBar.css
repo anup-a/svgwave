@@ -44,3 +44,14 @@ img:focus,
     transform: rotate(360deg) scale(1);
   }
 }
+
+.flipdown {
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  transition: all 300ms;
+}
+.flipup {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  transition: all 300ms; 
+}

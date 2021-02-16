@@ -2,6 +2,7 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks'
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
+import Flip from './../assets/001-flip.svg'
 import { TwitterPicker } from 'react-color'
 import { HEIGHT_ARR } from '../constants'
 
@@ -9,8 +10,10 @@ function CustomBar({ handleWaveTransform, handleWaveConfig, handleBGchange, expo
   const [waves, setWaves] = useState(5)
   const [layer, setLayer] = useState(3)
   const [animate, setAnimate] = useState(false)
+  const [flip, setFlip] = useState(true)
   const [height, setHeight] = useState(2)
   const [color, setColor] = useState('#0099ff')
+  // const invertRef = useRef(null)
 
   const handleChange = (e) => {
     const val = e.target.value
@@ -30,6 +33,7 @@ function CustomBar({ handleWaveTransform, handleWaveConfig, handleBGchange, expo
   }
 
   const handleFlipWave = () => {
+    setFlip(!flip)
     handleWaveTransform()
   }
 
@@ -123,21 +127,25 @@ function CustomBar({ handleWaveTransform, handleWaveConfig, handleBGchange, expo
           step="1"
         />
       </div>
-      <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
-        <img
-          src={Water}
-          className={animate && 'reroll'}
-          alt="Wave logo"
-          onClick={handleRandomWave}
-          onAnimationEnd={() => setAnimate(false)}
-        />
-      </button>
-      <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
-        <img
-          alt="Flip Wave"
-          onClick={handleFlipWave}
-        />
-      </button>
+      <div className="flex text-center justify-center buttons-section">
+        <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
+          <img
+            src={Water}
+            className={animate && 'reroll'}
+            alt="Wave logo"
+            onClick={handleRandomWave}
+            onAnimationEnd={() => setAnimate(false)}
+          />
+        </button>
+        <button className="p-2 pl-3 m-5 bg-blue-100 rounded-full roll-btn">
+          <img
+            src={Flip}
+            className={`${flip ? 'flipdown' : 'flipup'}`}
+            alt="Flip Wave"
+            onClick={handleFlipWave}
+          />
+        </button>
+      </div>
 
       <TwitterPicker
         color={color}

@@ -956,8 +956,7 @@ video {
 }
 
 .focus\:outline-none:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+  outline: 0;
 }
 
 .overflow-hidden {
@@ -1029,6 +1028,10 @@ video {
 
 .pt-2 {
   padding-top: 0.5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
 }
 
 .pt-4 {

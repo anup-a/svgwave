@@ -11,8 +11,10 @@ import saveSvgAsPng from 'save-svg-as-png'
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
+  const [invert, setInvert] = useState(false)
 
   const svgElement = useRef(null)
+  const bgSvgElement = useRef(null)
 
   const [wave, setWave] = useState({
     height: 500,
@@ -26,7 +28,7 @@ function Home({ isDark, toggleDarkMode }) {
   })
 
   const [waveSvg, setWaveSvg] = useState(waveInit(wave))
-
+  
   useEffect(() => {
     setWaveSvg(waveInit(wave))
   }, [wave])
@@ -34,15 +36,44 @@ function Home({ isDark, toggleDarkMode }) {
   const { height, xmlns, path } = waveSvg.svg
   const num_waves = path.length
   const opac = OPACITY_ARR.slice(MAX_WAVES - num_waves)
+  const cw = waveSvg.svg.width / 2
+  const ch = waveSvg.svg.height / 2
+  const transformData = `rotate(-180 ${cw} ${ch})`
 
   const svg = (
+    <svg
+      height="100%"
+      width="100%"
+      id="svg"
+      viewBox={`0 0 1440 ${height}`}
+      xmlns={xmlns}
+      ref={svgElement}
+      className="transition duration-300 ease-in-out delay-150"
+    >
+      {path.map((p, index) => {
+        return (
+          <path
+            key={index}
+            d={p.d}
+            stroke={p.strokeColor}
+            strokeWidth={p.strokeWidth}
+            fill={`${p.fill}${opac[index]}`}
+            className="transition-all duration-300 ease-in-out delay-150"
+            transform={invert ? transformData : p.transform}
+          ></path>
+        )
+      })}
+    </svg>
+  )
+
+  const bgSvg = (
     <svg
       height="100%"
       width="100%"
       id="bg-svg"
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
-      ref={svgElement}
+      ref={bgSvgElement}
       className="transition duration-300 ease-in-out delay-150"
     >
       {path.map((p, index) => {
@@ -69,14 +100,8 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   const handleWaveTransform = () => {
-    if(waveSvg.svg.path[0].transform) {
-      setWaveSvg(waveInit({ ...wave, }))
-    } else {
-      const cw = waveSvg.svg.width / 2;
-      const ch = waveSvg.svg.height / 2;
-      const data = { transform: `rotate(-180 ${cw} ${ch})` }
-      setWaveSvg(waveInit({ ...wave, ...data  }))
-    }
+    setInvert(!invert)
+    setWaveSvg(waveInit(wave))
   }
 
   const changeBG = (color) => {
@@ -89,7 +114,7 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   const handleExportPNG = () => {
-    saveSvgAsPng.saveSvgAsPng(document.getElementById('bg-svg'), 'svg.png')
+    saveSvgAsPng.saveSvgAsPng(document.getElementById('svg'), 'svg.png')
   }
 
   return (
@@ -99,7 +124,7 @@ function Home({ isDark, toggleDarkMode }) {
         className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
         style={{ backgroundColor: isDark ? '#131e2b66' : `${bgColor}33` }}
       >
-        <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
+        <div className="absolute bottom-0 w-full opacity-25 bg-svg">{bgSvg}</div>
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
@@ -107,7 +132,7 @@ function Home({ isDark, toggleDarkMode }) {
           />
         )}
         <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 center-container md:flex-row ">
-          <Canvas svg={svg} />
+          <Canvas svg={svg} invert={invert} />
           <CustomBar
             handleWaveTransform={handleWaveTransform}
             waveConfig={wave}
