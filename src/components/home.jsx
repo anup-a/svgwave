@@ -77,6 +77,7 @@ function Home({ isDark, toggleDarkMode }) {
               strokeWidth={p.strokeWidth}
               fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
               className="transition-all duration-300 ease-in-out delay-150"
+              transform={invert ? transformData : p.transform}
             ></path>,
           ]
         ) : (
@@ -105,13 +106,37 @@ function Home({ isDark, toggleDarkMode }) {
       className="transition duration-300 ease-in-out delay-150"
     >
       {path.map((p, index) => {
-        return (
+        return gradient ? (
+          [
+            <defs>
+              <linearGradient id={`gradient`}>
+                <stop
+                  offset="5%"
+                  stop-color={`${invert ? gradColors.colorTwo : gradColors.colorOne}${opac[index]}`}
+                />
+                <stop
+                  offset="95%"
+                  stop-color={`${invert ? gradColors.colorOne : gradColors.colorTwo}${opac[index]}`}
+                />
+              </linearGradient>
+            </defs>,
+            <path
+              key={index}
+              d={p.d}
+              stroke={p.strokeColor}
+              strokeWidth={p.strokeWidth}
+              fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
+              className="transition-all duration-300 ease-in-out delay-150"
+              transform={p.transform}
+            ></path>,
+          ]
+        ) : (
           <path
             key={index}
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={`${p.fill}${opac[index]}`}
+            fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
             className="transition-all duration-300 ease-in-out delay-150"
             transform={p.transform}
           ></path>

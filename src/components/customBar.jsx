@@ -2,19 +2,10 @@ import { h } from 'preact'
 import { useState, useEffect } from 'preact/hooks'
 import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
-<<<<<<< HEAD
-import Flip from './../assets/001-flip.svg'
-import { TwitterPicker } from 'react-color'
-=======
->>>>>>> main
 import { HEIGHT_ARR } from '../constants'
 import ColorTool from './colorTool'
+import Flip from './../assets/001-flip.svg'
 
-<<<<<<< HEAD
-function CustomBar({ handleWaveTransform, handleWaveConfig, handleBGchange, exportSVG, exportPNG, isDark }) {
-  const [waves, setWaves] = useState(5)
-  const [layer, setLayer] = useState(3)
-=======
 function CustomBar({
   onWaveConfig,
   onBGChange,
@@ -25,77 +16,28 @@ function CustomBar({
   onGradientToggle,
   gradient,
   gradColors,
+  handleWaveTransform
 }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
->>>>>>> main
   const [animate, setAnimate] = useState(false)
   const [flip, setFlip] = useState(true)
   const [height, setHeight] = useState(2)
-<<<<<<< HEAD
-  const [color, setColor] = useState('#0099ff')
-  // const invertRef = useRef(null)
-=======
->>>>>>> main
 
   useEffect(() => {
     if (animate) return
 
-<<<<<<< HEAD
-  const handleColorChange = ({ hex }) => {
-    setColor(hex)
-    handleWaveConfig({ fillColor: hex })
-    handleBGchange(hex)
-  }
-
-  const handleRandomWave = () => {
-    setAnimate(true)
-    handleWaveConfig()
-  }
-
-  const handleFlipWave = () => {
-    setFlip(!flip)
-    handleWaveTransform()
-  }
-
-  const handleLayerChange = (e) => {
-    const val = e.target.value
-    setLayer(val)
-    handleWaveConfig({ layerCount: val, height: HEIGHT_ARR[val - 2] })
-  }
-
-  const handleHeightChange = (e) => {
-    const val = e.target.value
-    setHeight(val)
-    handleWaveConfig({height: HEIGHT_ARR[val]})
-  }
-
-  const handleExportSvg = () => {
-    exportSVG()
-  }
-
-  const handleExportPng = () => {
-    exportPNG()
-  }
-
-  const twitterPickerStyle = {
-    default: {
-      card: {
-        backgroundColor: 'hsl(210,38%,15%)'
-      },
-      triangle: {
-        borderColor: 'transparent transparent hsl(210,38%,15%)',
-      },
-    }
-  }
-=======
     onWaveConfig({
       segmentCount,
       layerCount,
       height: HEIGHT_ARR[height],
     })
   }, [segmentCount, layerCount, height, animate])
->>>>>>> main
+
+  const handleFlipWave = () => {
+    setFlip(!flip)
+    handleWaveTransform()
+  }
 
   return (
     <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
@@ -158,14 +100,13 @@ function CustomBar({
           />
         </div>
       </div>
-<<<<<<< HEAD
       <div className="flex text-center justify-center buttons-section">
         <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
           <img
             src={Water}
             className={animate && 'reroll'}
             alt="Wave logo"
-            onClick={handleRandomWave}
+            onClick={() => setAnimate(true)}
             onAnimationEnd={() => setAnimate(false)}
           />
         </button>
@@ -178,18 +119,6 @@ function CustomBar({
           />
         </button>
       </div>
-=======
-
-      <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
-        <img
-          src={Water}
-          className={animate && 'reroll'}
-          alt="Wave logo"
-          onClick={() => setAnimate(true)}
-          onAnimationEnd={() => setAnimate(false)}
-        />
-      </button>
->>>>>>> main
 
       <ColorTool
         onBGChange={onBGChange}
