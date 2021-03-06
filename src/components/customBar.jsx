@@ -4,6 +4,7 @@ import './../styles/sideBar.css'
 import Water from './../assets/001-water.svg'
 import { HEIGHT_ARR } from '../constants'
 import ColorTool from './colorTool'
+import Flip from './../assets/001-flip.svg'
 
 function CustomBar({
   onWaveConfig,
@@ -15,10 +16,12 @@ function CustomBar({
   onGradientToggle,
   gradient,
   gradColors,
+  handleWaveTransform
 }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
+  const [flip, setFlip] = useState(true)
   const [height, setHeight] = useState(2)
 
   useEffect(() => {
@@ -30,6 +33,11 @@ function CustomBar({
       height: HEIGHT_ARR[height],
     })
   }, [segmentCount, layerCount, height, animate])
+
+  const handleFlipWave = () => {
+    setFlip(!flip)
+    handleWaveTransform()
+  }
 
   return (
     <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
@@ -92,16 +100,25 @@ function CustomBar({
           />
         </div>
       </div>
-
-      <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
-        <img
-          src={Water}
-          className={animate && 'reroll'}
-          alt="Wave logo"
-          onClick={() => setAnimate(true)}
-          onAnimationEnd={() => setAnimate(false)}
-        />
-      </button>
+      <div className="flex text-center justify-center buttons-section">
+        <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
+          <img
+            src={Water}
+            className={animate && 'reroll'}
+            alt="Wave logo"
+            onClick={() => setAnimate(true)}
+            onAnimationEnd={() => setAnimate(false)}
+          />
+        </button>
+        <button className="p-2 pl-3 m-5 bg-blue-100 rounded-full roll-btn">
+          <img
+            src={Flip}
+            className={`${flip ? 'flipdown' : 'flipup'}`}
+            alt="Flip Wave"
+            onClick={handleFlipWave}
+          />
+        </button>
+      </div>
 
       <ColorTool
         onBGChange={onBGChange}

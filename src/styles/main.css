@@ -962,10 +962,6 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -1076,6 +1072,10 @@ video {
 
 .pt-2 {
   padding-top: 0.5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
 }
 
 .pt-4 {
@@ -1209,10 +1209,6 @@ video {
 
 .uppercase {
   text-transform: uppercase;
-}
-
-.underline {
-  text-decoration: underline;
 }
 
 .tracking-widest {

@@ -12,13 +12,14 @@ function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
   const [showModal, setShowModal] = useState(false)
   const [gradient, setGradient] = useState(true)
-
+  const [invert, setInvert] = useState(false)
   const [gradColors, setGradColors] = useState({
     colorOne: '#002bdc',
     colorTwo: '#32ded4',
   })
 
   const svgElement = useRef(null)
+  const bgSvgElement = useRef(null)
 
   const [wave, setWave] = useState({
     height: 500,
@@ -32,7 +33,7 @@ function Home({ isDark, toggleDarkMode }) {
   })
 
   const [waveSvg, setWaveSvg] = useState(waveInit(wave))
-
+  
   useEffect(() => {
     setWaveSvg(waveInit(wave))
   }, [wave])
@@ -40,12 +41,15 @@ function Home({ isDark, toggleDarkMode }) {
   const { height, xmlns, path } = waveSvg.svg
   const num_waves = path.length
   const opac = OPACITY_ARR.slice(MAX_WAVES - num_waves)
+  const cw = waveSvg.svg.width / 2
+  const ch = waveSvg.svg.height / 2
+  const transformData = `rotate(-180 ${cw} ${ch})`
 
   const svg = (
     <svg
       height="100%"
       width="100%"
-      id="bg-svg"
+      id="svg"
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
       ref={svgElement}
@@ -73,6 +77,7 @@ function Home({ isDark, toggleDarkMode }) {
               strokeWidth={p.strokeWidth}
               fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
               className="transition-all duration-300 ease-in-out delay-150"
+              transform={invert ? transformData : p.transform}
             ></path>,
           ]
         ) : (
@@ -83,6 +88,57 @@ function Home({ isDark, toggleDarkMode }) {
             strokeWidth={p.strokeWidth}
             fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
             className="transition-all duration-300 ease-in-out delay-150"
+            transform={invert ? transformData : p.transform}
+          ></path>
+        )
+      })}
+    </svg>
+  )
+
+  const bgSvg = (
+    <svg
+      height="100%"
+      width="100%"
+      id="bg-svg"
+      viewBox={`0 0 1440 ${height}`}
+      xmlns={xmlns}
+      ref={bgSvgElement}
+      className="transition duration-300 ease-in-out delay-150"
+    >
+      {path.map((p, index) => {
+        return gradient ? (
+          [
+            <defs>
+              <linearGradient id={`gradient`}>
+                <stop
+                  offset="5%"
+                  stop-color={`${invert ? gradColors.colorTwo : gradColors.colorOne}${opac[index]}`}
+                />
+                <stop
+                  offset="95%"
+                  stop-color={`${invert ? gradColors.colorOne : gradColors.colorTwo}${opac[index]}`}
+                />
+              </linearGradient>
+            </defs>,
+            <path
+              key={index}
+              d={p.d}
+              stroke={p.strokeColor}
+              strokeWidth={p.strokeWidth}
+              fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
+              className="transition-all duration-300 ease-in-out delay-150"
+              transform={p.transform}
+            ></path>,
+          ]
+        ) : (
+          <path
+            key={index}
+            d={p.d}
+            stroke={p.strokeColor}
+            strokeWidth={p.strokeWidth}
+            fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
+            className="transition-all duration-300 ease-in-out delay-150"
+            transform={p.transform}
           ></path>
         )
       })}
@@ -96,6 +152,11 @@ function Home({ isDark, toggleDarkMode }) {
     })
   }
 
+  const handleWaveTransform = () => {
+    setInvert(!invert)
+    setWaveSvg(waveInit(wave))
+  }
+
   const handleBGChange = (color) => {
     bgColor !== color && setBgColor(color)
   }
@@ -105,7 +166,7 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   const handleExportPNG = () => {
-    saveSvgAsPng.saveSvgAsPng(document.getElementById('bg-svg'), 'svg.png')
+    saveSvgAsPng.saveSvgAsPng(document.getElementById('svg'), 'svg.png')
   }
 
   return (
@@ -121,7 +182,7 @@ function Home({ isDark, toggleDarkMode }) {
             : `${bgColor}33`,
         }}
       >
-        <div className="absolute bottom-0 w-full opacity-25 bg-svg">{svg}</div>
+        <div className="absolute bottom-0 w-full opacity-25 bg-svg">{bgSvg}</div>
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
@@ -129,8 +190,9 @@ function Home({ isDark, toggleDarkMode }) {
           />
         )}
         <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 center-container md:flex-row ">
-          <Canvas svg={svg} />
+          <Canvas svg={svg} invert={invert} />
           <CustomBar
+            handleWaveTransform={handleWaveTransform}
             waveConfig={wave}
             onWaveConfig={handleWaveConfig}
             onBGChange={handleBGChange}
