@@ -30,15 +30,16 @@ function Home({ isDark, toggleDarkMode }) {
     strokeWidth: 0,
     fillColor: '#ff0080',
     strokeColor: 'none',
+    animated: false,
   })
 
-  const [waveSvg, setWaveSvg] = useState(waveInit(wave))
+  const [waveSvg, setWaveSvg] = useState(() => waveInit(wave))
 
   useEffect(() => {
     setWaveSvg(waveInit(wave))
   }, [wave])
 
-  const { height, xmlns, path } = waveSvg.svg
+  const { height, xmlns, path, animatedPath } = waveSvg.svg
   const num_waves = path.length
   const opac = OPACITY_ARR.slice(MAX_WAVES - num_waves)
   const cw = waveSvg.svg.width / 2
@@ -47,8 +48,8 @@ function Home({ isDark, toggleDarkMode }) {
 
   const svg = (
     <svg
-      height="100%"
       width="100%"
+      height="100%"
       id="svg"
       viewBox={`0 0 1440 ${height}`}
       xmlns={xmlns}
@@ -56,8 +57,38 @@ function Home({ isDark, toggleDarkMode }) {
       className="transition duration-300 ease-in-out delay-150"
     >
       {path.map((p, index) => {
-        return gradient ? (
-          [
+        const pathProps = []
+
+        if (p.animatedPath) {
+          pathProps.push(
+            <style>{`
+          .path-${index}{
+            animation:pathAnim-${index} 4s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+          @keyframes pathAnim-${index}{
+            0%{
+              d: path("${p.d}");
+            }
+            25%{
+              d: path("${p.animatedPath[0]}");
+            }
+            50%{
+              d: path("${p.animatedPath[1]}");
+            }
+            75%{
+              d: path("${p.animatedPath[2]}");
+            }
+            100%{
+              d: path("${p.d}");
+            }
+          }`}</style>,
+          )
+        }
+
+        if (gradient) {
+          pathProps.push(
             <defs>
               <linearGradient id={`gradient`}>
                 <stop
@@ -70,27 +101,22 @@ function Home({ isDark, toggleDarkMode }) {
                 />
               </linearGradient>
             </defs>,
-            <path
-              key={index}
-              d={p.d}
-              stroke={p.strokeColor}
-              strokeWidth={p.strokeWidth}
-              fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
-              className="transition-all duration-300 ease-in-out delay-150"
-              transform={invert ? transformData : p.transform}
-            ></path>,
-          ]
-        ) : (
+          )
+        }
+
+        pathProps.push(
           <path
             key={index}
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
-            className="transition-all duration-300 ease-in-out delay-150"
+            fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
+            className={`transition-all duration-300 ease-in-out delay-150 path-${index}`}
             transform={invert ? transformData : p.transform}
-          ></path>
+          ></path>,
         )
+
+        return pathProps
       })}
     </svg>
   )

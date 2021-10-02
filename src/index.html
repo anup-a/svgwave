@@ -91,12 +91,15 @@
         animation: wave 5s linear infinite;
       }
 
-      @keyframes wave {
+      @keyframes moveTheWave {
         0% {
-          transform: rotate(0);
+          stroke-dashoffset: -3;
+          transform: translate3d(0, 0, 0);
         }
+
         100% {
-          transform: rotate(360deg);
+          stroke-dashoffset: -138;
+          transform: translate3d(-90px, 0, 0);
         }
       }
     </style>

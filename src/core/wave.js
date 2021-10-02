@@ -36,13 +36,18 @@ function generateClosedPath(
   filleColor,
   strokeColor,
   strokeWidth,
-  transform
+  transform,
+  isAnimated,
+  aniPoints,
+  aniPoints1,
+  aniPoints2,
 ) {
   const xPoints = curvePoints.map((p) => p.x)
   const yPoints = curvePoints.map((p) => p.y)
 
   const xControlPoints = computeControlPoints(xPoints)
   const yControlPoints = computeControlPoints(yPoints)
+  const animatedPathList = isAnimated ? [] : undefined
 
   let path =
     `M ${leftCornerPoint.x},${leftCornerPoint.y} ` +
@@ -62,6 +67,42 @@ function generateClosedPath(
     `${rightCornerPoint.x},${rightCornerPoint.y} ` +
     `${rightCornerPoint.x},${rightCornerPoint.y} Z`
 
+  const animationPoints = [aniPoints, aniPoints1, aniPoints2]
+
+  if (isAnimated) {
+    animationPoints.forEach((points) => {
+      const aniYPoints = points.map((p) => p.y)
+      const aniXPoints = points.map((p) => p.x)
+
+      const [aniXControlPoints, aniYControlPoints] = [
+        computeControlPoints(aniXPoints),
+        computeControlPoints(aniYPoints),
+      ]
+
+      let animatedPath =
+        `M ${leftCornerPoint.x},${leftCornerPoint.y} ` +
+        `C ${leftCornerPoint.x},${leftCornerPoint.y} ` +
+        `${aniXPoints[0]},${aniYPoints[0]} ` +
+        `${aniXPoints[0]},${aniYPoints[0]} `
+
+      for (let i = 0; i < xPoints.length - 1; i++) {
+        animatedPath +=
+          `C ${aniXControlPoints.p1[i]},${aniYControlPoints.p1[i]} ` +
+          `${aniXControlPoints.p2[i]},${aniYControlPoints.p2[i]} ` +
+          `${aniXPoints[i + 1]},${aniYPoints[i + 1]} `
+      }
+
+      animatedPath +=
+        `C ${aniXPoints[xPoints.length - 1]},${
+          aniYPoints[xPoints.length - 1]
+        } ` +
+        `${rightCornerPoint.x},${rightCornerPoint.y} ` +
+        `${rightCornerPoint.x},${rightCornerPoint.y} Z`
+
+      animatedPathList.push(animatedPath)
+    })
+  }
+
   const svgPath = document.createElementNS(svgns, 'path')
   svgPath.setAttributeNS(null, 'fill', filleColor)
   svgPath.setAttributeNS(null, 'stroke', strokeColor)
@@ -73,7 +114,8 @@ function generateClosedPath(
     strokeColor: strokeColor,
     strokeWidth: strokeWidth,
     d: path,
-    transform: transform
+    transform: transform,
+    animatedPath: animatedPathList,
   }
 }
 
@@ -87,6 +129,33 @@ export class Wavery {
       this.properties.layerCount,
       this.properties.variance,
     )
+    //TODO: refactor repetitive code
+    this.aniPoints = [
+      this.properties.animated &&
+        generatePoints(
+          this.properties.width,
+          this.properties.height,
+          this.properties.segmentCount,
+          this.properties.layerCount,
+          this.properties.variance,
+        ),
+      this.properties.animated &&
+        generatePoints(
+          this.properties.width,
+          this.properties.height,
+          this.properties.segmentCount,
+          this.properties.layerCount,
+          this.properties.variance,
+        ),
+      this.properties.animated &&
+        generatePoints(
+          this.properties.width,
+          this.properties.height,
+          this.properties.segmentCount,
+          this.properties.layerCount,
+          this.properties.variance,
+        ),
+    ]
   }
 
   generateSvg() {
@@ -97,20 +166,23 @@ export class Wavery {
     svg.setAttribute('xmlns', svgns)
 
     const pathList = []
-
     // Append layer of a wave
     for (let i = 0; i < this.points.length; i++) {
-      pathList.push(
-        generateClosedPath(
-          this.points[i],
-          { x: 0, y: this.properties.height },
-          { x: this.properties.width, y: this.properties.height },
-          this.properties.fillColor,
-          this.properties.strokeColor,
-          this.properties.strokeWidth,
-          this.properties.transform
-        ),
+      const pathData = generateClosedPath(
+        this.points[i],
+        { x: 0, y: this.properties.height },
+        { x: this.properties.width, y: this.properties.height },
+        this.properties.fillColor,
+        this.properties.strokeColor,
+        this.properties.strokeWidth,
+        this.properties.transform,
+        this.properties.animated,
+        //TODO: refactor repetitive code
+        this.properties.animated ? this.aniPoints[0][i] : null,
+        this.properties.animated ? this.aniPoints[1][i] : null,
+        this.properties.animated ? this.aniPoints[2][i] : null,
       )
+      pathList.push(pathData)
     }
 
     const svgData = {
