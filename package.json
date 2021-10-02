@@ -24,7 +24,8 @@
     "react-color": "^2.18.1",
     "react-toggle-dark-mode": "^1.0.2",
     "save-svg-as-png": "^1.4.17",
-    "tailwind-percentage-heights-plugin": "^0.1.4"
+    "tailwind-percentage-heights-plugin": "^0.1.4",
+    "zustand": "^3.5.12"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
