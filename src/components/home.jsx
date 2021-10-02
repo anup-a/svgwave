@@ -237,9 +237,6 @@ function Home({ isDark, toggleDarkMode }) {
             gradColors={gradColors}
           />
         </div>
-        <div className="z-20 flex h-12 text-lg font-bold text-black footer dark:text-white">
-          Made with ❤ in India
-        </div>
       </div>
     </div>
   )
