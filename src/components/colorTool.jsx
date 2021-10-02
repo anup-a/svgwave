@@ -21,6 +21,8 @@ function ColorTool({
   onGradientToggle,
   gradient,
   gradColors,
+  gradAngle,
+  setGradAngle,
 }) {
   const [colorTool, setColorTool] = useState(
     gradient ? colorToolMode.GRADIENT : colorToolMode.COLOR,
@@ -149,6 +151,8 @@ function ColorTool({
               onGradColorsChange={onGradColorsChange}
               gradColors={gradColors}
               isDark={isDark}
+              gradAngle={gradAngle}
+              setGradAngle={setGradAngle}
             />
           )}
         </div>
