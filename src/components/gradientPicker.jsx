@@ -8,7 +8,6 @@ import {
 import { TwitterPicker } from 'react-color'
 
 import './../styles/sideBar.css'
-import { useDarkModeState } from './../hooks/useDarkMode'
 
 function GradientPicker({ gradColors, onGradColorsChange, isDark }) {
   const [colorOne, setColorOne] = useState(gradColors.colorOne)

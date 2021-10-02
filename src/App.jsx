@@ -1,18 +1,19 @@
-import { h } from 'preact';
+import { h } from 'preact'
 import Home from './components/home'
-import { useDarkModeState }  from './hooks/useDarkMode'
+import { useDarkMode } from './stores/useDarkMode'
 import './styles/main.css'
 
 function App() {
-  const [isDark, setIsDark] = useDarkModeState()
-  
-  const onChangeTheme = (arg) => {
-     setIsDark(arg)
-  }
+  const { theme, setTheme } = useDarkMode(({ theme, setTheme }) => ({
+    theme,
+    setTheme,
+  }))
+
+  const currentTheme = theme === 'dark' ? true : false
 
   return (
-    <div className={`main-container ${isDark && 'dark-mode'}`}>
-      <Home isDark={isDark} toggleDarkMode={onChangeTheme} />
+    <div className={`main-container ${currentTheme && 'dark-mode'}`}>
+      <Home isDark={currentTheme} toggleDarkMode={setTheme} />
     </div>
   )
 }
