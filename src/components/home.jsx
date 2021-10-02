@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'preact/hooks'
 import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
-import { waveInit } from '../wave'
+import { waveInit } from '../core'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
@@ -33,7 +33,7 @@ function Home({ isDark, toggleDarkMode }) {
   })
 
   const [waveSvg, setWaveSvg] = useState(waveInit(wave))
-  
+
   useEffect(() => {
     setWaveSvg(waveInit(wave))
   }, [wave])
@@ -112,11 +112,15 @@ function Home({ isDark, toggleDarkMode }) {
               <linearGradient id={`gradient`}>
                 <stop
                   offset="5%"
-                  stop-color={`${invert ? gradColors.colorTwo : gradColors.colorOne}${opac[index]}`}
+                  stop-color={`${
+                    invert ? gradColors.colorTwo : gradColors.colorOne
+                  }${opac[index]}`}
                 />
                 <stop
                   offset="95%"
-                  stop-color={`${invert ? gradColors.colorOne : gradColors.colorTwo}${opac[index]}`}
+                  stop-color={`${
+                    invert ? gradColors.colorOne : gradColors.colorTwo
+                  }${opac[index]}`}
                 />
               </linearGradient>
             </defs>,
@@ -182,7 +186,9 @@ function Home({ isDark, toggleDarkMode }) {
             : `${bgColor}33`,
         }}
       >
-        <div className="absolute bottom-0 w-full opacity-25 bg-svg">{bgSvg}</div>
+        <div className="absolute bottom-0 w-full opacity-25 bg-svg">
+          {bgSvg}
+        </div>
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
