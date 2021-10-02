@@ -17,7 +17,7 @@ function Home({ isDark, toggleDarkMode }) {
     colorOne: '#002bdc',
     colorTwo: '#32ded4',
   })
-  const [gradAngle, setGradAngle] = useState(0)
+  const [gradAngle, setGradAngle] = useState(270)
 
   const svgElement = useRef(null)
   const bgSvgElement = useRef(null)
