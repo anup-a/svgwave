@@ -119,7 +119,7 @@ function Home({ isDark, toggleDarkMode }) {
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
             fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
-            className={`transition-all duration-300 ease-in-out delay-150 path-${index}`}
+            className={`transition-all path-${index}`}
             transform={invert ? transformData : p.transform}
           ></path>,
         )
