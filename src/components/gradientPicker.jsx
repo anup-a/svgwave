@@ -10,7 +10,13 @@ import { TwitterPicker } from 'react-color'
 import './../styles/sideBar.css'
 import { useDarkModeState } from './../hooks/useDarkMode'
 
-function GradientPicker({ gradColors, onGradColorsChange, isDark }) {
+function GradientPicker({
+  gradColors,
+  onGradColorsChange,
+  isDark,
+  gradAngle,
+  setGradAngle,
+}) {
   const [colorOne, setColorOne] = useState(gradColors.colorOne)
   const [colorTwo, setColorTwo] = useState(gradColors.colorTwo)
   const [currentColor, setCurrentColor] = useState(gradColorNum.ONE)
@@ -93,6 +99,33 @@ function GradientPicker({ gradColors, onGradColorsChange, isDark }) {
         {gradientBox}
       </div>
       {colorPicker}
+      <DegreeInput gradAngle={gradAngle} setGradAngle={setGradAngle} />
+    </div>
+  )
+}
+
+const DegreeInput = ({ gradAngle, setGradAngle }) => {
+  console.log()
+  return (
+    <div className="text-center p-3">
+      <label
+        htmlFor="gradient-degrees"
+        className="text-sm tracking-widest text-center uppercase"
+      >
+        Gradient angle
+      </label>
+      <input
+        className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+        value={gradAngle}
+        onChange={(e) => setGradAngle(e.target.value)}
+        type="range"
+        id="gradient-degrees"
+        name="gradient-degrees"
+        min="0"
+        max="360"
+        step="1"
+      />
+      <span className="text-sm uppercase">{gradAngle}°</span>
     </div>
   )
 }

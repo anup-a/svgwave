@@ -17,6 +17,7 @@ function Home({ isDark, toggleDarkMode }) {
     colorOne: '#002bdc',
     colorTwo: '#32ded4',
   })
+  const [gradAngle, setGradAngle] = useState(0)
 
   const svgElement = useRef(null)
   const bgSvgElement = useRef(null)
@@ -88,9 +89,16 @@ function Home({ isDark, toggleDarkMode }) {
         }
 
         if (gradient) {
+          const anglePI = gradAngle * (Math.PI / 180)
           pathProps.push(
             <defs>
-              <linearGradient id={`gradient`}>
+              <linearGradient
+                id={`gradient`}
+                x1={Math.round(50 + Math.sin(anglePI) * 50) + '%'}
+                y1={Math.round(50 + Math.cos(anglePI) * 50) + '%'}
+                x2={Math.round(50 + Math.sin(anglePI + Math.PI) * 50) + '%'}
+                y2={Math.round(50 + Math.cos(anglePI + Math.PI) * 50) + '%'}
+              >
                 <stop
                   offset="5%"
                   stop-color={`${gradColors.colorOne}${opac[index]}`}
@@ -132,10 +140,17 @@ function Home({ isDark, toggleDarkMode }) {
       className="transition duration-300 ease-in-out delay-150"
     >
       {path.map((p, index) => {
+        const anglePI = gradAngle * (Math.PI / 180)
         return gradient ? (
           [
             <defs>
-              <linearGradient id={`gradient`}>
+              <linearGradient
+                id={`gradient`}
+                x1={Math.round(50 + Math.sin(anglePI) * 50) + '%'}
+                y1={Math.round(50 + Math.cos(anglePI) * 50) + '%'}
+                x2={Math.round(50 + Math.sin(anglePI + Math.PI) * 50) + '%'}
+                y2={Math.round(50 + Math.cos(anglePI + Math.PI) * 50) + '%'}
+              >
                 <stop
                   offset="5%"
                   stop-color={`${
@@ -208,7 +223,7 @@ function Home({ isDark, toggleDarkMode }) {
           background: isDark
             ? '#131e2b66'
             : gradient
-            ? `linear-gradient(90deg, ${gradColors.colorOne}33 0%, ${gradColors.colorTwo}33 100%)`
+            ? `linear-gradient(${gradAngle}deg, ${gradColors.colorOne}33 0%, ${gradColors.colorTwo}33 100%)`
             : `${bgColor}33`,
         }}
       >
@@ -235,6 +250,8 @@ function Home({ isDark, toggleDarkMode }) {
             isDark={isDark}
             gradient={gradient}
             gradColors={gradColors}
+            gradAngle={gradAngle}
+            setGradAngle={setGradAngle}
           />
         </div>
       </div>
