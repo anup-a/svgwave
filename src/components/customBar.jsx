@@ -17,6 +17,8 @@ function CustomBar({
   gradient,
   gradColors,
   handleWaveTransform,
+  setGradAngle,
+  gradAngle,
 }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
@@ -153,6 +155,8 @@ function CustomBar({
         onGradientToggle={onGradientToggle}
         gradient={gradient}
         gradColors={gradColors}
+        setGradAngle={setGradAngle}
+        gradAngle={gradAngle}
       />
 
       <div className="flex flex-col w-full mt-2">
