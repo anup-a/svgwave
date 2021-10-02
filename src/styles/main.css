@@ -932,10 +932,6 @@ video {
   margin: 0.75rem;
 }
 
-.m-5 {
-  margin: 1.25rem;
-}
-
 .m-6 {
   margin: 1.5rem;
 }
@@ -1561,6 +1557,14 @@ video {
     flex-direction: row;
   }
 
+  .md\:h-10 {
+    height: 2.5rem;
+  }
+
+  .md\:w-10 {
+    width: 2.5rem;
+  }
+
   .md\:w-1\/5 {
     width: 20%;
   }
@@ -1603,6 +1607,14 @@ video {
     .lg\:container {
       max-width: 1280px;
     }
+  }
+
+  .lg\:h-12 {
+    height: 3rem;
+  }
+
+  .lg\:w-12 {
+    width: 3rem;
   }
 }
 
