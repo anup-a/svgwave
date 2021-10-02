@@ -3,6 +3,8 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Github from './../assets/001-github.svg'
 import underWave from './../assets/underwave.png'
 
+import underWave from './../assets/underwave.png'
+import GitHubButton from 'react-github-btn'
 import Logo from './logo';
 import light from './../assets/3-01.svg'
 import dark from './../assets/4-01.svg'
@@ -20,6 +22,10 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         </div>
       </div>
       <div className="flex items-center nav-item ">
+        
+        <GitHubButton href="https://github.com/anup-a/svgwave" data-color-scheme="no-preference: light; light: light; dark: dark;" 
+          data-icon="octicon-star" data-show-count="true" aria-label="Star anup-a/svgwave on GitHub">Star</GitHubButton>
+
         <a href="https://github.com/anup-a/svgwave">
         <img
           src={Github}
