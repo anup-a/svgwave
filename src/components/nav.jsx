@@ -2,6 +2,7 @@ import { h } from 'preact';
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Github from './../assets/001-github.svg'
 import underWave from './../assets/underwave.png'
+import GitHubButton from 'react-github-btn'
 
 import Logo from './logo';
 import light from './../assets/3-01.svg'
@@ -20,15 +21,16 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         </div>
       </div>
       <div className="flex items-center nav-item ">
-        <a href="https://github.com/anup-a/svgwave">
-        <img
-          src={Github}
-          alt="Github logo"
-          width="30"
-          style={{ filter: isDark ? 'invert(1)' : '', marginRight: '2rem' }}
-        />
-        </a>
-        
+        <div style={{marginRight: '2rem', marginTop: '0.5rem' }}>
+          <GitHubButton 
+            data-color-scheme={(isDark?"no-preference: light; light: light; dark: dark;":"")}
+            data-color-scheme={`no-preference: light; light: light; dark: ${isDark? 'dark': 'light'};`}
+            href="https://github.com/anup-a/svgwave" 
+            data-size="large" 
+            data-show-count="true"
+            aria-label="Star anup-a/svgwave on GitHub">Star
+          </GitHubButton>
+        </div>
         <DarkModeSwitch
           style={{ marginRight: '2rem' }}
           checked={isDark}
