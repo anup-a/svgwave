@@ -105,18 +105,10 @@ function GradientPicker({
 }
 
 const DegreeInput = ({ gradAngle, setGradAngle }) => {
-<<<<<<< HEAD
   return (
     <div className="text-center p-3">
       <label
         htmlFor="gradient-angle"
-=======
-  console.log()
-  return (
-    <div className="text-center p-3">
-      <label
-        htmlFor="gradient-degrees"
->>>>>>> 221553c7f551e5ce642e538deb69acbac1416867
         className="text-sm tracking-widest text-center uppercase"
       >
         Gradient angle
@@ -126,13 +118,8 @@ const DegreeInput = ({ gradAngle, setGradAngle }) => {
         value={gradAngle}
         onChange={(e) => setGradAngle(e.target.value)}
         type="range"
-<<<<<<< HEAD
         id="gradient-angle"
         name="gradient-angle"
-=======
-        id="gradient-degrees"
-        name="gradient-degrees"
->>>>>>> 221553c7f551e5ce642e538deb69acbac1416867
         min="0"
         max="360"
         step="1"
