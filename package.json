@@ -22,6 +22,7 @@
   "dependencies": {
     "preact": "^10.5.4",
     "react-color": "^2.18.1",
+    "react-github-btn": "^1.2.1",
     "react-toggle-dark-mode": "^1.0.2",
     "save-svg-as-png": "^1.4.17",
     "tailwind-percentage-heights-plugin": "^0.1.4"
