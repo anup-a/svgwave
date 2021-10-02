@@ -16,13 +16,14 @@ function CustomBar({
   onGradientToggle,
   gradient,
   gradColors,
-  handleWaveTransform
+  handleWaveTransform,
 }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
   const [animate, setAnimate] = useState(false)
   const [flip, setFlip] = useState(true)
   const [height, setHeight] = useState(2)
+  const [animateWave, setAnimateWave] = useState(false)
 
   useEffect(() => {
     if (animate) return
@@ -31,12 +32,17 @@ function CustomBar({
       segmentCount,
       layerCount,
       height: HEIGHT_ARR[height],
+      animated: animateWave,
     })
-  }, [segmentCount, layerCount, height, animate])
+  }, [segmentCount, layerCount, height, animate, animateWave])
 
   const handleFlipWave = () => {
     setFlip(!flip)
     handleWaveTransform()
+  }
+
+  const handleAnimateWave = () => {
+    setAnimateWave((animateWave) => !animateWave)
   }
 
   return (
@@ -101,22 +107,42 @@ function CustomBar({
         </div>
       </div>
       <div className="flex text-center justify-center buttons-section">
-        <button className="p-2 m-5 bg-blue-100 rounded-full roll-btn">
+        <button className="p-2 m-3 w-8 h-8  md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full roll-btn">
           <img
             src={Water}
             className={animate && 'reroll'}
-            alt="Wave logo"
+            alt="Wave logo - randomize"
             onClick={() => setAnimate(true)}
             onAnimationEnd={() => setAnimate(false)}
           />
         </button>
-        <button className="p-2 pl-3 m-5 bg-blue-100 rounded-full roll-btn">
+        <button className=" p-2 pl-3 m-3  w-8 h-8  md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full roll-btn">
           <img
             src={Flip}
             className={`${flip ? 'flipdown' : 'flipup'}`}
             alt="Flip Wave"
             onClick={handleFlipWave}
           />
+        </button>
+        <button
+          className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
+          onClick={handleAnimateWave}
+        >
+          <svg width="100%" height="100%" viewBox="5 0 80 60" class="waveImg">
+            <path
+              class="wave"
+              style={{
+                animation: !animateWave && 'moveTheWave 3400ms linear infinite',
+                strokeDasharray: '0 16 101 16',
+                strokeWidth: '.5rem',
+              }}
+              fill="none"
+              stroke="#4963E3"
+              stroke-width="3"
+              stroke-linecap="round"
+              d="M 0 37.5 c 7.684299348848887 0 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15"
+            />
+          </svg>
         </button>
       </div>
 
