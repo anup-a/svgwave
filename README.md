@@ -11,7 +11,9 @@ SVG Wave is a tiny UI tool built with **Preact, tailwind and bundled with Webpac
 
 ---
 
-### Updated ! - New Gradient Wave Support 🌈
+
+### 💡 Update 1 - Added animation support, enable animation by simple click and export as SVG.
+### 💡 Update 2 ! - New Gradient Wave Support 🌈
 
 ### Features
 
@@ -22,6 +24,7 @@ SVG Wave is a tiny UI tool built with **Preact, tailwind and bundled with Webpac
  - Randomize 🔁
  - New cool Dark mode 🖤
  - Gradient fill to waves 🌈
+ - Added Animations
  - Coming soon...
   
 
