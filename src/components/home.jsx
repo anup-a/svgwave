@@ -101,11 +101,11 @@ function Home({ isDark, toggleDarkMode }) {
               >
                 <stop
                   offset="5%"
-                  stop-color={`${gradColors.colorOne}${opac[index]}`}
+                  stopColor={`${gradColors.colorOne}${opac[index]}`}
                 />
                 <stop
                   offset="95%"
-                  stop-color={`${gradColors.colorTwo}${opac[index]}`}
+                  stopColor={`${gradColors.colorTwo}${opac[index]}`}
                 />
               </linearGradient>
             </defs>,
@@ -153,13 +153,13 @@ function Home({ isDark, toggleDarkMode }) {
               >
                 <stop
                   offset="5%"
-                  stop-color={`${
+                  stopColor={`${
                     invert ? gradColors.colorTwo : gradColors.colorOne
                   }${opac[index]}`}
                 />
                 <stop
                   offset="95%"
-                  stop-color={`${
+                  stopColor={`${
                     invert ? gradColors.colorOne : gradColors.colorTwo
                   }${opac[index]}`}
                 />
