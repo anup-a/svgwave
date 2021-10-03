@@ -1,17 +1,16 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CompressionPlugin = require('compression-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack')
 
-
 module.exports = {
-  mode: "development",
-  entry: "./src/index.jsx",
+  mode: 'development',
+  entry: './src/index.jsx',
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js",
+    path: path.join(__dirname, '/dist'),
+    filename: 'index_bundle.js',
   },
   module: {
     rules: [
@@ -19,59 +18,61 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.css$/,
         use: [
-          "style-loader",
+          'style-loader',
           {
             loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               importLoaders: 1,
             },
           },
-          "postcss-loader",
+          'postcss-loader',
         ],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "images/[hash]-[name].[ext]",
+              name: 'images/[hash]-[name].[ext]',
             },
           },
         ],
       },
     ],
   },
-  resolve: { extensions: [".js", ".jsx"] , 
-  "alias": {
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
-  }
-},
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      react: 'preact/compat',
+      'react-dom': 'preact/compat',
+    },
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].bundle.css",
-      chunkFilename: "[id].css",
+      filename: '[name].bundle.css',
+      chunkFilename: '[id].css',
     }),
     new HTMLWebpackPlugin({
-      favicon: "./src/assets/3-01.svg",
-      template: "./src/index.html"
+      favicon: './src/assets/3-01.svg',
+      template: './src/index.html',
     }),
-    new webpack.DefinePlugin({ // <-- key to reducing React's size
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production')
-    }
-  }),
-  new CompressionPlugin(),
-  new OptimizeCSSAssetsPlugin({}),
+    new webpack.DefinePlugin({
+      // <-- key to reducing React's size
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+    new CompressionPlugin(),
+    new OptimizeCSSAssetsPlugin({}),
   ],
-};
+}
