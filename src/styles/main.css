@@ -708,6 +708,12 @@ video {
   border-color: transparent;
 }
 
+.border-gray-100 {
+  --border-opacity: 1;
+  border-color: #f7fafc;
+  border-color: rgba(247, 250, 252, var(--border-opacity));
+}
+
 .border-gray-200 {
   --border-opacity: 1;
   border-color: #edf2f7;
