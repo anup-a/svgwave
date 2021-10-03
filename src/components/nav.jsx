@@ -2,6 +2,10 @@ import { h } from 'preact';
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import underWave from './../assets/underwave.png'
 import GitHubButton from 'react-github-btn'
+import {
+  TwitterShareButton,
+  TwitterIcon,
+} from "react-share";
 
 import Logo from './logo';
 import light from './../assets/3-01.svg'
@@ -20,7 +24,16 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         </div>
       </div>
       <div className="flex items-center nav-item ">
-      <div style={{marginRight: '2rem', marginTop: '0.5rem' }}>
+      <div style={{marginRight: '0.5rem', marginTop: '0.5rem' }}>      
+
+      <TwitterShareButton
+              title="Checkout this amazing SVG Wave Website"
+             url="https://svgwave.in/"
+            >             
+              <TwitterIcon size={38} iconFillColor={"white"} />
+            </TwitterShareButton>  
+            </div>
+      <div style={{marginRight: '2rem', marginTop: '0.5rem' }}>      
           <GitHubButton 
             data-color-scheme={(isDark?"no-preference: light; light: light; dark: dark;":"")}
             data-color-scheme={`no-preference: light; light: light; dark: ${isDark? 'dark': 'light'};`}

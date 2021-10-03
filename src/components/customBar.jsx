@@ -160,7 +160,7 @@ function CustomBar({
       />
 
       <div className="flex flex-col w-full mt-2">
-        <p className="text-sm tracking-widest text-center uppercase ">Export</p>
+        <p style="user-select:none;" className="text-sm tracking-widest text-center uppercase ">Export</p>
         <div className="flex pt-2 mt-2 justify-evenly btn-grp">
           <button
             className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-svg dark:text-black"
