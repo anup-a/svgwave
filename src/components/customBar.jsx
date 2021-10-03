@@ -169,10 +169,14 @@ function CustomBar({
             SVG
           </button>
           <button
-            className={animateWave ? 'px-2 py-1 text-sm bg-gray-100 border-gray-100 rounded-md export-png dark:text-black': "px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black"}
+            className={
+              animateWave
+                ? 'px-2 py-1 text-sm bg-gray-100 border-gray-100 rounded-md export-png dark:text-black'
+                : 'px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black'
+            }
             onClick={() => exportPNG()}
             disabled={animateWave}
-            style={{cursor: animateWave ? 'not-allowed': 'pointer'}}
+            style={{ cursor: animateWave ? 'not-allowed' : 'pointer' }}
           >
             PNG
           </button>
