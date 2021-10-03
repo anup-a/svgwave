@@ -130,7 +130,12 @@ function CustomBar({
           className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
           onClick={handleAnimateWave}
         >
-          <svg width="100%" height="100%" viewBox="5 0 80 60" className="waveImg">
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="5 0 80 60"
+            className="waveImg"
+          >
             <path
               className="wave"
               style={{
@@ -169,10 +174,14 @@ function CustomBar({
             SVG
           </button>
           <button
-            className={animateWave ? 'px-2 py-1 text-sm bg-gray-100 border-gray-100 rounded-md export-png dark:text-black': "px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black"}
+            className={
+              animateWave
+                ? 'px-2 py-1 text-sm bg-gray-100 border-gray-100 rounded-md export-png dark:text-black'
+                : 'px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-png dark:text-black'
+            }
             onClick={() => exportPNG()}
             disabled={animateWave}
-            style={{cursor: animateWave ? 'not-allowed': 'pointer'}}
+            style={{ cursor: animateWave ? 'not-allowed' : 'pointer' }}
           >
             PNG
           </button>
