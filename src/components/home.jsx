@@ -4,7 +4,7 @@ import Canvas from './canvas'
 import CustomBar from './customBar'
 import Navbar from './nav'
 import { waveInit } from '../core'
-import { OPACITY_ARR, MAX_WAVES } from './../constants'
+import { OPACITY_ARR, MAX_WAVES, GRADIENT_OPACITY_ARR } from './../constants'
 import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
 
@@ -42,7 +42,9 @@ function Home({ isDark, toggleDarkMode }) {
 
   const { height, xmlns, path, animatedPath } = waveSvg.svg
   const num_waves = path.length
-  const opac = OPACITY_ARR.slice(MAX_WAVES - num_waves)
+  const opac = gradient
+    ? GRADIENT_OPACITY_ARR.slice(MAX_WAVES - num_waves)
+    : OPACITY_ARR.slice(MAX_WAVES - num_waves)
   const cw = waveSvg.svg.width / 2
   const ch = waveSvg.svg.height / 2
   const transformData = `rotate(-180 ${cw} ${ch})`

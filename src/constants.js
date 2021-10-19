@@ -1,6 +1,7 @@
 export const OPACITY = 33
 
-export const OPACITY_ARR = ['0.267', '0.4', '0.534', '1']
+export const OPACITY_ARR = ['44', '66', '88', 'ff']
+export const GRADIENT_OPACITY_ARR = ['0.267', '0.4', '0.534', '1'] // Transformed OPACITY_ARR into values from 0 to 1
 
 export const MAX_WAVES = 4
 
