@@ -19,9 +19,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
       <div className="flex items-center nav-item ">
         <div style={{ marginRight: '2rem', marginTop: '0.5rem' }}>
           <GitHubButton
-            data-color-scheme={
-              isDark ? 'no-preference: light; light: light; dark: dark;' : ''
-            }
+            
             data-color-scheme={`no-preference: light; light: light; dark: ${
               isDark ? 'dark' : 'light'
             };`}
