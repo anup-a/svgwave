@@ -127,32 +127,35 @@ function CustomBar({
           />
         </button>
         <div class="group">
-        <span class="tooltip-text bg-gray-600 text-white -mt-4 -ml-1 rounded hidden group-hover:block absolute text-xs text-center py-1 px-6 z-50">Beta - works only in chrome</span>
-        <button
-          className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
-          onClick={handleAnimateWave}
-        >
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="5 0 80 60"
-            className="waveImg"
+          <span class="tooltip-text bg-gray-600 text-white -mt-4 -ml-1 rounded hidden group-hover:block absolute text-xs text-center py-1 px-6 z-50">
+            Beta - works only in chrome
+          </span>
+          <button
+            className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
+            onClick={handleAnimateWave}
           >
-            <path
-              className="wave"
-              style={{
-                animation: !animateWave && 'moveTheWave 3400ms linear infinite',
-                strokeDasharray: '0 16 101 16',
-                strokeWidth: '.5rem',
-              }}
-              fill="none"
-              stroke="#4963E3"
-              strokeWidth="3"
-              strokeLinecap="round"
-              d="M 0 37.5 c 7.684299348848887 0 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15"
-            />
-          </svg>
-        </button>
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="5 0 80 60"
+              className="waveImg"
+            >
+              <path
+                className="wave"
+                style={{
+                  animation:
+                    !animateWave && 'moveTheWave 3400ms linear infinite',
+                  strokeDasharray: '0 16 101 16',
+                  strokeWidth: '.5rem',
+                }}
+                fill="none"
+                stroke="#4963E3"
+                strokeWidth="3"
+                strokeLinecap="round"
+                d="M 0 37.5 c 7.684299348848887 0 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15 s 7.172012725592294 15 15 15 s 7.172012725592294 -15 15 -15"
+              />
+            </svg>
+          </button>
         </div>
       </div>
 
