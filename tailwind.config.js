@@ -66,6 +66,7 @@ module.exports = {
       'responsive',
     ],
     textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive'],
+    display: ['group-hover'],
   },
   plugins: [
     require('tailwind-percentage-heights-plugin')(),

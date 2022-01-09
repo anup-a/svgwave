@@ -126,6 +126,8 @@ function CustomBar({
             onClick={handleFlipWave}
           />
         </button>
+        <div class="group">
+        <span class="tooltip-text bg-gray-600 text-white -mt-4 -ml-1 rounded hidden group-hover:block absolute text-xs text-center py-1 px-6 z-50">Beta - works only in chrome</span>
         <button
           className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
           onClick={handleAnimateWave}
@@ -151,6 +153,7 @@ function CustomBar({
             />
           </svg>
         </button>
+        </div>
       </div>
 
       <ColorTool
@@ -166,7 +169,7 @@ function CustomBar({
 
       <div className="flex flex-col w-full mt-2">
         <p className="text-sm tracking-widest text-center uppercase ">Export</p>
-        <div className="flex pt-2 mt-2 justify-evenly btn-grp">
+        <div className="relative flex pt-2 mt-2 justify-evenly btn-grp">
           <button
             className="px-2 py-1 text-sm bg-gray-200 border-gray-200 rounded-md cursor-pointer export-svg dark:text-black"
             onClick={() => exportSVG()}
