@@ -219,7 +219,7 @@ function Home({ isDark, toggleDarkMode }) {
     <div className="relative h-screen dark:bg-darkish-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <float-menu
-        className="z-50 h-0 block sticky "
+        className="z-50 h-0 block absolute "
         style={{ top: '20%' }}
       ></float-menu>
       <div
