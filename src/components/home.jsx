@@ -7,6 +7,7 @@ import { waveInit } from '../core'
 import { OPACITY_ARR, MAX_WAVES } from './../constants'
 import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
+import './../../lib/webcomponent/float-menu'
 
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
@@ -217,6 +218,10 @@ function Home({ isDark, toggleDarkMode }) {
   return (
     <div className="relative h-screen dark:bg-darkish-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
+      <float-menu
+        className="z-50 h-0 block sticky "
+        style={{ top: '20%' }}
+      ></float-menu>
       <div
         className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
         style={{
