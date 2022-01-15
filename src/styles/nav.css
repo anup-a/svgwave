@@ -17,6 +17,12 @@
   background-color: #fff;
 }
 
+@media screen and (max-width: 700px) {
+  .launch-img {
+    display: none;
+  }
+}
+
 .launch-img .launch-text {
   font-size: 14px;
   font-weight: bold;
