@@ -34,6 +34,18 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         </div>
       </div>
       <div className="flex items-center nav-item ">
+        <a
+          class="buy-coffee"
+          href="https://www.buymeacoffee.com/anup"
+          target="_blank"
+          style="height: 40px !important; margin-right: 10px;"
+        >
+          <img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+            alt="Buy Me A Coffee"
+            style="height: 40px !important;"
+          />
+        </a>
         <a className="launch-img" href="https://meshy.uxie.io/" target="_blank">
           <div className="launch-text font-sans">
             <p class="tab">NEW</p>
