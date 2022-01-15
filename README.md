@@ -3,11 +3,10 @@
 ![](./svgwavecover.png)
 
 
-----
 
 
-<a href="https://www.buymeacoffee.com/anup" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" align="right" style="height: 60px !important;width: 217px !important;" ></a>
 
+<a href="https://www.buymeacoffee.com/anup" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 SVG Wave is a **tiny, free and beautiful gradient SVG waves generator** for your UI or website desgin. It offers dead simple UI to customize, and style your waves based on your theme specifications.
 
