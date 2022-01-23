@@ -22,7 +22,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
           alt=""
           width={width < 600 ? '60' : '80'}
         />
-        <div className="relative logo-name">
+        <h3 className="relative logo-name">
           <span className="text-black nav-logo dark:text-white text-sm sm:text-md">
             {' '}
             Svg{' '}
@@ -31,7 +31,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
             {' '}
             Wave{' '}
           </span>
-        </div>
+        </h3>
       </div>
       <div className="flex items-center nav-item ">
         <a

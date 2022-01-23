@@ -56,7 +56,7 @@ function ColorTool({
   const isColor = colorTool === colorToolMode.COLOR
 
   return (
-    <div className="relative flex items-center w-full justify-evenly">
+    <div className="relative flex items-center w-full justify-evenly z-10">
       <div
         className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
         onClick={() => handleColorTool(colorToolMode.COLOR)}
