@@ -46,7 +46,11 @@ function Navbar({ isDark, toggleDarkMode, color }) {
             style="height: 40px !important;"
           />
         </a>
-        <a className="launch-img" href="https://meshy.uxie.io/" target="_blank">
+        <a
+          className="launch-img"
+          href="https://meshgradient.in"
+          target="_blank"
+        >
           <div className="launch-text font-sans">
             <p class="tab">NEW</p>
           </div>
