@@ -55,7 +55,7 @@ function CustomBar({
             htmlFor="waves"
             className="text-sm tracking-widest text-center uppercase"
           >
-            Waves
+            <h5>Waves</h5>
           </label>
           <input
             className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
@@ -74,7 +74,7 @@ function CustomBar({
             htmlFor="layers"
             className="text-sm tracking-widest text-center uppercase"
           >
-            Layers
+            <h5>Layers</h5>
           </label>
           <input
             className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
@@ -93,7 +93,7 @@ function CustomBar({
             htmlFor="waves"
             className="text-sm tracking-widest text-center uppercase"
           >
-            Height
+            <h5>Height</h5>
           </label>
           <input
             className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
