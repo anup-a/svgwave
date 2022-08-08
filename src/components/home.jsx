@@ -47,6 +47,7 @@ function Home({ isDark, toggleDarkMode }) {
   const cw = waveSvg.svg.width / 2
   const ch = waveSvg.svg.height / 2
   const transformData = `rotate(-180 ${cw} ${ch})`
+  const svgOutputRef = useRef(null)
 
   const svg = (
     <svg
@@ -242,7 +243,12 @@ function Home({ isDark, toggleDarkMode }) {
           />
         )}
         <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 mt-16 mb-6 center-container md:flex-row ">
-          <Canvas svg={svg} invert={invert} isDark={isDark} />
+          <Canvas
+            svg={svg}
+            invert={invert}
+            isDark={isDark}
+            svgOutputRef={svgOutputRef}
+          />
           <CustomBar
             handleWaveTransform={handleWaveTransform}
             waveConfig={wave}
@@ -257,6 +263,7 @@ function Home({ isDark, toggleDarkMode }) {
             gradColors={gradColors}
             gradAngle={gradAngle}
             setGradAngle={setGradAngle}
+            svgOutputRef={svgOutputRef}
           />
         </div>
       </div>

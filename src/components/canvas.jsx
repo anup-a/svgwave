@@ -12,7 +12,7 @@ const externalCSS = `
   }
 }
 `
-function Canvas({ svg, invert, isDark }) {
+function Canvas({ svg, invert, isDark, svgOutputRef }) {
   return (
     <div
       className="relative z-10 w-4/5 h-full overflow-hidden bg-white sm:shadow-lg sm:rounded-md sm:m-5 sm:w-7/10 md:w-3/5 sm:h-full dark:bg-darkish-black dark:text-white"
@@ -67,13 +67,19 @@ function Canvas({ svg, invert, isDark }) {
             Generate SVG Waves 🌊
           </h1>
 
-          <div className="absolute bottom-0 w-full transition-all duration-300 ease-in-out delay-150">
+          <div
+            ref={svgOutputRef}
+            className="absolute bottom-0 w-full transition-all duration-300 ease-in-out delay-150"
+          >
             {svg}
           </div>
         </div>
       ) : (
         <div className="fade-in">
-          <div className="absolute top-0 w-full transition-all duration-300 ease-in-out delay-150">
+          <div
+            className="absolute top-0 w-full transition-all duration-300 ease-in-out delay-150"
+            ref={svgOutputRef}
+          >
             {svg}
           </div>
           <h1 className="absolute bottom-0 hidden w-full p-6 font-sans text-4xl font-extrabold opacity-75 canvas-heading">
