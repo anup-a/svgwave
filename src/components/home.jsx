@@ -47,6 +47,7 @@ function Home({ isDark, toggleDarkMode }) {
   const cw = waveSvg.svg.width / 2
   const ch = waveSvg.svg.height / 2
   const transformData = `rotate(-180 ${cw} ${ch})`
+  const svgOutputRef = useRef(null)
 
   const svg = (
     <svg
@@ -216,14 +217,14 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   return (
-    <div className="relative h-screen dark:bg-darkish-black">
+    <div className="relative md:h-screen dark:bg-darkish-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <float-menu
-        className="z-50 h-0 block absolute "
+        className="absolute z-50 block h-0 "
         style={{ top: '20%' }}
       ></float-menu>
       <div
-        className="flex flex-col items-center justify-center h-screen p-0 dark:bg-darkish-black "
+        className="flex flex-col items-center justify-center p-0 md:h-screen dark:bg-darkish-black "
         style={{
           background: isDark
             ? '#131e2b66'
@@ -241,8 +242,13 @@ function Home({ isDark, toggleDarkMode }) {
             toggleModal={handleExportSVG}
           />
         )}
-        <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 center-container md:flex-row ">
-          <Canvas svg={svg} invert={invert} />
+        <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 mt-16 mb-6 center-container md:flex-row ">
+          <Canvas
+            svg={svg}
+            invert={invert}
+            isDark={isDark}
+            svgOutputRef={svgOutputRef}
+          />
           <CustomBar
             handleWaveTransform={handleWaveTransform}
             waveConfig={wave}
@@ -257,6 +263,7 @@ function Home({ isDark, toggleDarkMode }) {
             gradColors={gradColors}
             gradAngle={gradAngle}
             setGradAngle={setGradAngle}
+            svgOutputRef={svgOutputRef}
           />
         </div>
       </div>

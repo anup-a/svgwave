@@ -19,6 +19,7 @@ function CustomBar({
   handleWaveTransform,
   setGradAngle,
   gradAngle,
+  svgOutputRef,
 }) {
   const [segmentCount, setSegmentCount] = useState(5)
   const [layerCount, setLayoutCount] = useState(3)
@@ -38,6 +39,10 @@ function CustomBar({
     })
   }, [segmentCount, layerCount, height, animate, animateWave])
 
+  useEffect(() => {
+    svgOutputRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [animate])
+
   const handleFlipWave = () => {
     setFlip(!flip)
     handleWaveTransform()
@@ -48,8 +53,8 @@ function CustomBar({
   }
 
   return (
-    <div className="z-10 flex flex-col items-center w-4/5 px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 h-3/5 sm:h-4/5 custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
-      <div className="flex flex-col">
+    <div className="z-10 flex flex-col items-center w-4/5 h-full px-5 py-1 mt-4 bg-white sm:p-5 sm:shadow-lg sm:rounded-md sm:m-5 sm:w-3/10 md:w-1/5 sm:h-full custom-bar xs:justify-evenly dark:bg-darkish-black dark:text-white">
+      <div className="flex flex-col w-4/5">
         <div className="text-center waves-section">
           <label
             htmlFor="waves"
@@ -108,8 +113,8 @@ function CustomBar({
           />
         </div>
       </div>
-      <div className="flex text-center justify-center buttons-section">
-        <button className="p-2 m-3 w-8 h-8  md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full roll-btn">
+      <div className="flex justify-center py-2 text-center buttons-section">
+        <button className="w-12 h-12 p-2 m-3 bg-blue-100 rounded-full sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 roll-btn">
           <img
             src={Water}
             className={animate && 'reroll'}
@@ -118,7 +123,7 @@ function CustomBar({
             onAnimationEnd={() => setAnimate(false)}
           />
         </button>
-        <button className=" p-2 pl-3 m-3  w-8 h-8  md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full roll-btn">
+        <button className="w-12 h-12 p-2 pl-3 m-3 bg-blue-100 rounded-full sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 roll-btn">
           <img
             src={Flip}
             className={`${flip ? 'flipdown' : 'flipup'}`}
@@ -131,7 +136,7 @@ function CustomBar({
             Beta - works only in chrome
           </span>
           <button
-            className={`m-3 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
+            className={`m-3 w-12 h-12 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-full overflow-hidden`}
             onClick={handleAnimateWave}
           >
             <svg
