@@ -1,6 +1,6 @@
 export const OPACITY = 33
 
-export const OPACITY_ARR = ['44', '66', '88', 'ff']
+export const OPACITY_ARR = [0.265, 0.4, 0.53, 1]
 
 export const MAX_WAVES = 4
 

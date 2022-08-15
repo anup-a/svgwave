@@ -101,14 +101,8 @@ function Home({ isDark, toggleDarkMode }) {
                 x2={Math.round(50 + Math.sin(anglePI + Math.PI) * 50) + '%'}
                 y2={Math.round(50 + Math.cos(anglePI + Math.PI) * 50) + '%'}
               >
-                <stop
-                  offset="5%"
-                  stopColor={`${gradColors.colorOne}${opac[index]}`}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={`${gradColors.colorTwo}${opac[index]}`}
-                />
+                <stop offset="5%" stopColor={`${gradColors.colorOne}`} />
+                <stop offset="95%" stopColor={`${gradColors.colorTwo}`} />
               </linearGradient>
             </defs>,
           )
@@ -120,7 +114,8 @@ function Home({ isDark, toggleDarkMode }) {
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
+            fill={gradient ? `url(#gradient)` : `${bgColor}`}
+            fillOpacity={opac[index]}
             className={`transition-all duration-300 ease-in-out delay-150 path-${index}`}
             transform={invert ? transformData : p.transform}
           ></path>,
@@ -157,13 +152,13 @@ function Home({ isDark, toggleDarkMode }) {
                   offset="5%"
                   stopColor={`${
                     invert ? gradColors.colorTwo : gradColors.colorOne
-                  }${opac[index]}`}
+                  }`}
                 />
                 <stop
                   offset="95%"
                   stopColor={`${
                     invert ? gradColors.colorOne : gradColors.colorTwo
-                  }${opac[index]}`}
+                  }`}
                 />
               </linearGradient>
             </defs>,
@@ -183,7 +178,8 @@ function Home({ isDark, toggleDarkMode }) {
             d={p.d}
             stroke={p.strokeColor}
             strokeWidth={p.strokeWidth}
-            fill={gradient ? 'url(#gradient)' : `${bgColor}${opac[index]}`}
+            fill={gradient ? 'url(#gradient)' : `${bgColor}`}
+            fillOpacity={opac[index]}
             className="transition-all duration-300 ease-in-out delay-150"
             transform={p.transform}
           ></path>
