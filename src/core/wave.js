@@ -103,12 +103,6 @@ function generateClosedPath(
     })
   }
 
-  const svgPath = document.createElementNS(svgns, 'path')
-  svgPath.setAttributeNS(null, 'fill', filleColor)
-  svgPath.setAttributeNS(null, 'stroke', strokeColor)
-  svgPath.setAttributeNS(null, 'stroke-width', strokeWidth)
-  svgPath.setAttributeNS(null, 'd', path)
-
   return {
     fill: filleColor,
     strokeColor: strokeColor,
@@ -159,12 +153,6 @@ export class Wavery {
   }
 
   generateSvg() {
-    //   Creates an element with the specified namespace URI
-    const svg = document.createElementNS(svgns, 'svg')
-    svg.setAttribute('width', this.properties.width)
-    svg.setAttribute('height', this.properties.height)
-    svg.setAttribute('xmlns', svgns)
-
     const pathList = []
     // Append layer of a wave
     for (let i = 0; i < this.points.length; i++) {
