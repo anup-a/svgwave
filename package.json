@@ -10,6 +10,9 @@
     "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "keywords": [
     "Svg",
     "Gradient",
