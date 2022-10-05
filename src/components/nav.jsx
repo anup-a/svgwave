@@ -91,7 +91,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
         {width > 600 && (
           <a
             className="twitter-icon"
-            href="https://twitter.com/anup2aglawe"
+            href="https://twitter.com/intent/tweet?text=Try%20this%20cool%20website%20to%20generate%20svg%20waves!%20&#128293;%0ahttps://svgwave.in"
             target="_blank"
           >
             <img
