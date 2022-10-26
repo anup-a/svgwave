@@ -218,6 +218,7 @@ function Home({ isDark, toggleDarkMode }) {
       <float-menu
         className="absolute z-50 block h-0 "
         style={{ top: '20%' }}
+        isDark={isDark}
       ></float-menu>
       <div
         className="flex flex-col items-center justify-center p-0 md:h-screen dark:bg-darkish-black "
