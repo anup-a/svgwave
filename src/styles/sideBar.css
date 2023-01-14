@@ -1,4 +1,12 @@
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type='range']:focus {
+    outline: none;
+  }
+
+  input[type='range'] {
+    height: 2px;
+  }
+
   input[type='range']::-webkit-slider-thumb {
     width: 15px;
     -webkit-appearance: none;
@@ -6,12 +14,10 @@
     height: 15px;
     cursor: ew-resize;
     background: #fff;
-    box-shadow: -405px 0 0 400px #605e5c;
     border-radius: 50%;
-  }
 
-  input[type='range']:focus {
-    outline: none;
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
   }
 }
 
@@ -21,7 +27,8 @@
 }
 
 .custom-shadow {
-  box-shadow:0 16px 40px rgba(0,0,0,0.12);border:0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  border: 0;
 }
 
 button:focus,
@@ -57,9 +64,20 @@ img:focus,
 .flipup {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
-  transition: all 300ms; 
+  transition: all 300ms;
 }
 
-.scale-in-center{animation:scale-in-center 0.3s cubic-bezier(.25,.46,.45,.94) both}
+.scale-in-center {
+  animation: scale-in-center 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
 
-@keyframes scale-in-center{0%{transform:scale(0);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,15 +1,15 @@
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.html', './src/**/*.jsx'],
-  },
-
+  content: ['index.html', './src/**/*.html', './src/**/*.jsx'],
+  darkMode: ['class'],
   theme: {
-    darkSelector: '.dark-mode',
     extend: {
       colors: {
         'darkish-blue': '#182635',
         'darkish-black': '#0e141b',
+        'light-grey': '#f1f1f1',
+        'light-black': '#141414',
+        'dark-highlight': '#182635',
+        'light-highlight': '#edf2f7',
       },
       width: {
         '7/10': '70%',
@@ -22,7 +22,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Poppins',
+        'Source Sans Pro',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -68,8 +68,5 @@ module.exports = {
     textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive'],
     display: ['group-hover'],
   },
-  plugins: [
-    require('tailwind-percentage-heights-plugin')(),
-    require('tailwindcss-dark-mode')(),
-  ],
+  plugins: [require('tailwind-percentage-heights-plugin')()],
 }

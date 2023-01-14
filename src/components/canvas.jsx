@@ -15,7 +15,7 @@ const externalCSS = `
 function Canvas({ svg, invert, isDark, svgOutputRef }) {
   return (
     <div
-      className="relative z-10 w-4/5 h-full overflow-hidden bg-white sm:shadow-lg sm:rounded-md sm:m-5 sm:w-7/10 md:w-3/5 sm:h-full dark:bg-darkish-black dark:text-white"
+      className="relative z-10 w-4/5 h-full overflow-hidden bg-white sm:rounded-lg sm:m-5 sm:w-7/10 md:w-1/2 sm:h-full dark:bg-darkish-black dark:text-white"
       style="min-height: 400px"
     >
       <style>
@@ -32,6 +32,13 @@ function Canvas({ svg, invert, isDark, svgOutputRef }) {
       @media screen and (max-width: 1300px) {
         #carbonads {
           bottom: ${invert ? '80px' : 'unset'};
+          top: ${!invert ? '80px' : 'unset'};
+        }
+      }
+
+      @media screen and (max-width: 648px) {
+        #carbonads {
+          bottom: ${invert ? '0px' : 'unset'};
           top: ${!invert ? '80px' : 'unset'};
         }
       }
@@ -62,32 +69,19 @@ function Canvas({ svg, invert, isDark, svgOutputRef }) {
         src="//cdn.carbonads.com/carbon.js?serve=CEAIP53I&placement=svgwavein"
         id="_carbonads_js"
       ></script>
-      {!invert ? (
-        <div className="fade-in">
-          <h1 className="absolute top-0 hidden w-full p-6 font-sans text-2xl font-extrabold opacity-75 lg:text-4xl canvas-heading">
-            Generate SVG Waves 🌊
-          </h1>
-
-          <div
-            ref={svgOutputRef}
-            className="absolute bottom-0 w-full transition-all duration-300 ease-in-out delay-150"
-          >
-            {svg}
-          </div>
+      <div className={`fade-in flex h-full justify-between flex-col`}>
+        <h1 className="w-full p-2 my-4 ml-4 font-sans text-2xl font-bold xl:p-6 md:flex">
+          Generate SVG Waves
+        </h1>
+        <div
+          ref={svgOutputRef}
+          className={`w-full  transition-all duration-300 ease-in-out delay-150 md:mt-0 ${
+            !invert && `mt-32`
+          }`}
+        >
+          {svg}
         </div>
-      ) : (
-        <div className="fade-in">
-          <div
-            className="absolute top-0 w-full transition-all duration-300 ease-in-out delay-150"
-            ref={svgOutputRef}
-          >
-            {svg}
-          </div>
-          <h1 className="absolute bottom-0 hidden w-full p-6 font-sans text-4xl font-extrabold opacity-75 canvas-heading">
-            Generate SVG Waves 🌊
-          </h1>
-        </div>
-      )}
+      </div>
     </div>
   )
 }

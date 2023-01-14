@@ -1,7 +1,6 @@
 import { h } from 'preact'
 import Home from './components/home'
 import { useDarkMode } from './stores/useDarkMode'
-import './styles/main.css'
 
 function App() {
   const { theme, setTheme } = useDarkMode(({ theme, setTheme }) => ({
@@ -12,7 +11,7 @@ function App() {
   const currentTheme = theme === 'dark' ? true : false
 
   return (
-    <div className={`main-container ${currentTheme && 'dark-mode'}`}>
+    <div className={`main-container ${currentTheme && 'dark'}`}>
       <Home isDark={currentTheme} toggleDarkMode={setTheme} />
     </div>
   )

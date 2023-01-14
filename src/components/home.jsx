@@ -21,7 +21,6 @@ function Home({ isDark, toggleDarkMode }) {
   const [gradAngle, setGradAngle] = useState(270)
 
   const svgElement = useRef(null)
-  const bgSvgElement = useRef(null)
 
   const [wave, setWave] = useState({
     height: 500,
@@ -54,7 +53,7 @@ function Home({ isDark, toggleDarkMode }) {
       width="100%"
       height="100%"
       id="svg"
-      viewBox={`0 0 1440 ${height}`}
+      viewBox={`0 0 1440 ${height - 10}`}
       xmlns={xmlns}
       ref={svgElement}
       className="transition duration-300 ease-in-out delay-150"
@@ -126,68 +125,6 @@ function Home({ isDark, toggleDarkMode }) {
     </svg>
   )
 
-  const bgSvg = (
-    <svg
-      height="100%"
-      width="100%"
-      id="bg-svg"
-      viewBox={`0 0 1440 ${height}`}
-      xmlns={xmlns}
-      ref={bgSvgElement}
-      className="transition duration-300 ease-in-out delay-150"
-    >
-      {path.map((p, index) => {
-        const anglePI = gradAngle * (Math.PI / 180)
-        return gradient ? (
-          [
-            <defs>
-              <linearGradient
-                id={`gradient`}
-                x1={Math.round(50 + Math.sin(anglePI) * 50) + '%'}
-                y1={Math.round(50 + Math.cos(anglePI) * 50) + '%'}
-                x2={Math.round(50 + Math.sin(anglePI + Math.PI) * 50) + '%'}
-                y2={Math.round(50 + Math.cos(anglePI + Math.PI) * 50) + '%'}
-              >
-                <stop
-                  offset="5%"
-                  stopColor={`${
-                    invert ? gradColors.colorTwo : gradColors.colorOne
-                  }`}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={`${
-                    invert ? gradColors.colorOne : gradColors.colorTwo
-                  }`}
-                />
-              </linearGradient>
-            </defs>,
-            <path
-              key={index}
-              d={p.d}
-              stroke={p.strokeColor}
-              strokeWidth={p.strokeWidth}
-              fill={gradient ? `url(#gradient)` : `${bgColor}${opac[index]}`}
-              className="transition-all duration-300 ease-in-out delay-150"
-              transform={p.transform}
-            ></path>,
-          ]
-        ) : (
-          <path
-            key={index}
-            d={p.d}
-            stroke={p.strokeColor}
-            strokeWidth={p.strokeWidth}
-            fill={gradient ? 'url(#gradient)' : `${bgColor}`}
-            fillOpacity={opac[index]}
-            className="transition-all duration-300 ease-in-out delay-150"
-            transform={p.transform}
-          ></path>
-        )
-      })}
-    </svg>
-  )
-
   const handleWaveConfig = (waveData) => {
     setWave({
       ...wave,
@@ -213,33 +150,21 @@ function Home({ isDark, toggleDarkMode }) {
   }
 
   return (
-    <div className="relative md:h-screen dark:bg-darkish-black">
+    <div className="relative md:h-screen bg-light-grey dark:bg-black">
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <float-menu
         className="absolute z-50 block h-0 "
         style={{ top: '20%' }}
         isDark={isDark}
       ></float-menu>
-      <div
-        className="flex flex-col items-center justify-center p-0 md:h-screen dark:bg-darkish-black "
-        style={{
-          background: isDark
-            ? '#131e2b66'
-            : gradient
-            ? `linear-gradient(${gradAngle}deg, ${gradColors.colorOne}33 0%, ${gradColors.colorTwo}33 100%)`
-            : `${bgColor}33`,
-        }}
-      >
-        <div className="absolute bottom-0 w-full opacity-25 bg-svg">
-          {bgSvg}
-        </div>
+      <div className="flex flex-col items-center justify-center p-0 md:h-screen bg-light-grey dark:bg-black ">
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
             toggleModal={handleExportSVG}
           />
         )}
-        <div className="flex flex-col-reverse items-center justify-center w-full h-full pt-5 pb-0 mt-16 mb-6 center-container md:flex-row ">
+        <div className="flex flex-col-reverse items-center justify-center w-full h-4/5 center-container md:flex-row ">
           <Canvas
             svg={svg}
             invert={invert}

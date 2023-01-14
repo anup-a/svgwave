@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" data-name="Layer 1" viewBox="0 0 300 196.5"><defs><linearGradient id="linear-gradient" x1="188.08" x2="188.08" y1="139.66" y2="-28.13" gradientTransform="translate(124.18 -104.37) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1d0054"/><stop offset="1" stop-color="#4c5fec"/></linearGradient><linearGradient id="linear-gradient-2" x1="137.86" x2="137.86" y1="179.13" y2="22.83" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00dccc"/><stop offset="1" stop-color="#c7f0b9"/></linearGradient></defs><title>3</title><circle cx="188.08" cy="97.71" r="60.79" transform="translate(-14.01 161.61) rotate(-45)" style="opacity:.8;fill:url(#linear-gradient)"/><path d="M219.78,98q0,3.41-.28,6.73,0,.73-.12,1.47a82.17,82.17,0,0,1-3.52,16.91c-.17.53-.35,1.06-.53,1.59A81.94,81.94,0,0,1,55.94,98c0-.87,0-1.73.05-2.59a81.42,81.42,0,0,1,1.75-14.5A81.51,81.51,0,0,1,74.54,46,81.89,81.89,0,0,1,219.78,98Z" style="opacity:.8;fill:url(#linear-gradient-2)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" data-name="Layer 1"
+    viewBox="0 0 300 196.5">
+    <defs>
+        <linearGradient id="linear-gradient" x1="188.08" x2="188.08" y1="139.66" y2="-28.13"
+            gradientTransform="translate(124.18 -104.37) rotate(45)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#1d0054" />
+            <stop offset="1" stop-color="#4c5fec" />
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x1="137.86" x2="137.86" y1="179.13" y2="22.83"
+            gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#00dccc" />
+            <stop offset="1" stop-color="#c7f0b9" />
+        </linearGradient>
+    </defs>
+    <title>3</title>
+    <circle cx="188.08" cy="97.71" r="60.79" transform="translate(-14.01 161.61) rotate(-45)"
+        style="opacity:.8;fill:url(#linear-gradient)" className="animate-solar" />
+    <path
+        d="M219.78,98q0,3.41-.28,6.73,0,.73-.12,1.47a82.17,82.17,0,0,1-3.52,16.91c-.17.53-.35,1.06-.53,1.59A81.94,81.94,0,0,1,55.94,98c0-.87,0-1.73.05-2.59a81.42,81.42,0,0,1,1.75-14.5A81.51,81.51,0,0,1,74.54,46,81.89,81.89,0,0,1,219.78,98Z"
+        style="opacity:.8;fill:url(#linear-gradient-2)" />
+</svg>
