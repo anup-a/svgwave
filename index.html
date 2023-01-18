@@ -159,6 +159,95 @@
         letter-spacing: 0.5px;
         text-transform: uppercase;
       }
+      .bm-better-metter-holder {
+        all: unset;
+      }
+      @media screen and (max-width: 600px) {
+        .bm-better-metter-holder {
+          visibility: hidden;
+          display: none;
+        }
+
+        .bm-bt-close {
+          visibility: hidden;
+          display: none;
+        }
+      }
+
+      .bm-better-metter-holder {
+        font-family: Arial, sans-serif;
+        position: static;
+        left: 20px;
+        bottom: 20px;
+        padding: 5px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      .bm-better-metter-holder:hover {
+        background-color: #f9f9f9;
+      }
+
+      .bm-better-meter {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+        z-index: 999999;
+        display: -ms-grid;
+        display: grid;
+        justify-items: end;
+        grid-auto-columns: 1fr;
+        grid-column-gap: 16px;
+        grid-row-gap: 8px;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+      }
+
+      .bm-shadow {
+        box-shadow: 6px 6px 30px -7px rgba(0, 0, 0, 0.21);
+      }
+
+      .ds-overlay-button {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 14px;
+        background-color: #6dd0fe;
+        font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #391145;
+      }
+
+      .bm-bt-close {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 20px;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        cursor: pointer;
+        opacity: 0.2;
+      }
+
+      .callout {
+        width: 256px;
+      }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -179,6 +268,28 @@
     <div id="app"></div>
     <div class="loader-container">
       <div class="loader"></div>
+    </div>
+    <div
+      id="ds-callout"
+      class="bm-better-meter"
+      onclick='document.location = "https://designstripe.com/mockups?utm_source=svgwave&utm_medium=bettermeter&utm_campaign=mockups&utm_content=orangegif"'
+    >
+      <a
+        data-dsads-action="close"
+        data-dsads-close-container-id="ds-callout"
+        class="bm-bt-close bm-shadow"
+        >X</a
+      >
+
+      <div
+        onclick="dsads.loadUrl(this)"
+        class="bm-link-wrapper bm-better-metter-holder"
+      >
+        <img
+          class="callout"
+          src="https://bettermeter-s3-buckets-analytics-cache-dev.s3.us-east-1.amazonaws.com/assets/designstripe/ds_mockups_red.gif"
+        />
+      </div>
     </div>
   </body>
 
