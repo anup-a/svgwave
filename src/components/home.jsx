@@ -154,7 +154,7 @@ function Home({ isDark, toggleDarkMode }) {
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <float-menu
         className="absolute z-50 block h-0 "
-        style={{ top: '20%' }}
+        style={{ top: '10%' }}
         isDark={isDark}
       ></float-menu>
       <div className="flex flex-col items-center justify-center p-0 md:h-screen bg-light-grey dark:bg-black ">
