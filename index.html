@@ -195,7 +195,7 @@
         z-index: 999999;
         display: -ms-grid;
         display: grid;
-        justify-items: end;
+        justify-items: start;
         grid-auto-columns: 1fr;
         grid-column-gap: 16px;
         grid-row-gap: 8px;
@@ -269,18 +269,14 @@
     <div class="loader-container">
       <div class="loader"></div>
     </div>
-    <div
-      id="ds-callout"
-      class="bm-better-meter"
-      onclick='document.location = "https://designstripe.com/mockups?utm_source=svgwave&utm_medium=bettermeter&utm_campaign=mockups&utm_content=orangegif"'
-    >
+    <div id="ds-callout" class="bm-better-meter">
       <a
         data-dsads-action="close"
         data-dsads-close-container-id="ds-callout"
         class="bm-bt-close bm-shadow"
+        onclick="closePopup(event);"
         >X</a
       >
-
       <div
         onclick="dsads.loadUrl(this)"
         class="bm-link-wrapper bm-better-metter-holder"
@@ -305,6 +301,11 @@
         document.querySelector('#app').style.display = 'block'
         // }, 3000)
       }
+    }
+
+    function closePopup(e) {
+      document.querySelector('#ds-callout').style.display = 'none'
+      e.stopPropagation()
     }
   </script>
   <script type="module" src="/src/main.jsx"></script>
