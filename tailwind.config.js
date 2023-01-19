@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   content: ['index.html', './src/**/*.html', './src/**/*.jsx'],
   darkMode: ['class'],
   theme: {
