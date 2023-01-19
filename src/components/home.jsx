@@ -15,8 +15,8 @@ function Home({ isDark, toggleDarkMode }) {
   const [gradient, setGradient] = useState(true)
   const [invert, setInvert] = useState(false)
   const [gradColors, setGradColors] = useState({
-    colorOne: '#002bdc',
-    colorTwo: '#32ded4',
+    colorOne: '#F78DA7',
+    colorTwo: '#8ED1FC',
   })
   const [gradAngle, setGradAngle] = useState(270)
 
