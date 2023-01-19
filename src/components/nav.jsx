@@ -28,7 +28,7 @@ function Navbar({ isDark, toggleDarkMode, color }) {
           <CoffeeLogo height={24} />
         </a>
 
-        <a>
+        <a href="https://github.com/anup-a/svgwave" target="_blank">
           <GithubLogo />
         </a>
         <a
