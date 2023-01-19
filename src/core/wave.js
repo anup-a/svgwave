@@ -16,7 +16,7 @@ function generatePoints(width, height, segmentCount, layerCount, variance) {
     for (let x = cellWidth; x < width; x += cellWidth) {
       //@anup: this decides whether a segment is crest or trough
       const varietalY = y - moveLimitY / 2 + Math.random() * moveLimitY
-      //   this decides the
+
       const varietalX = x - moveLimitX / 2 + Math.random() * moveLimitX
       pointsPerLayer.push({
         x: Math.floor(varietalX),

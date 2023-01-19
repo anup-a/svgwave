@@ -56,7 +56,7 @@ function ColorTool({
   const isColor = colorTool === colorToolMode.COLOR
 
   return (
-    <div className="relative flex items-center w-full justify-evenly z-10">
+    <div className="relative z-10 flex items-center w-full justify-evenly">
       <div
         className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
         onClick={() => handleColorTool(colorToolMode.COLOR)}
@@ -68,9 +68,9 @@ function ColorTool({
             : {}
         }
       >
-        <div className="flex items-center justify-center w-12 h-12 bg-white border-2 border-indigo-900 rounded-full shadow-lg color-btn">
+        <div className="flex items-center justify-center w-10 h-10 bg-white border-2 border-indigo-900 rounded-lg color-btn">
           <div
-            className="w-10 h-10 rounded-full shadow-md "
+            className="w-8 h-8 rounded-md "
             onClick={(e) => handleToggleTool(e, colorToolMode.COLOR)}
             style={{ backgroundColor: fillColor }}
           ></div>
@@ -84,19 +84,14 @@ function ColorTool({
       </div>
 
       <div
-        className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
+        className={`flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section ${
+          isGradient && 'bg-light-highlight dark:bg-dark-highlight'
+        }`}
         onClick={() => handleColorTool(colorToolMode.GRADIENT)}
-        style={
-          isGradient
-            ? isDark
-              ? { background: '#182635' }
-              : { background: '#edf2f7' }
-            : {}
-        }
       >
-        <div className="flex items-center justify-center w-12 h-12 bg-white border-2 border-indigo-900 rounded-full shadow-lg color-btn">
+        <div className="flex items-center justify-center w-10 h-10 bg-white border-2 border-indigo-900 rounded-lg color-btn">
           <div
-            className="w-10 h-10 rounded-full shadow-md "
+            className="w-8 h-8 rounded-md "
             onClick={(e) => handleToggleTool(e, colorToolMode.GRADIENT)}
             style={
               isGradient
