@@ -4,7 +4,18 @@ import { HEIGHT_ARR } from '../constants'
 import ColorTool from './colorTool'
 import { ReactComponent as Flip } from './../assets/001-flip.svg'
 import frame from './../assets/Frame.png' //Frame.png
+import { ReactComponent as Chair } from './../assets/chair.svg' //Frame.png
+import { ReactComponent as Boat } from './../assets/boat-like.svg' //Frame.png
+import { ReactComponent as Wave } from './../assets/wave-icon.svg' //Frame.png
 import darkFrame from './../assets/100.png'
+
+const modes = {
+  classic: <Wave className={`h-6 w-6 dark:text-white`} />,
+  chairLeft: <Chair className={`h-6 w-6 dark:text-white`} />,
+  chairRight: <Chair className={`h-6 w-6 dark:text-white -scale-x-100`} />,
+  boat: <Boat className={`h-6 w-6 dark:text-white -scale-y-100`} />,
+  invertedBoat: <Boat className={`h-6 w-6 dark:text-white`} />,
+}
 
 function CustomBar({
   onWaveConfig,
@@ -26,6 +37,7 @@ function CustomBar({
   const [flip, setFlip] = useState(true)
   const [height, setHeight] = useState(2)
   const [animateWave, setAnimateWave] = useState(false)
+  const [activeMode, setActiveMode] = useState('classic')
 
   useEffect(() => {
     onWaveConfig({
@@ -33,8 +45,9 @@ function CustomBar({
       layerCount,
       height: HEIGHT_ARR[height],
       animated: animateWave,
+      activeMode: activeMode,
     })
-  }, [segmentCount, layerCount, height, animateWave])
+  }, [segmentCount, layerCount, height, animateWave, activeMode])
 
   const regenerate = () => {
     onWaveConfig({
@@ -42,6 +55,7 @@ function CustomBar({
       layerCount,
       height: HEIGHT_ARR[height],
       animated: animateWave,
+      activeMode: activeMode,
     })
   }
 
@@ -60,7 +74,7 @@ function CustomBar({
 
   return (
     <div className="z-10 flex flex-col items-center w-3/4 h-full bg-white sm:m-5 xs:mt-24 sm:mt-24 md:mt-4 sm:rounded-lg sm:w-2/5 lg:w-1/4 xl:w-1/5 sm:h-full custom-bar dark:bg-darkish-black dark:text-white">
-      <div className="flex-1 p-4 pt-8">
+      <div className="flex-1 p-4 pt-7">
         <div className="flex flex-col ">
           <div className="px-4 md:px-2">
             <label htmlFor="waves" className="text-md">
@@ -111,9 +125,21 @@ function CustomBar({
             />
           </div>
         </div>
-        <div className="flex justify-center py-2 mb-6 text-center buttons-section">
+        <div className="flex justify-center py-2 text-center buttons-section">
+          {Object.entries(modes).map(([name, icon]) => (
+            <button
+              className={`flex items-center w-2/5 h-8 px-1 m-1 border-2 rounded-lg justify-evenly ${
+                activeMode === name && 'bg-light-grey dark:bg-slate-600'
+              }  border-light-grey dark:border-slate-600 sm:h-8 roll-btn`}
+              onClick={() => setActiveMode(name)}
+            >
+              {icon}
+            </button>
+          ))}
+        </div>
+        <div className="flex justify-center py-2 mb-4 text-center buttons-section">
           <button
-            className="flex items-center w-2/5 h-10 px-4 py-2 m-1 border-2 rounded-lg justify-evenly border-light-grey sm:h-8 md:h-10 roll-btn"
+            className="flex items-center w-2/5 h-10 px-4 py-2 m-1 border-2 rounded-lg justify-evenly border-light-grey dark:border-slate-600 sm:h-8 md:h-10 roll-btn"
             onClick={handleFlipWave}
           >
             <p className="mr-3">Flip</p>
@@ -128,7 +154,7 @@ function CustomBar({
               Beta - works only in chrome
             </span>
             <button
-              className="flex items-center w-full h-10 px-4 py-2 m-1 border-2 rounded-lg justify-evenly border-light-grey sm:h-8 md:h-10 roll-btn"
+              className="flex items-center w-full h-10 px-4 py-2 m-1 border-2 rounded-lg justify-evenly border-light-grey dark:border-slate-600 sm:h-8 md:h-10 roll-btn"
               onClick={handleAnimateWave}
             >
               <p className="mr-3">Animate</p>
@@ -159,7 +185,7 @@ function CustomBar({
         />
 
         <button
-          className="flex items-center justify-center w-full h-12 p-2 mt-6 text-white bg-black rounded-lg dark:bg-dark-highlight sm:h-8 md:h-10 lg:h-12 roll-btn"
+          className="flex items-center justify-center w-full h-12 p-2 mt-4 text-white bg-black rounded-lg dark:bg-dark-highlight sm:h-8 md:h-10 lg:h-12 roll-btn"
           onClick={() => regenerate()}
         >
           <p className="mr-4">Generate</p>
@@ -182,14 +208,14 @@ function CustomBar({
         </button>
       </div>
       <div
-        className="flex flex-col w-full p-2 pt-6 pb-8 mt-2 rounded-lg"
+        className="flex flex-col w-full px-2 py-6 mt-2 rounded-lg"
         style={{
           backgroundImage: `url(${!isDark ? frame : darkFrame})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%',
         }}
       >
-        <p className="px-4 pb-4">Export</p>
+        <p className="px-4 pb-2">Export</p>
         <div className="relative flex pt-2 mt-2 justify-evenly btn-grp">
           <button
             className="px-4 py-1 bg-white rounded-md cursor-pointer text-md export-svg dark:text-black"

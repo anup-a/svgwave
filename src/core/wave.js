@@ -2,29 +2,75 @@ const defaultOptions = {}
 const svgns = 'http://www.w3.org/2000/svg'
 import { computeControlPoints } from './bezier-spline'
 
+// Yeah... cyclohexane
+const conformations = {
+  classic: {},
+  chairLeft: {
+    delta: 75,
+  },
+  chairRight: {
+    delta: -75,
+    offsetY: true,
+  },
+  boat: {
+    startY: 1,
+    endY: 1,
+  },
+  invertedBoat: {
+    startY: 0,
+    endY: 0,
+  },
+}
+
 // layercount is default to 2. Increasing the number would stack up n-1 waves.
-function generatePoints(width, height, segmentCount, layerCount, variance) {
+function generatePoints(
+  width,
+  height,
+  segmentCount,
+  layerCount,
+  variance,
+  activeMode,
+) {
   const cellWidth = width / segmentCount
   const cellHeight = height / layerCount
   const moveLimitX = cellWidth * variance * 0.5
   const moveLimitY = cellHeight * variance
 
   const points = []
-  for (let y = cellHeight; y < height; y += cellHeight) {
+  let layrIdx = 1
+  const mode = conformations[activeMode]
+
+  let y = moveLimitY + (mode.offsetY ? (layerCount - 1) * 75 : 0)
+
+  while (layrIdx < layerCount) {
     let pointsPerLayer = []
-    pointsPerLayer.push({ x: 0, y: Math.floor(y) })
+    let level = 0
+    pointsPerLayer.push({
+      x: 0,
+      y: mode.startY !== undefined ? mode.startY * height : Math.floor(y),
+    })
+
     for (let x = cellWidth; x < width; x += cellWidth) {
       //@anup: this decides whether a segment is crest or trough
-      const varietalY = y - moveLimitY / 2 + Math.random() * moveLimitY
+      const varietalY = y - moveLimitY / 2 + Math.random() * moveLimitY + level
 
       const varietalX = x - moveLimitX / 2 + Math.random() * moveLimitX
       pointsPerLayer.push({
         x: Math.floor(varietalX),
         y: Math.floor(varietalY),
       })
+      if (mode.delta) {
+        level += mode.delta
+      }
     }
-    pointsPerLayer.push({ x: width, y: Math.floor(y) })
+    pointsPerLayer.push({
+      x: width,
+      y: mode.endY !== undefined ? mode.endY * height : Math.floor(y + level),
+    })
+
     points.push(pointsPerLayer)
+    y += cellHeight
+    layrIdx += 1
   }
   return points
 }
@@ -122,6 +168,7 @@ export class Wavery {
       this.properties.segmentCount,
       this.properties.layerCount,
       this.properties.variance,
+      this.properties.activeMode,
     )
     //TODO: refactor repetitive code
     this.aniPoints = [

@@ -32,6 +32,7 @@ function Home({ isDark, toggleDarkMode }) {
     fillColor: '#ff0080',
     strokeColor: 'none',
     animated: false,
+    activeMode: 'classic',
   })
 
   const [waveSvg, setWaveSvg] = useState(() => waveInit(wave))
