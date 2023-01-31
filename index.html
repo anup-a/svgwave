@@ -189,21 +189,24 @@
     </div>
   </body>
 
-  <script>
-    document.onreadystatechange = function () {
-      const state = document.readyState
-      if (state === 'interactive') {
-        document.querySelector('#app').style.display = 'none'
-      } else if (state === 'complete') {
-        // setTimeout can be used to test the loader.
-        // setTimeout(function () {
-        document.querySelector('.loader-container').style.display = 'none'
-        document.querySelector('#app').style.display = 'block'
-        document.querySelector('#ds-callout').style.display = 'block'
-        // }, 3000)
-      }
+  <!-- <script>
+  setTimeout(function () {
+    document.querySelector('.loader-container').style.display = 'none'
+    document.querySelector('#app').style.display = 'block'
+    document.querySelector('#ds-callout').style.display = 'block'
+  }, 2000)
+
+  document.onreadystatechange = function () {
+    const state = document.readyState
+    if (state === 'interactive') {
+      document.querySelector('#app').style.display = 'none'
+    } else if (state === 'complete') {
+      document.querySelector('.loader-container').style.display = 'none'
+      document.querySelector('#app').style.display = 'block'
+      document.querySelector('#ds-callout').style.display = 'block'
     }
-  </script>
+  }
+</script> -->
   <script>
     ;(function (d, s, id, wid) {
       var js,
