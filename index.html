@@ -1,318 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SVG Wave is a minimal svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta
-      name="title"
-      content="Svg Wave - A free and beautiul gradient SVG wave Generator."
-    />
-    <title>Svg Wave - A free & beautiful gradient SVG wave Generator.</title>
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.svgwave.in" />
-    <meta
-      property="og:title"
-      content="Svg Wave - A free & beautiul gradient SVG wave Generator."
-    />
-    <meta
-      property="og:description"
-      content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta
-      property="og:image"
-      content="https://svgwave.in/images/29cf875dd59e3301be675929e0ea67a8-3-01.svg"
-    />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.svgwave.in" />
-    <meta
-      property="twitter:title"
-      content="Get Waves – Create SVG waves for your next design"
-    />
-    <meta
-      property="twitter:description"
-      content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta property="twitter:image" content="./assets/bg.png" />
-    <link rel="shortcut icon" href="./assets/3-01.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .loader-container {
-        width: 100%;
-        height: 100vh;
-        background-color: #eee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SVG Wave is a minimal svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta name="title" content="Svg Wave - A free and beautiul gradient SVG wave Generator." />
+  <title>Svg Wave - A free & beautiful gradient SVG wave Generator.</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.svgwave.in" />
+  <meta property="og:title" content="Svg Wave - A free & beautiul gradient SVG wave Generator." />
+  <meta property="og:description"
+    content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta property="og:image" content="https://svgwave.in/images/29cf875dd59e3301be675929e0ea67a8-3-01.svg" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.svgwave.in" />
+  <meta property="twitter:title" content="Get Waves – Create SVG waves for your next design" />
+  <meta property="twitter:description"
+    content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta property="twitter:image" content="./assets/bg.png" />
+  <link rel="shortcut icon" href="./assets/3-01.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    .loader-container {
+      width: 100%;
+      height: 100vh;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      width: 100px;
+      height: 100px;
+      background-color: #4de6d4;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader:after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+    }
+
+    .loader:before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+    }
+
+    .loader:before {
+      top: -40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      animation: wave 5s linear infinite;
+    }
+
+    .loader:after {
+      top: -40px;
+      border-radius: 30%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: wave 5s linear infinite;
+    }
+
+    @keyframes moveTheWave {
+      0% {
+        stroke-dashoffset: -3;
+        transform: translate3d(0, 0, 0);
       }
 
-      .loader {
-        width: 100px;
-        height: 100px;
-        background-color: #4de6d4;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
+      100% {
+        stroke-dashoffset: -138;
+        transform: translate3d(-90px, 0, 0);
       }
+    }
+  </style>
 
-      .loader:after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background-color: #fff;
-      }
+  <style>
+    #carbonads {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
+        sans-serif;
+      max-width: 300px;
+    }
 
-      .loader:before {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background-color: #fff;
-      }
+    #carbonads>span {
+      display: block;
+      position: relative;
+      padding: 10px;
 
-      .loader:before {
-        top: -40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
-        animation: wave 5s linear infinite;
-      }
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 0 1px 1px hsla(0, 0%, 0%, 0.05),
+        0 0 2px 2px hsla(0, 0%, 0%, 0.05), 0 0 4px 4px hsla(0, 0%, 0%, 0.05);
+    }
 
-      .loader:after {
-        top: -40px;
-        border-radius: 30%;
-        background: rgba(255, 255, 255, 0.3);
-        animation: wave 5s linear infinite;
-      }
+    #carbonads .carbon-wrap {
+      display: flex;
+    }
 
-      @keyframes moveTheWave {
-        0% {
-          stroke-dashoffset: -3;
-          transform: translate3d(0, 0, 0);
-        }
+    #carbonads .carbon-img {
+      margin-right: 10px;
 
-        100% {
-          stroke-dashoffset: -138;
-          transform: translate3d(-90px, 0, 0);
-        }
-      }
-    </style>
+      line-height: 1;
+    }
 
-    <style>
-      #carbonads {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-          sans-serif;
-        max-width: 300px;
-      }
+    #carbonads .carbon-text {
+      margin-bottom: 12px;
 
-      #carbonads > span {
-        display: block;
-        position: relative;
-        padding: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+      text-decoration: none;
+    }
 
-        border-radius: 4px;
-        background-color: #fff;
-        box-shadow: 0 0 1px 1px hsla(0, 0%, 0%, 0.05),
-          0 0 2px 2px hsla(0, 0%, 0%, 0.05), 0 0 4px 4px hsla(0, 0%, 0%, 0.05);
-      }
+    #carbonads .carbon-poweredby {
+      position: absolute;
+      bottom: 10px;
+      left: 152px;
 
-      #carbonads .carbon-wrap {
-        display: flex;
-      }
+      font-size: 8px;
+      font-weight: 500;
+      line-height: 1;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
 
-      #carbonads .carbon-img {
-        margin-right: 10px;
-
-        line-height: 1;
-      }
-
-      #carbonads .carbon-text {
-        margin-bottom: 12px;
-
-        font-size: 12px;
-        line-height: 1.45;
-        text-decoration: none;
-      }
-
-      #carbonads .carbon-poweredby {
-        position: absolute;
-        bottom: 10px;
-        left: 152px;
-
-        font-size: 8px;
-        font-weight: 500;
-        line-height: 1;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-      }
-      .bm-better-metter-holder {
-        all: unset;
-      }
-      @media screen and (max-width: 600px) {
-        .bm-better-metter-holder {
-          visibility: hidden;
-          display: none;
-        }
-
-        .bm-bt-close {
-          visibility: hidden;
-          display: none;
-        }
-      }
-
-      .bm-better-metter-holder {
-        font-family: Arial, sans-serif;
-        position: static;
-        left: 20px;
-        bottom: 20px;
-        padding: 5px;
-        border-radius: 20px;
-        cursor: pointer;
-      }
-
-      .bm-better-metter-holder:hover {
-        background-color: #f9f9f9;
-      }
-
-      .bm-better-meter {
-        position: fixed;
-        left: 20px;
-        bottom: 20px;
-        z-index: 999999;
-        display: -ms-grid;
-        display: grid;
-        justify-items: start;
-        grid-auto-columns: 1fr;
-        grid-column-gap: 16px;
-        grid-row-gap: 8px;
-        -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-        -ms-grid-rows: auto auto;
-        grid-template-rows: auto auto;
-      }
-
-      .bm-shadow {
-        box-shadow: 6px 6px 30px -7px rgba(0, 0, 0, 0.21);
-      }
-
-      .ds-overlay-button {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 14px;
-        background-color: #6dd0fe;
-        font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-        font-size: 12px;
-        line-height: 20px;
-        font-weight: 700;
-        text-decoration: none;
-        color: #391145;
-      }
-
-      .bm-bt-close {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        width: 30px;
-        height: 30px;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        border-radius: 20px;
-        text-decoration: none;
-        font-family: Arial, sans-serif;
-        background-color: #fff;
-        cursor: pointer;
-        opacity: 0.2;
-      }
-
+    @media screen and (max-width: 1440px) {
       .callout {
-        width: 256px;
-      }
-    </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-110192731-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
+        width: 256px !important;
 
-      gtag('config', 'UA-110192731-2')
-    </script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <div class="loader-container">
-      <div class="loader"></div>
-    </div>
-    <div
-      id="ds-callout"
-      class="bm-better-meter"
-      style="display: none"
-      onclick='document.location = "https://designstripe.com/mockups?utm_source=svgwave&utm_medium=bettermeter&utm_campaign=mockups&utm_content=orangegif"'
-    >
-      <a
-        data-dsads-action="close"
-        data-dsads-close-container-id="ds-callout"
-        class="bm-bt-close bm-shadow"
-        onclick="closePopup(event);"
-        >X</a
-      >
-      <div
-        onclick="dsads.loadUrl(this)"
-        class="bm-link-wrapper bm-better-metter-holder"
-      >
-        <img
-          class="callout"
-          loading="lazy"
-          src="https://bettermeter-s3-buckets-analytics-cache-dev.s3.us-east-1.amazonaws.com/assets/designstripe/ds_mockups_red.gif"
-        />
-      </div>
-    </div>
-  </body>
-
+      }
+    }
+  </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110192731-2"></script>
   <script>
-    document.onreadystatechange = function () {
-      const state = document.readyState
-      if (state === 'interactive') {
-        document.querySelector('#app').style.display = 'none'
-      } else if (state === 'complete') {
-        // setTimeout can be used to test the loader.
-        // setTimeout(function () {
-        document.querySelector('.loader-container').style.display = 'none'
-        document.querySelector('#app').style.display = 'block'
-        document.querySelector('#ds-callout').style.display = 'block'
-        // }, 3000)
-      }
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
     }
+    gtag('js', new Date())
 
-    function closePopup(e) {
-      document.querySelector('#ds-callout').style.display = 'none'
-      e.stopPropagation()
-    }
+    gtag('config', 'UA-110192731-2')
   </script>
-  <script>
-    ;(function (d, s, id, wid) {
+</head>
+
+<body>
+  <div id="app"></div>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</body>
+
+<script>
+  document.onreadystatechange = function () {
+    const state = document.readyState
+    if (state === 'interactive') {
+      document.querySelector('#app').style.display = 'none'
+    } else if (state === 'complete') {
+      // setTimeout can be used to test the loader.
+      // setTimeout(function () {
+      document.querySelector('.loader-container').style.display = 'none'
+      document.querySelector('#app').style.display = 'block'
+      document.querySelector('#ds-callout').style.display = 'block'
+      // }, 3000)
+    }
+  }
+
+</script>
+<script>
+    ; (function (d, s, id, wid) {
       var js,
         fjs = d.getElementsByTagName(s)[0]
       if (d.getElementById(id)) {
@@ -326,6 +195,7 @@
       js.src = 'https://analytics-dev.bettermeter.com/analytics.js'
       fjs.parentNode.insertBefore(js, fjs)
     })(document, 'script', 'bm-jssdk', '294995360')
-  </script>
-  <script type="module" src="/src/main.jsx"></script>
+</script>
+<script type="module" src="/src/main.jsx"></script>
+
 </html>
