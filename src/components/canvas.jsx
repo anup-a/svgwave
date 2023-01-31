@@ -27,6 +27,13 @@ function Canvas({ svg, invert, isDark, svgOutputRef }) {
         z-index: 1;
       }
 
+      @media screen and (max-width: 648px) {
+        #carbonads {
+          bottom: ${invert ? '0px' : 'unset'};
+          top: ${!invert ? '80px' : 'unset'};
+        }
+      }
+
       #carbonads > span {
         ${
           isDark &&
