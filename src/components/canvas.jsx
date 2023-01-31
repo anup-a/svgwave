@@ -23,17 +23,8 @@ function Canvas({ svg, invert, isDark, svgOutputRef }) {
           `
       #carbonads {
         position: absolute;
-        bottom: ${invert ? 0 : 'unset'};
-        top: ${!invert ? 0 : 'unset'};
         right: 0;
         z-index: 1;
-      }
-
-      @media screen and (max-width: 1300px) {
-        #carbonads {
-          bottom: ${invert ? '80px' : 'unset'};
-          top: ${!invert ? '80px' : 'unset'};
-        }
       }
 
       @media screen and (max-width: 648px) {
