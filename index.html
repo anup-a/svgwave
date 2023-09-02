@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -121,8 +121,10 @@
 
         border-radius: 4px;
         background-color: #fff;
-        box-shadow: 0 0 1px 1px hsla(0, 0%, 0%, 0.05),
-          0 0 2px 2px hsla(0, 0%, 0%, 0.05), 0 0 4px 4px hsla(0, 0%, 0%, 0.05);
+        box-shadow:
+          0 0 1px 1px hsla(0, 0%, 0%, 0.05),
+          0 0 2px 2px hsla(0, 0%, 0%, 0.05),
+          0 0 4px 4px hsla(0, 0%, 0%, 0.05);
       }
 
       #carbonads .carbon-wrap {
@@ -184,29 +186,6 @@
 
   <body>
     <div id="app"></div>
-    <!-- <div class="loader-container">
-    <div class="loader"></div>
-  </div> -->
   </body>
-
-  <!-- <script>
-  setTimeout(function () {
-    document.querySelector('.loader-container').style.display = 'none'
-    document.querySelector('#app').style.display = 'block'
-    document.querySelector('#ds-callout').style.display = 'block'
-  }, 2000)
-
-  document.onreadystatechange = function () {
-    const state = document.readyState
-    if (state === 'interactive') {
-      document.querySelector('#app').style.display = 'none'
-    } else if (state === 'complete') {
-      document.querySelector('.loader-container').style.display = 'none'
-      document.querySelector('#app').style.display = 'block'
-      document.querySelector('#ds-callout').style.display = 'block'
-    }
-  }
-</script> -->
-
   <script type="module" src="/src/main.jsx"></script>
 </html>
