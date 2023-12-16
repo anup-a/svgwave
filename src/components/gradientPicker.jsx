@@ -105,15 +105,16 @@ function GradientPicker({
 
 const DegreeInput = ({ gradAngle, setGradAngle }) => {
   return (
-    <div className="text-center p-3">
-      <label
-        htmlFor="gradient-angle"
-        className="text-sm tracking-widest text-center uppercase"
-      >
-        Gradient angle
-      </label>
+    <div className="py-3 px-5">
+      <div className="flex justify-between ">
+        <label htmlFor="gradient-angle" className="text-sm ">
+          Gradient angle
+        </label>
+        <span className="text-sm uppercase">{gradAngle}°</span>
+      </div>
+
       <input
-        className="w-full h-3 overflow-hidden bg-gray-400 rounded-lg appearance-none"
+        className="w-full h-3 bg-gray-400 rounded-lg appearance-none"
         value={gradAngle}
         onChange={(e) => setGradAngle(e.target.value)}
         type="range"
@@ -123,7 +124,6 @@ const DegreeInput = ({ gradAngle, setGradAngle }) => {
         max="360"
         step="1"
       />
-      <span className="text-sm uppercase">{gradAngle}°</span>
     </div>
   )
 }

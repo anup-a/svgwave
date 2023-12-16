@@ -135,10 +135,10 @@ function ColorTool({
                 isDark
                   ? colorPickerDarkStyle
                   : isColor
-                  ? colorPickerLightStyle
-                  : gradientPickerStyle
+                    ? colorPickerLightStyle
+                    : gradientPickerStyle
               }
-              className="py-6 scale-in-center"
+              className=" scale-in-center"
             />
           )}
           {isGradient && (
