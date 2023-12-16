@@ -22,7 +22,10 @@ function SVGCode({ code, toggleModal }) {
   return (
     <div className="fixed inset-0 z-20 overflow-y-auto">
       <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-        <div className="fixed inset-0 transition-opacity">
+        <div
+          className="fixed inset-0 transition-opacity"
+          onClick={() => toggleModal()}
+        >
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
@@ -60,9 +63,9 @@ function SVGCode({ code, toggleModal }) {
               <button
                 type="button"
                 onClick={handleCopy}
-                className="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
+                className="inline-flex justify-center items-center gap-2 w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
               >
-                <CopyBtn className="w-6 h-6" /> Copy
+                <CopyBtn className="w-4 h-4" /> <p>Copy</p>
               </button>
             </span>
             <span className="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">

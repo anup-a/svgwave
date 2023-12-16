@@ -150,9 +150,6 @@ function CustomBar({
             />
           </button>
           <div class="group">
-            <span class="tooltip-text bg-gray-600 text-white -mt-4 -ml-1 rounded hidden group-hover:block absolute text-xs text-center py-1 px-6 z-50">
-              Beta - works only in chrome
-            </span>
             <button
               className="flex items-center w-full h-10 px-4 py-2 m-1 border-2 rounded-lg justify-evenly border-light-grey dark:border-slate-600 sm:h-8 md:h-10 roll-btn"
               onClick={handleAnimateWave}
@@ -185,7 +182,7 @@ function CustomBar({
         />
 
         <button
-          className="flex items-center justify-center w-full h-12 p-2 mt-4 text-white bg-black rounded-lg dark:bg-dark-highlight sm:h-8 md:h-10 lg:h-12 roll-btn"
+          className="flex hover:bg-black/80 items-center justify-center w-full h-12 p-2 mt-4 text-white bg-black rounded-lg dark:bg-dark-highlight hover:dark:bg-dark-highlight/80 sm:h-8 md:h-10 lg:h-12 roll-btn"
           onClick={() => regenerate()}
         >
           <p className="mr-4">Generate</p>

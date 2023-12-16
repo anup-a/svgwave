@@ -75,87 +75,84 @@ function generatePoints(
   return points
 }
 
+function createPath(
+  xPoints,
+  yPoints,
+  controlPointsX,
+  controlPointsY,
+  cornerPoint,
+) {
+  let path = `M ${cornerPoint.x},${cornerPoint.y} C ${cornerPoint.x},${cornerPoint.y} ${xPoints[0]},${yPoints[0]} ${xPoints[0]},${yPoints[0]} `
+  for (let i = 0; i < xPoints.length - 1; i++) {
+    path += `C ${controlPointsX.p1[i]},${controlPointsY.p1[i]} ${
+      controlPointsX.p2[i]
+    },${controlPointsY.p2[i]} ${xPoints[i + 1]},${yPoints[i + 1]} `
+  }
+  return path
+}
+
 function generateClosedPath(
   curvePoints,
   leftCornerPoint,
   rightCornerPoint,
-  filleColor,
+  fillColor,
   strokeColor,
   strokeWidth,
   transform,
   isAnimated,
-  aniPoints,
-  aniPoints1,
-  aniPoints2,
+  ...animationPoints
 ) {
   const xPoints = curvePoints.map((p) => p.x)
   const yPoints = curvePoints.map((p) => p.y)
-
   const xControlPoints = computeControlPoints(xPoints)
   const yControlPoints = computeControlPoints(yPoints)
-  const animatedPathList = isAnimated ? [] : undefined
 
-  let path =
-    `M ${leftCornerPoint.x},${leftCornerPoint.y} ` +
-    `C ${leftCornerPoint.x},${leftCornerPoint.y} ` +
-    `${xPoints[0]},${yPoints[0]} ` +
-    `${xPoints[0]},${yPoints[0]} `
+  // Start the path from the left bottom corner
+  let path = `M ${leftCornerPoint.x},${leftCornerPoint.y} `
 
+  // Initial line to the first point
+  path += `L ${xPoints[0]},${yPoints[0]} `
+
+  // Creating the bezier curve for the rest of the points
   for (let i = 0; i < xPoints.length - 1; i++) {
-    path +=
-      `C ${xControlPoints.p1[i]},${yControlPoints.p1[i]} ` +
-      `${xControlPoints.p2[i]},${yControlPoints.p2[i]} ` +
-      `${xPoints[i + 1]},${yPoints[i + 1]} `
+    path += `C ${xControlPoints.p1[i]},${yControlPoints.p1[i]} ${
+      xControlPoints.p2[i]
+    },${yControlPoints.p2[i]} ${xPoints[i + 1]},${yPoints[i + 1]} `
   }
 
-  path +=
-    `C ${xPoints[xPoints.length - 1]},${yPoints[xPoints.length - 1]} ` +
-    `${rightCornerPoint.x},${rightCornerPoint.y} ` +
-    `${rightCornerPoint.x},${rightCornerPoint.y} Z`
+  // Closing the path back to the right bottom corner and then to the left bottom corner
+  path += `L ${rightCornerPoint.x},${rightCornerPoint.y} L ${leftCornerPoint.x},${leftCornerPoint.y} Z`
 
-  const animationPoints = [aniPoints, aniPoints1, aniPoints2]
+  // Handle the animated path, if applicable
+  const animatedPaths = isAnimated
+    ? animationPoints.map((points) => {
+        const aniXPoints = points.map((p) => p.x)
+        const aniYPoints = points.map((p) => p.y)
+        const aniXControlPoints = computeControlPoints(aniXPoints)
+        const aniYControlPoints = computeControlPoints(aniYPoints)
 
-  if (isAnimated) {
-    animationPoints.forEach((points) => {
-      const aniYPoints = points.map((p) => p.y)
-      const aniXPoints = points.map((p) => p.x)
+        let animatedPath = `M ${leftCornerPoint.x},${leftCornerPoint.y} L ${aniXPoints[0]},${aniYPoints[0]} `
 
-      const [aniXControlPoints, aniYControlPoints] = [
-        computeControlPoints(aniXPoints),
-        computeControlPoints(aniYPoints),
-      ]
+        for (let i = 0; i < aniXPoints.length - 1; i++) {
+          animatedPath += `C ${aniXControlPoints.p1[i]},${
+            aniYControlPoints.p1[i]
+          } ${aniXControlPoints.p2[i]},${aniYControlPoints.p2[i]} ${
+            aniXPoints[i + 1]
+          },${aniYPoints[i + 1]} `
+        }
 
-      let animatedPath =
-        `M ${leftCornerPoint.x},${leftCornerPoint.y} ` +
-        `C ${leftCornerPoint.x},${leftCornerPoint.y} ` +
-        `${aniXPoints[0]},${aniYPoints[0]} ` +
-        `${aniXPoints[0]},${aniYPoints[0]} `
-
-      for (let i = 0; i < xPoints.length - 1; i++) {
-        animatedPath +=
-          `C ${aniXControlPoints.p1[i]},${aniYControlPoints.p1[i]} ` +
-          `${aniXControlPoints.p2[i]},${aniYControlPoints.p2[i]} ` +
-          `${aniXPoints[i + 1]},${aniYPoints[i + 1]} `
-      }
-
-      animatedPath +=
-        `C ${aniXPoints[xPoints.length - 1]},${
-          aniYPoints[xPoints.length - 1]
-        } ` +
-        `${rightCornerPoint.x},${rightCornerPoint.y} ` +
-        `${rightCornerPoint.x},${rightCornerPoint.y} Z`
-
-      animatedPathList.push(animatedPath)
-    })
-  }
+        animatedPath += `L ${rightCornerPoint.x},${rightCornerPoint.y} L ${leftCornerPoint.x},${leftCornerPoint.y} Z`
+        return animatedPath
+      })
+    : undefined
 
   return {
-    fill: filleColor,
-    strokeColor: strokeColor,
-    strokeWidth: strokeWidth,
+    fill: fillColor,
+    strokeColor,
+    strokeWidth,
     d: path,
-    transform: transform,
-    animatedPath: animatedPathList,
+    transform,
+    animatedPath: animatedPaths,
   }
 }
 
@@ -170,9 +167,9 @@ export class Wavery {
       this.properties.variance,
       this.properties.activeMode,
     )
-    //TODO: refactor repetitive code
-    this.aniPoints = [
-      this.properties.animated &&
+
+    if (this.properties.animated) {
+      this.aniPoints = Array.from({ length: 3 }, () =>
         generatePoints(
           this.properties.width,
           this.properties.height,
@@ -181,33 +178,14 @@ export class Wavery {
           this.properties.variance,
           this.properties.activeMode,
         ),
-      this.properties.animated &&
-        generatePoints(
-          this.properties.width,
-          this.properties.height,
-          this.properties.segmentCount,
-          this.properties.layerCount,
-          this.properties.variance,
-          this.properties.activeMode,
-        ),
-      this.properties.animated &&
-        generatePoints(
-          this.properties.width,
-          this.properties.height,
-          this.properties.segmentCount,
-          this.properties.layerCount,
-          this.properties.variance,
-          this.properties.activeMode,
-        ),
-    ]
+      )
+    }
   }
 
   generateSvg() {
-    const pathList = []
-    // Append layer of a wave
-    for (let i = 0; i < this.points.length; i++) {
-      const pathData = generateClosedPath(
-        this.points[i],
+    const pathList = this.points.map((pointLayer, i) =>
+      generateClosedPath(
+        pointLayer,
         { x: 0, y: this.properties.height },
         { x: this.properties.width, y: this.properties.height },
         this.properties.fillColor,
@@ -215,15 +193,13 @@ export class Wavery {
         this.properties.strokeWidth,
         this.properties.transform,
         this.properties.animated,
-        //TODO: refactor repetitive code
-        this.properties.animated ? this.aniPoints[0][i] : null,
-        this.properties.animated ? this.aniPoints[1][i] : null,
-        this.properties.animated ? this.aniPoints[2][i] : null,
-      )
-      pathList.push(pathData)
-    }
+        ...(this.properties.animated
+          ? this.aniPoints.map((aniPoint) => aniPoint[i])
+          : []),
+      ),
+    )
 
-    const svgData = {
+    return {
       svg: {
         width: this.properties.width,
         height: this.properties.height,
@@ -231,7 +207,5 @@ export class Wavery {
         path: pathList,
       },
     }
-
-    return svgData
   }
 }
