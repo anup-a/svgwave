@@ -179,6 +179,7 @@ export class Wavery {
           this.properties.segmentCount,
           this.properties.layerCount,
           this.properties.variance,
+          this.properties.activeMode,
         ),
       this.properties.animated &&
         generatePoints(
@@ -187,6 +188,7 @@ export class Wavery {
           this.properties.segmentCount,
           this.properties.layerCount,
           this.properties.variance,
+          this.properties.activeMode,
         ),
       this.properties.animated &&
         generatePoints(
@@ -195,6 +197,7 @@ export class Wavery {
           this.properties.segmentCount,
           this.properties.layerCount,
           this.properties.variance,
+          this.properties.activeMode,
         ),
     ]
   }
