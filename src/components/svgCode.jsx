@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks'
-import copyBtn from './../assets/001-copy.svg'
+import { ReactComponent as CopyBtn } from './../assets/001-copy.svg'
 
 import './../styles/highlight.css'
 
@@ -62,7 +62,7 @@ function SVGCode({ code, toggleModal }) {
                 onClick={handleCopy}
                 className="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
               >
-                <img src={copyBtn} width="20px" alt="" className="mr-2" /> Copy
+                <CopyBtn className="w-6 h-6" /> Copy
               </button>
             </span>
             <span className="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
