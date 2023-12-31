@@ -75,13 +75,13 @@ function CustomBar({
   return (
     <div className="z-10 flex flex-col items-center w-3/4 h-full bg-white sm:m-5 xs:mt-24 sm:mt-24 md:mt-4 sm:rounded-lg sm:w-2/5 lg:w-1/4 xl:w-1/5 sm:h-full custom-bar dark:bg-darkish-black dark:text-white">
       <div className="flex-1 p-4 pt-7">
-        <div className="flex flex-col ">
-          <div className="px-4 md:px-2">
+        <div className="flex flex-col gap-4 my-4">
+          <div className="px-4 md:px-2 flex gap-4 items-center">
             <label htmlFor="waves" className="text-md">
               <h5>Waves</h5>
             </label>
             <input
-              className="w-full mt-2 mb-4 bg-gray-400 rounded-lg appearance-none"
+              className="w-full bg-gray-400 rounded-lg appearance-none"
               value={segmentCount}
               onChange={(e) => setSegmentCount(e.target.value)}
               type="range"
@@ -92,12 +92,12 @@ function CustomBar({
               step="1"
             />
           </div>
-          <div className="px-4 md:px-2 layers-section">
+          <div className="px-4 md:px-2 layers-section flex gap-4 items-center">
             <label htmlFor="layers" className="text-md">
               <h5>Layers</h5>
             </label>
             <input
-              className="w-full mt-2 mb-4 bg-gray-400 rounded-lg appearance-none"
+              className="w-full bg-gray-400 rounded-lg appearance-none"
               value={layerCount}
               onChange={(e) => setLayoutCount(e.target.value)}
               type="range"
@@ -108,12 +108,12 @@ function CustomBar({
               step="1"
             />
           </div>
-          <div className="px-4 md:px-2">
+          <div className="px-4 md:px-2 flex gap-4 items-center">
             <label htmlFor="waves" className="text-md">
               <h5>Height</h5>
             </label>
             <input
-              className="w-full mt-2 mb-4 bg-gray-400 rounded-lg appearance-none "
+              className="w-full bg-gray-400 rounded-lg appearance-none "
               value={height}
               onChange={(e) => setHeight(e.target.value)}
               type="range"
@@ -182,7 +182,7 @@ function CustomBar({
         />
 
         <button
-          className="flex hover:bg-black/80 items-center justify-center w-full h-12 p-2 mt-4 text-white bg-black rounded-lg dark:bg-dark-highlight hover:dark:bg-dark-highlight/80 sm:h-8 md:h-10 lg:h-12 roll-btn"
+          className="flex hover:bg-black/80 items-center justify-center w-full h-8 p-2 mt-4 text-white bg-black rounded-lg dark:bg-dark-highlight hover:dark:bg-dark-highlight/80 sm:h-8 md:h-10 lg:h-12 roll-btn"
           onClick={() => regenerate()}
         >
           <p className="mr-4">Generate</p>

@@ -37,12 +37,14 @@ function generatePoints(
   const moveLimitY = cellHeight * variance
 
   const points = []
-  let layrIdx = 1
+  let layerIdx = 1
   const mode = conformations[activeMode]
 
   let y = moveLimitY + (mode.offsetY ? (layerCount - 1) * 75 : 0)
+  const startOffset = Math.floor(y * Math.random())
+  const endOffset = Math.floor(y * Math.random())
 
-  while (layrIdx < layerCount) {
+  while (layerIdx < layerCount) {
     let pointsPerLayer = []
     let level = 0
     pointsPerLayer.push({
@@ -70,7 +72,7 @@ function generatePoints(
 
     points.push(pointsPerLayer)
     y += cellHeight
-    layrIdx += 1
+    layerIdx += 1
   }
   return points
 }

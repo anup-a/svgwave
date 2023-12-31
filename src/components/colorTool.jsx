@@ -58,7 +58,7 @@ function ColorTool({
   return (
     <div className="relative z-10 flex items-center w-full justify-evenly">
       <div
-        className="flex flex-col items-center justify-center w-1/2 p-3 rounded-lg cursor-pointer section"
+        className="flex flex-col items-center justify-center w-1/2 p-2 rounded-lg cursor-pointer section"
         onClick={() => handleColorTool(colorToolMode.COLOR)}
         style={
           !isGradient
@@ -68,9 +68,9 @@ function ColorTool({
             : {}
         }
       >
-        <div className="flex items-center justify-center w-10 h-10 bg-white border-2 border-indigo-900 rounded-lg color-btn">
+        <div className="flex items-center justify-center w-8 h-8 bg-white border-2 border-indigo-900 rounded-lg color-btn">
           <div
-            className="w-8 h-8 rounded-md "
+            className="w-6 h-6 rounded-md "
             onClick={(e) => handleToggleTool(e, colorToolMode.COLOR)}
             style={{ backgroundColor: fillColor }}
           ></div>
@@ -89,9 +89,9 @@ function ColorTool({
         }`}
         onClick={() => handleColorTool(colorToolMode.GRADIENT)}
       >
-        <div className="flex items-center justify-center w-10 h-10 bg-white border-2 border-indigo-900 rounded-lg color-btn">
+        <div className="flex items-center justify-center w-8 h-8 bg-white border-2 border-indigo-900 rounded-lg color-btn">
           <div
-            className="w-8 h-8 rounded-md "
+            className="w-6 h-6 rounded-md "
             onClick={(e) => handleToggleTool(e, colorToolMode.GRADIENT)}
             style={
               isGradient
@@ -135,8 +135,8 @@ function ColorTool({
                 isDark
                   ? colorPickerDarkStyle
                   : isColor
-                    ? colorPickerLightStyle
-                    : gradientPickerStyle
+                  ? colorPickerLightStyle
+                  : gradientPickerStyle
               }
               className=" scale-in-center"
             />

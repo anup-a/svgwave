@@ -11,7 +11,7 @@ import './../styles/nav.css'
 
 function Navbar({ isDark, toggleDarkMode, color }) {
   return (
-    <div className="fixed z-20 flex items-center justify-between w-full h-16 m-2 dark:text-white">
+    <div className="fixed z-10 flex items-center justify-between w-full h-16 m-2 dark:text-white">
       <div className="flex items-center px-1 mx-1 font-sans text-lg font-bold nav-item max-h-16 sm:mx-3 sm:px-3">
         <h3 className="relative logo-name text-md">
           <span className="text-black nav-logo dark:text-white">Svg </span>
