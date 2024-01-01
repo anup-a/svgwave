@@ -1,4 +1,10 @@
-# 🌊 [SVG Wave](https://www.svgwave.in) - A tiny, customizable gradient SVG wave generator
+Just launched, checkout 🚀 - [Generate awesome vector svg backgrounds and patterns](https://creatica.app)
+
+<br/>
+<br/>
+<br/>
+
+### 🌊 [SVG Wave](https://www.svgwave.in) - A tiny, customizable gradient SVG wave generator
 
 ![](./svgwavecover.png)
 
@@ -11,6 +17,8 @@
 SVG Wave is a **tiny, free and beautiful gradient SVG waves generator** for your UI or website desgin. It offers dead simple UI to customize, and style your waves based on your theme specifications.
 
 SVG Wave is a tiny UI tool built with **Preact, tailwind and bundled with Webpack**. ⚛
+
+
 
 ---
 
