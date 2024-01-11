@@ -1,19 +1,19 @@
 .highlight-symbol {
-    color: blue;
+  color: blue;
 }
 
 .highlight-svg {
-    color: yellow;
+  color: yellow;
 }
 
 .highlight-path {
-    color: green;
+  color: green;
 }
 
 .highlight-value {
-    color: red
+  color: red;
 }
 
 .highlight-key {
-    color: rebeccapurple;
+  color: rebeccapurple;
 }
