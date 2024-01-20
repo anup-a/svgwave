@@ -1,191 +1,178 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SVG Wave is a minimal svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta
-      name="title"
-      content="Svg Wave - A free and beautiul gradient SVG wave Generator."
-    />
-    <title>Svg Wave - A free & beautiful gradient SVG wave Generator.</title>
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.svgwave.in" />
-    <meta
-      property="og:title"
-      content="Svg Wave - A free & beautiul gradient SVG wave Generator."
-    />
-    <meta
-      property="og:description"
-      content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta
-      property="og:image"
-      content="https://svgwave.in/images/29cf875dd59e3301be675929e0ea67a8-3-01.svg"
-    />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.svgwave.in" />
-    <meta
-      property="twitter:title"
-      content="Get Waves – Create SVG waves for your next design"
-    />
-    <meta
-      property="twitter:description"
-      content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs."
-    />
-    <meta property="twitter:image" content="./assets/bg.png" />
-    <link rel="shortcut icon" href="./assets/3-01.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .loader-container {
-        width: 100%;
-        height: 100vh;
-        background-color: #eee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SVG Wave is a minimal svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta name="title" content="Svg Wave - A free and beautiul gradient SVG wave Generator." />
+  <title>Svg Wave - A free & beautiful gradient SVG wave Generator.</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.svgwave.in" />
+  <meta property="og:title" content="Svg Wave - A free & beautiul gradient SVG wave Generator." />
+  <meta property="og:description"
+    content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta property="og:image" content="https://svgwave.in/images/29cf875dd59e3301be675929e0ea67a8-3-01.svg" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.svgwave.in" />
+  <meta property="twitter:title" content="Get Waves – Create SVG waves for your next design" />
+  <meta property="twitter:description"
+    content="SVG Wave is a minimal gradient svg wave generator with lot of customization. It lets you abiltiy to generate and export pngs and svgs of beautiful waves. SVG wave also lets you layer multiple waves. Create SVGs for your website designs." />
+  <meta property="twitter:image" content="./assets/bg.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="canonical" href="https://svgwave.in" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.ico">
+  <style>
+    .loader-container {
+      width: 100%;
+      height: 100vh;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      width: 100px;
+      height: 100px;
+      background-color: #4de6d4;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader:after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+    }
+
+    .loader:before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+    }
+
+    .loader:before {
+      top: -40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      animation: wave 5s linear infinite;
+    }
+
+    .loader:after {
+      top: -40px;
+      border-radius: 30%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: wave 5s linear infinite;
+    }
+
+    @keyframes moveTheWave {
+      0% {
+        stroke-dashoffset: -3;
+        transform: translate3d(0, 0, 0);
       }
 
-      .loader {
-        width: 100px;
-        height: 100px;
-        background-color: #4de6d4;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
+      100% {
+        stroke-dashoffset: -138;
+        transform: translate3d(-90px, 0, 0);
       }
+    }
+  </style>
 
-      .loader:after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background-color: #fff;
+  <style>
+    #carbonads {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
+        sans-serif;
+      max-width: 300px;
+    }
+
+    #carbonads>span {
+      display: block;
+      position: relative;
+      padding: 10px;
+
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow:
+        0 0 1px 1px hsla(0, 0%, 0%, 0.05),
+        0 0 2px 2px hsla(0, 0%, 0%, 0.05),
+        0 0 4px 4px hsla(0, 0%, 0%, 0.05);
+    }
+
+    #carbonads .carbon-wrap {
+      display: flex;
+    }
+
+    #carbonads .carbon-img {
+      margin-right: 10px;
+
+      line-height: 1;
+    }
+
+    #carbonads .carbon-text {
+      margin-bottom: 12px;
+
+      font-size: 12px;
+      line-height: 1.45;
+      text-decoration: none;
+    }
+
+    #carbonads .carbon-poweredby {
+      position: absolute;
+      bottom: 10px;
+      left: 152px;
+
+      font-size: 8px;
+      font-weight: 500;
+      line-height: 1;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    #ds-callout {
+      justify-items: start;
+    }
+
+    @media screen and (max-width: 1440px) {
+      .callout {
+        width: 256px !important;
       }
+    }
+  </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110192731-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
 
-      .loader:before {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background-color: #fff;
-      }
+    gtag('config', 'UA-110192731-2')
+  </script>
+</head>
 
-      .loader:before {
-        top: -40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
-        animation: wave 5s linear infinite;
-      }
+<body>
+  <div id="app"></div>
+</body>
+<script type="module" src="/src/main.jsx"></script>
 
-      .loader:after {
-        top: -40px;
-        border-radius: 30%;
-        background: rgba(255, 255, 255, 0.3);
-        animation: wave 5s linear infinite;
-      }
-
-      @keyframes moveTheWave {
-        0% {
-          stroke-dashoffset: -3;
-          transform: translate3d(0, 0, 0);
-        }
-
-        100% {
-          stroke-dashoffset: -138;
-          transform: translate3d(-90px, 0, 0);
-        }
-      }
-    </style>
-
-    <style>
-      #carbonads {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-          sans-serif;
-        max-width: 300px;
-      }
-
-      #carbonads > span {
-        display: block;
-        position: relative;
-        padding: 10px;
-
-        border-radius: 4px;
-        background-color: #fff;
-        box-shadow:
-          0 0 1px 1px hsla(0, 0%, 0%, 0.05),
-          0 0 2px 2px hsla(0, 0%, 0%, 0.05),
-          0 0 4px 4px hsla(0, 0%, 0%, 0.05);
-      }
-
-      #carbonads .carbon-wrap {
-        display: flex;
-      }
-
-      #carbonads .carbon-img {
-        margin-right: 10px;
-
-        line-height: 1;
-      }
-
-      #carbonads .carbon-text {
-        margin-bottom: 12px;
-
-        font-size: 12px;
-        line-height: 1.45;
-        text-decoration: none;
-      }
-
-      #carbonads .carbon-poweredby {
-        position: absolute;
-        bottom: 10px;
-        left: 152px;
-
-        font-size: 8px;
-        font-weight: 500;
-        line-height: 1;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-      }
-
-      #ds-callout {
-        justify-items: start;
-      }
-
-      @media screen and (max-width: 1440px) {
-        .callout {
-          width: 256px !important;
-        }
-      }
-    </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-110192731-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-
-      gtag('config', 'UA-110192731-2')
-    </script>
-  </head>
-
-  <body>
-    <div id="app"></div>
-  </body>
-  <script type="module" src="/src/main.jsx"></script>
 </html>

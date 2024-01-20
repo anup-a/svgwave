@@ -73,7 +73,7 @@ function CustomBar({
   }
 
   return (
-    <div className="z-10 flex flex-col items-center w-3/4 h-full bg-white sm:m-5 xs:mt-24 sm:mt-24 md:mt-4 sm:rounded-lg sm:w-2/5 lg:w-1/4 xl:w-1/5 sm:h-full custom-bar dark:bg-darkish-black dark:text-white">
+    <div className="z-10 flex flex-col items-center w-3/4 h-full bg-white sm:m-5 xs:mt-12 md:mt-4 sm:rounded-lg sm:w-2/5 lg:w-1/4 xl:w-1/5 sm:h-full custom-bar dark:bg-darkish-black dark:text-white">
       <div className="flex-1 p-4 pt-7">
         <div className="flex flex-col gap-4 my-4">
           <div className="px-4 md:px-2 flex gap-4 items-center">

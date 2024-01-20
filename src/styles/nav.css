@@ -48,3 +48,15 @@
   left: 30px;
   z-index: -1;
 }
+
+@media only screen and (max-width: 1000px) {
+  .not-tablet {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .not-mobile {
+    display: none;
+  }
+}

@@ -9,6 +9,7 @@ import SVGCode from './svgCode'
 import saveSvgAsPng from 'save-svg-as-png'
 import './../../lib/webcomponent/float-menu'
 import './../../lib/webcomponent/banner'
+import Banner from './Banner'
 
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
@@ -153,14 +154,14 @@ function Home({ isDark, toggleDarkMode }) {
 
   return (
     <div className="relative md:h-screen bg-light-grey dark:bg-black">
-      <banner-nav></banner-nav>
+      <Banner />
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
       <float-menu
         className="absolute z-50 block h-0 "
         style={{ top: '20%' }}
         isDark={isDark}
       ></float-menu>
-      <div className="flex flex-col items-center justify-center p-0 md:h-screen bg-light-grey dark:bg-black ">
+      <div className="flex flex-col items-center p-0 md:h-screen bg-light-grey dark:bg-black ">
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
