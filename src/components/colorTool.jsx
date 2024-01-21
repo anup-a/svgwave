@@ -135,8 +135,8 @@ function ColorTool({
                 isDark
                   ? colorPickerDarkStyle
                   : isColor
-                  ? colorPickerLightStyle
-                  : gradientPickerStyle
+                    ? colorPickerLightStyle
+                    : gradientPickerStyle
               }
               className=" scale-in-center"
             />
