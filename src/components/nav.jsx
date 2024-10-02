@@ -9,9 +9,15 @@ import { ReactComponent as TwitterLogo } from './../assets/twitter.svg'
 
 import './../styles/nav.css'
 
-function Navbar({ isDark, toggleDarkMode, color }) {
+function Navbar({ isDark, toggleDarkMode, color, scrolled }) {
   return (
-    <div className="z-10 flex items-center justify-between w-full h-16 m-2 dark:text-white">
+    <div
+      className={`${
+        scrolled ?
+          'fixed top-0 left-0 z-10 bg-white dark:bg-gray-800 shadow flex items-center justify-between w-full h-16 dark:text-white transition-all duration-300'
+          : 'z-10 flex items-center justify-between w-full h-16 m-2 dark:text-white transition-all duration-300'
+      }`}
+    >
       <div className="flex items-center px-1 mx-1 font-sans text-lg font-bold nav-item max-h-16 sm:mx-3 sm:px-3">
         <h3 className="relative logo-name text-md">
           <span className="text-black nav-logo dark:text-white">Svg </span>

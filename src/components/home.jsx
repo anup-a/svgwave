@@ -38,9 +38,21 @@ function Home({ isDark, toggleDarkMode }) {
   })
 
   const [waveSvg, setWaveSvg] = useState(() => waveInit(wave))
-
+  const [scrolled, setScrolled] = useState(false)
+  const handleScroll = () => {
+    const offset = window.scrollY
+    if (offset > 10) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  }
   useEffect(() => {
     setWaveSvg(waveInit(wave))
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [wave])
 
   const { height, xmlns, path, animatedPath } = waveSvg.svg
@@ -155,7 +167,7 @@ function Home({ isDark, toggleDarkMode }) {
   return (
     <div className="relative md:h-screen bg-light-grey dark:bg-black">
       <Banner />
-      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} color={bgColor} />
+      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode} scrolled={scrolled} />
       <float-menu
         className="absolute z-50 block h-0 "
         style={{ top: '20%' }}
@@ -168,7 +180,7 @@ function Home({ isDark, toggleDarkMode }) {
             toggleModal={handleExportSVG}
           />
         )}
-        <div className="flex flex-col-reverse items-center justify-center w-full h-4/5 center-container md:flex-row ">
+        <div className="flex flex-col-reverse items-center justify-center w-full h-4/5 center-container md:flex-row md:space-x-4" style={{ marginTop: scrolled ? '90px' : '10px' }}>
           <Canvas
             svg={svg}
             invert={invert}
