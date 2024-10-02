@@ -22,6 +22,7 @@ function CustomBar({
   onBGChange,
   exportSVG,
   exportPNG,
+  exportWebP,
   isDark,
   onGradColorsChange,
   onGradientToggle,
@@ -231,6 +232,12 @@ function CustomBar({
             style={{ cursor: animateWave ? 'not-allowed' : 'pointer' }}
           >
             PNG
+          </button>
+          <button
+            className="px-4 py-1 bg-white rounded-md cursor-pointer text-md export-svg dark:text-black"
+            onClick={() => exportWebP()}
+          >
+            webp
           </button>
         </div>
       </div>

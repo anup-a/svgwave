@@ -50,6 +50,7 @@ function Home({ isDark, toggleDarkMode }) {
   const ch = waveSvg.svg.height / 2
   const transformData = `rotate(-180 ${cw} ${ch})`
   const svgOutputRef = useRef(null)
+  const svgRef = useRef(null)
 
   const svg = (
     <svg
@@ -152,6 +153,46 @@ function Home({ isDark, toggleDarkMode }) {
     saveSvgAsPng.saveSvgAsPng(document.getElementById('svg'), 'svg.png')
   }
 
+  const handleExporWebP = () => {
+    const svgElement = svgRef.current // Get the SVG element reference
+
+    // Create a canvas element to draw the SVG
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // Set canvas size to match the SVG viewBox
+    canvas.width = 1440 // Width of the SVG viewBox
+    canvas.height = 590 // Height of the SVG viewBox
+
+    // Serialize the SVG to a string
+    const svgString = new XMLSerializer().serializeToString(document.getElementById('svg'))
+
+    // Create an image from the SVG string
+    const img = new Image()
+    img.onload = () => {
+      // Draw the SVG image on the canvas
+      ctx.drawImage(img, 0, 0)
+
+      // Convert the canvas content to WebP
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob)
+        
+        // Create a download link for the WebP image
+        const downloadLink = document.createElement('a')
+        downloadLink.href = url
+        downloadLink.download = 'svg.webp'
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
+        
+        // Clean up the object URL after download
+        URL.revokeObjectURL(url)
+      }, 'image/webp')
+    }
+    // Encode the SVG string and set the image source
+    img.src = 'data:image/svg+xml;base64,' + window.btoa(svgString)
+  }
+
   return (
     <div className="relative md:h-screen bg-light-grey dark:bg-black">
       <Banner />
@@ -174,6 +215,7 @@ function Home({ isDark, toggleDarkMode }) {
             invert={invert}
             isDark={isDark}
             svgOutputRef={svgOutputRef}
+            ref={svgRef}
           />
           <CustomBar
             handleWaveTransform={handleWaveTransform}
@@ -184,12 +226,14 @@ function Home({ isDark, toggleDarkMode }) {
             onGradientToggle={setGradient}
             exportSVG={handleExportSVG}
             exportPNG={handleExportPNG}
+            exportWebP={handleExporWebP}
             isDark={isDark}
             gradient={gradient}
             gradColors={gradColors}
             gradAngle={gradAngle}
             setGradAngle={setGradAngle}
             svgOutputRef={svgOutputRef}
+            ref={svgRef}
           />
         </div>
       </div>
