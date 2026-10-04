@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.svgwave.in/sitemap.xml
+Sitemap: https://svgwave.in/sitemap.xml

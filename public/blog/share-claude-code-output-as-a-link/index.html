@@ -1,898 +1,220 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      How to share what Claude Code makes as a link people can comment on
-    </title>
-    <link rel="canonical" href="https://byagent.dev/a/gWfvW7rdbGXY/" />
-    <meta
-      name="description"
-      content="Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link."
-    />
-    <meta name="author" content="Anup Aglawe" />
-    <meta property="og:type" content="article" />
-    <meta
-      property="og:title"
-      content="How to share what Claude Code makes as a link people can comment on"
-    />
-    <meta
-      property="og:description"
-      content="Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link."
-    />
-    <meta property="og:url" content="https://byagent.dev/a/gWfvW7rdbGXY/" />
-    <meta
-      property="og:image"
-      content="https://www.svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png"
-    />
-    <meta property="og:image:width" content="2400" />
-    <meta property="og:image:height" content="1260" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://www.svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png"
-    />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "How to share what Claude Code makes as a link people can comment on",
-        "description": "Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link.",
-        "author": {
-          "@type": "Person",
-          "name": "Anup Aglawe",
-          "url": "https://github.com/anup-a"
-        },
-        "datePublished": "2026-10-04",
-        "mainEntityOfPage": "https://byagent.dev/a/gWfvW7rdbGXY/",
-        "image": "https://www.svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png",
-        "publisher": {
-          "@type": "Organization",
-          "name": "byagent",
-          "url": "https://byagent.dev/"
-        }
-      }
-    </script>
-    <meta name="color-scheme" content="light dark" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/github.min.css"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/github-dark.min.css"
-      media="(prefers-color-scheme: dark)"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/highlight.min.js"
-      defer
-    ></script>
-    <script>
-      addEventListener('DOMContentLoaded', () => {
-        if (window.hljs)
-          document
-            .querySelectorAll('pre code')
-            .forEach((e) => hljs.highlightElement(e))
-      })
-    </script>
-    <style>
-      :root {
-        --bg: #ffffff;
-        --fg: #1c1e21;
-        --muted: #5d6470;
-        --rule: #e6e8eb;
-        --soft: #f5f6f8;
-        --accent: #1f5eff;
-        --accent-ink: #1749c7;
-        --code-bg: #f5f6f8;
-        --mark: #fff3a8;
-        --quote: #8a94a6;
-        --w: 72ch;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0f1115;
-          --fg: #e6e8ec;
-          --muted: #9aa3b2;
-          --rule: #262a33;
-          --soft: #171a21;
-          --accent: #7aa2ff;
-          --accent-ink: #9db8ff;
-          --code-bg: #151821;
-          --mark: #5a4a00;
-          --quote: #6b7686;
-        }
-      }
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        -webkit-text-size-adjust: 100%;
-      }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--fg);
-        font:
-          16px/1.65 'IBM Plex Sans',
-          system-ui,
-          -apple-system,
-          'Segoe UI',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-      }
-      .page {
-        max-width: calc(var(--w) + 48px);
-        margin: 0 auto;
-        padding: 48px 24px 96px;
-      }
-      /* Symmetric gutters keep the text centred whether or not the contents list is shown. */
-      .page.with-toc {
-        max-width: none;
-        display: grid;
-        grid-template-columns: 1fr minmax(0, var(--w)) 1fr;
-        column-gap: 24px;
-      }
-      .page.with-toc .doc {
-        grid-column: 2;
-      }
-      .page.with-toc .toc {
-        grid-column: 1;
-        justify-self: end;
-        width: 220px;
-      }
-      @media (min-width: 1100px) {
-        .page.with-toc {
-          grid-template-columns: minmax(244px, 1fr) minmax(0, var(--w)) minmax(
-              244px,
-              1fr
-            );
-          column-gap: 32px;
-        }
-      }
-      .doc {
-        min-width: 0;
-      }
-      .doc > *:first-child {
-        margin-top: 0;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        line-height: 1.25;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        position: relative;
-        scroll-margin-top: 24px;
-      }
-      h1 {
-        font-size: 2.1rem;
-        margin: 0 0 0.6em;
-        letter-spacing: -0.02em;
-      }
-      h2 {
-        font-size: 1.45rem;
-        margin: 2.2em 0 0.6em;
-        padding-top: 0.6em;
-        border-top: 1px solid var(--rule);
-      }
-      h3 {
-        font-size: 1.15rem;
-        margin: 1.8em 0 0.5em;
-      }
-      h4 {
-        font-size: 1rem;
-        margin: 1.5em 0 0.4em;
-      }
-      h5,
-      h6 {
-        font-size: 0.92rem;
-        margin: 1.3em 0 0.3em;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .anchor {
-        position: absolute;
-        left: -1.1em;
-        top: 0;
-        opacity: 0;
-        color: var(--muted);
-        text-decoration: none;
-        font-weight: 400;
-        transition: opacity 0.12s;
-      }
-      h1:hover .anchor,
-      h2:hover .anchor,
-      h3:hover .anchor,
-      h4:hover .anchor {
-        opacity: 1;
-      }
-      @media (max-width: 760px) {
-        .anchor {
-          display: none;
-        }
-      }
-      p {
-        margin: 0 0 1.1em;
-      }
-      a {
-        color: var(--accent-ink);
-        text-decoration: underline;
-        text-decoration-color: color-mix(
-          in srgb,
-          var(--accent) 35%,
-          transparent
-        );
-        text-underline-offset: 3px;
-      }
-      a:hover {
-        text-decoration-color: var(--accent);
-      }
-      strong {
-        font-weight: 600;
-      }
-      ul,
-      ol {
-        padding-left: 1.5em;
-        margin: 0 0 1.1em;
-      }
-      li {
-        margin: 0.25em 0;
-      }
-      li > p {
-        margin-bottom: 0.5em;
-      }
-      li:has(> input[type='checkbox']) {
-        list-style: none;
-        margin-left: -1.5em;
-        padding-left: 1.5em;
-        position: relative;
-      }
-      li > input[type='checkbox'] {
-        position: absolute;
-        left: 0;
-        top: 0.42em;
-        margin: 0;
-        accent-color: var(--accent);
-      }
-      hr {
-        border: 0;
-        border-top: 1px solid var(--rule);
-        margin: 2.5em 0;
-      }
-      blockquote {
-        margin: 1.4em 0;
-        padding: 0.2em 0 0.2em 1.1em;
-        border-left: 3px solid var(--quote);
-        color: var(--muted);
-      }
-      blockquote > p:last-child {
-        margin-bottom: 0;
-      }
-      code,
-      pre,
-      kbd {
-        font-family:
-          'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-      }
-      code {
-        font-size: 0.88em;
-        background: var(--code-bg);
-        padding: 0.12em 0.4em;
-        border-radius: 5px;
-      }
-      pre {
-        margin: 1.3em 0;
-        padding: 1em 1.1em;
-        background: var(--code-bg);
-        border: 1px solid var(--rule);
-        border-radius: 10px;
-        overflow-x: auto;
-        line-height: 1.55;
-        font-size: 0.88rem;
-      }
-      pre code {
-        background: none;
-        padding: 0;
-        border-radius: 0;
-        font-size: inherit;
-      }
-      .hljs {
-        background: transparent !important;
-        padding: 0 !important;
-      }
-      .table-wrap {
-        overflow-x: auto;
-        margin: 1.3em 0;
-        border: 1px solid var(--rule);
-        border-radius: 10px;
-      }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        font-size: 0.94rem;
-      }
-      th,
-      td {
-        padding: 0.6em 0.9em;
-        text-align: left;
-        vertical-align: top;
-        border-bottom: 1px solid var(--rule);
-      }
-      th {
-        background: var(--soft);
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      tr:last-child td {
-        border-bottom: 0;
-      }
-      img,
-      video {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-      mark {
-        background: var(--mark);
-        color: inherit;
-        padding: 0 0.15em;
-        border-radius: 3px;
-      }
-      kbd {
-        font-size: 0.85em;
-        padding: 0.1em 0.45em;
-        border: 1px solid var(--rule);
-        border-bottom-width: 2px;
-        border-radius: 5px;
-        background: var(--soft);
-      }
-      del {
-        color: var(--muted);
-      }
-      sup {
-        line-height: 0;
-      }
-      .toc {
-        display: none;
-      }
-      @media (min-width: 1100px) {
-        .toc {
-          display: block;
-          position: sticky;
-          top: 48px;
-          align-self: start;
-          font-size: 0.86rem;
-          line-height: 1.5;
-          max-height: calc(100vh - 96px);
-          overflow: auto;
-          padding-right: 8px;
-        }
-        .toc-title {
-          margin: 0 0 0.6em;
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--muted);
-        }
-        .toc ol {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          border-left: 1px solid var(--rule);
-        }
-        .toc li {
-          margin: 0;
-        }
-        .toc a {
-          display: block;
-          color: var(--muted);
-          text-decoration: none;
-          padding: 0.22em 0 0.22em 0.9em;
-          border-left: 2px solid transparent;
-          margin-left: -1px;
-        }
-        .toc li.d3 a {
-          padding-left: 1.9em;
-          font-size: 0.82rem;
-        }
-        .toc a:hover {
-          color: var(--fg);
-        }
-        .toc a.active {
-          color: var(--accent-ink);
-          border-left-color: var(--accent);
-        }
-      }
-      @media print {
-        body {
-          font-size: 11pt;
-        }
-        .page {
-          padding: 0;
-          max-width: none;
-        }
-        .toc,
-        .anchor {
-          display: none !important;
-        }
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-        pre {
-          border: 1px solid #bbb;
-          white-space: pre-wrap;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page with-toc">
-      <nav class="toc" aria-label="Contents">
-        <p class="toc-title">Contents</p>
-        <ol>
-          <li class="d2">
-            <a href="#where-agent-output-ends-up-today"
-              >Where agent output ends up today</a
-            >
-          </li>
-          <li class="d2">
-            <a href="#three-ways-to-share-agent-output-and-where-each-one-stops"
-              >Three ways to share agent output, and where each one stops</a
-            >
-          </li>
-          <li class="d2">
-            <a href="#the-publish-comment-republish-loop"
-              >The publish, comment, republish loop</a
-            >
-          </li>
-          <li class="d2">
-            <a href="#try-it-without-an-account">Try it without an account</a>
-          </li>
-          <li class="d2">
-            <a href="#set-it-up-for-claude-code-codex-or-cursor"
-              >Set it up for Claude Code, Codex or Cursor</a
-            >
-          </li>
-          <li class="d2">
-            <a href="#let-the-agent-watch-a-page-for-comments"
-              >Let the agent watch a page for comments</a
-            >
-          </li>
-          <li class="d2">
-            <a href="#keeping-pages-tidy">Keeping pages tidy</a>
-          </li>
-          <li class="d2"><a href="#what-it-is-not">What it is not</a></li>
-          <li class="d2"><a href="#faq">FAQ</a></li>
-        </ol>
-      </nav>
-      <main class="doc">
-        <h1
-          id="how-to-share-what-claude-code-makes-as-a-link-people-can-comment-on"
-        >
-          How to share what Claude Code makes as a link people can comment on<a
-            class="anchor"
-            href="#how-to-share-what-claude-code-makes-as-a-link-people-can-comment-on"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h1>
-        <p>
-          My coding agents write a lot more than code now. Rollout plans,
-          competitor notes, a pricing page draft, a dashboard for one meeting.
-          Claude Code, Codex and Cursor will all happily produce a Markdown
-          report or a self-contained HTML page in a minute.
-        </p>
-        <p>
-          Getting that page in front of another person is where it falls apart.
-        </p>
-        <p>
-          This post covers the problem, the usual ways to share agent output and
-          where each one stops, and the setup I built for myself: the agent
-          publishes to a link, readers comment on the exact line they mean, and
-          the next run reads those comments and updates the same link.
-        </p>
-        <h2 id="where-agent-output-ends-up-today">
-          Where agent output ends up today<a
-            class="anchor"
-            href="#where-agent-output-ends-up-today"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>
-          If you&#39;ve done this for a while, your output folder and your team
-          chat probably look something like this:
-        </p>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/mess.png"
-            alt="A folder of agent output files named plan_v3_final.md and plan_v3_final_REAL.md, next to a Slack thread where a local file path is shared and teammates leave feedback"
-          />
-        </p>
-        <p>
-          A path like
-          <code>/Users/you/work/launch/out/rollout-plan.md</code> works on
-          exactly one laptop. Then a teammate replies in the thread with
-          &quot;step 1 is too risky, can we pilot it first?&quot;, which is a
-          good note. The agent never sees it. The next run starts from the old
-          plan, and someone copies the feedback in by hand.
-        </p>
-        <p>So the work has three problems, and they are separate:</p>
-        <ol>
-          <li><strong>Sharing.</strong> A file on my disk is not a link.</li>
-          <li>
-            <strong>Feedback.</strong> Comments land in chat, away from the line
-            they are about.
-          </li>
-          <li>
-            <strong>The loop back.</strong> The agent that wrote the page cannot
-            read the feedback, so it cannot act on it.
-          </li>
-        </ol>
-        <h2 id="three-ways-to-share-agent-output-and-where-each-one-stops">
-          Three ways to share agent output, and where each one stops<a
-            class="anchor"
-            href="#three-ways-to-share-agent-output-and-where-each-one-stops"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>
-          <strong>Paste it into chat or a doc.</strong> Fine for a paragraph.
-          HTML stops working, and a Google Doc turns into a second copy that
-          drifts from the one the agent edits.
-        </p>
-        <p>
-          <strong>Host it yourself.</strong> A gist, GitHub Pages, a Vercel or
-          Netlify deploy, or one of the agent hosting services. You get a link,
-          and some of these are very good at it. What you usually don&#39;t get
-          is a way for a reader with no account to comment on a specific
-          sentence, or a way for the agent to read those comments back.
-        </p>
-        <p>
-          <strong>Use your agent&#39;s built-in artifacts.</strong> Claude Code
-          can now publish artifacts and handle comments on them. If your whole
-          team is on Claude and every reviewer has a seat in your org, that may
-          be all you need. If your reviewers are clients outside your org, or
-          you switch between Claude Code and Codex, it stops fitting.
-        </p>
-        <p>
-          What I wanted was smaller than any of these: one link per piece of
-          work, comments from anyone, and a CLI any agent can call to read them.
-        </p>
-        <h2 id="the-publish-comment-republish-loop">
-          The publish, comment, republish loop<a
-            class="anchor"
-            href="#the-publish-comment-republish-loop"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>
-          That is why I built
-          <a href="https://byagent.dev" target="_blank" rel="noopener"
-            >byagent</a
-          >. It is a CLI. Your agent runs it, gets a URL back, and hands you the
-          link.
-        </p>
-        <p>The loop looks like this:</p>
-        <ol>
-          <li>
-            The agent publishes <code>rollout-plan.md</code> and gets
-            <code>byagent.dev/a/&lt;id&gt;/</code>.
-          </li>
-          <li>
-            A reader opens the link, selects &quot;step 1&quot;, and comments.
-            No sign-up. They type a name.
-          </li>
-          <li>
-            The agent reads the open comments, marks the thread
-            &quot;working&quot; so the reader can see it was picked up, edits
-            the plan, and republishes to the <strong>same</strong> link.
-          </li>
-          <li>
-            It replies under the comment and resolves it. The reader refreshes
-            and sees v2.
-          </li>
-        </ol>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/loop.png"
-            alt="Diagram of the loop: the agent publishes, a reader comments on a line, the agent reads and marks it working, then republishes to the same link and replies"
-          />
-        </p>
-        <p>
-          Here is that loop on a real page. The screenshots below are one
-          rollout plan going from v1 to v2.
-        </p>
-        <p>
-          A reader selects step 1 and leaves a comment. There is no sign-up,
-          just a name field:
-        </p>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/comment.png"
-            alt='A reader selects "Switch 100% of web traffic to the new checkout on day one" on a byagent page and types a comment asking for a 10% pilot first'
-          />
-        </p>
-        <p>
-          The agent reads the comment from the CLI and marks the thread. The
-          reader sees &quot;Working on it&quot; next to their comment:
-        </p>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/working.png"
-            alt='The comment panel on the page showing Priya&#39;s comment with a green "Working on it" badge'
-          />
-        </p>
-        <p>
-          The agent edits the plan, republishes to the same URL, replies and
-          resolves. The page is now v2:
-        </p>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/after.png"
-            alt="The same link at v2: step 1 is now a one-week pilot at 10% of traffic, and the comment panel shows the agent&#39;s reply under the resolved thread"
-          />
-        </p>
-        <p>
-          The link never changes, so the one you sent on Monday still shows the
-          latest version on Friday. Older versions are kept, with rollback.
-        </p>
-        <h2 id="try-it-without-an-account">
-          Try it without an account<a
-            class="anchor"
-            href="#try-it-without-an-account"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>You need Node. From any folder with a Markdown file in it:</p>
-        <pre><code class="language-bash">npx byagent publish ./plan.md
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to share what Claude Code makes as a link people can comment on</title>
+<link rel="canonical" href="https://byagent.dev/a/gWfvW7rdbGXY/">
+<meta name="description" content="Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link.">
+<meta name="author" content="Anup Aglawe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to share what Claude Code makes as a link people can comment on">
+<meta property="og:description" content="Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link.">
+<meta property="og:url" content="https://byagent.dev/a/gWfvW7rdbGXY/">
+<meta property="og:image" content="https://svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png">
+<meta property="og:image:width" content="2400"><meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to share what Claude Code makes as a link people can comment on","description":"Give your coding agent a review loop: it publishes a plan or HTML page to a link, readers comment on the exact line with no account, and the next run reads the comments and republishes to the same link.","author":{"@type":"Person","name":"Anup Aglawe","url":"https://github.com/anup-a"},"datePublished":"2026-10-04","mainEntityOfPage":"https://byagent.dev/a/gWfvW7rdbGXY/","image":"https://svgwave.in/blog/share-claude-code-output-as-a-link/img/cover.png","publisher":{"@type":"Organization","name":"byagent","url":"https://byagent.dev/"}}</script>
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/highlight.min.js" defer></script>
+<script>addEventListener("DOMContentLoaded",()=>{if(window.hljs)document.querySelectorAll("pre code").forEach(e=>hljs.highlightElement(e))});</script>
+<style>
+:root{
+  --bg:#ffffff;--fg:#1c1e21;--muted:#5d6470;--rule:#e6e8eb;--soft:#f5f6f8;
+  --accent:#1f5eff;--accent-ink:#1749c7;--code-bg:#f5f6f8;--mark:#fff3a8;
+  --quote:#8a94a6;--w:72ch;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0f1115;--fg:#e6e8ec;--muted:#9aa3b2;--rule:#262a33;--soft:#171a21;
+  --accent:#7aa2ff;--accent-ink:#9db8ff;--code-bg:#151821;--mark:#5a4a00;--quote:#6b7686;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.page{max-width:calc(var(--w) + 48px);margin:0 auto;padding:48px 24px 96px}
+/* Symmetric gutters keep the text centred whether or not the contents list is shown. */
+.page.with-toc{max-width:none;display:grid;grid-template-columns:1fr minmax(0,var(--w)) 1fr;column-gap:24px}
+.page.with-toc .doc{grid-column:2}
+.page.with-toc .toc{grid-column:1;justify-self:end;width:220px}
+@media (min-width:1100px){.page.with-toc{grid-template-columns:minmax(244px,1fr) minmax(0,var(--w)) minmax(244px,1fr);column-gap:32px}}
+.doc{min-width:0}
+.doc>*:first-child{margin-top:0}
+h1,h2,h3,h4,h5,h6{line-height:1.25;font-weight:600;letter-spacing:-.01em;position:relative;scroll-margin-top:24px}
+h1{font-size:2.1rem;margin:0 0 .6em;letter-spacing:-.02em}
+h2{font-size:1.45rem;margin:2.2em 0 .6em;padding-top:.6em;border-top:1px solid var(--rule)}
+h3{font-size:1.15rem;margin:1.8em 0 .5em}
+h4{font-size:1rem;margin:1.5em 0 .4em}
+h5,h6{font-size:.92rem;margin:1.3em 0 .3em;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.anchor{position:absolute;left:-1.1em;top:0;opacity:0;color:var(--muted);text-decoration:none;font-weight:400;transition:opacity .12s}
+h1:hover .anchor,h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+@media (max-width:760px){.anchor{display:none}}
+p{margin:0 0 1.1em}
+a{color:var(--accent-ink);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 35%,transparent);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--accent)}
+strong{font-weight:600}
+ul,ol{padding-left:1.5em;margin:0 0 1.1em}
+li{margin:.25em 0}
+li>p{margin-bottom:.5em}
+li:has(>input[type=checkbox]){list-style:none;margin-left:-1.5em;padding-left:1.5em;position:relative}
+li>input[type=checkbox]{position:absolute;left:0;top:.42em;margin:0;accent-color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+blockquote{margin:1.4em 0;padding:.2em 0 .2em 1.1em;border-left:3px solid var(--quote);color:var(--muted)}
+blockquote>p:last-child{margin-bottom:0}
+code,pre,kbd{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+code{font-size:.88em;background:var(--code-bg);padding:.12em .4em;border-radius:5px}
+pre{margin:1.3em 0;padding:1em 1.1em;background:var(--code-bg);border:1px solid var(--rule);border-radius:10px;overflow-x:auto;line-height:1.55;font-size:.88rem}
+pre code{background:none;padding:0;border-radius:0;font-size:inherit}
+.hljs{background:transparent!important;padding:0!important}
+.table-wrap{overflow-x:auto;margin:1.3em 0;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{padding:.6em .9em;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+th{background:var(--soft);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+img,video{max-width:100%;height:auto;border-radius:8px}
+mark{background:var(--mark);color:inherit;padding:0 .15em;border-radius:3px}
+kbd{font-size:.85em;padding:.1em .45em;border:1px solid var(--rule);border-bottom-width:2px;border-radius:5px;background:var(--soft)}
+del{color:var(--muted)}
+sup{line-height:0}
+.toc{display:none}
+@media (min-width:1100px){
+  .toc{display:block;position:sticky;top:48px;align-self:start;font-size:.86rem;line-height:1.5;max-height:calc(100vh - 96px);overflow:auto;padding-right:8px}
+  .toc-title{margin:0 0 .6em;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+  .toc li{margin:0}
+  .toc a{display:block;color:var(--muted);text-decoration:none;padding:.22em 0 .22em .9em;border-left:2px solid transparent;margin-left:-1px}
+  .toc li.d3 a{padding-left:1.9em;font-size:.82rem}
+  .toc a:hover{color:var(--fg)}
+  .toc a.active{color:var(--accent-ink);border-left-color:var(--accent)}
+}
+@media print{
+  body{font-size:11pt}.page{padding:0;max-width:none}.toc,.anchor{display:none!important}
+  a{color:inherit;text-decoration:none}pre{border:1px solid #bbb;white-space:pre-wrap}
+}
+</style>
+</head>
+<body>
+<div class="page with-toc">
+<nav class="toc" aria-label="Contents"><p class="toc-title">Contents</p><ol>
+<li class="d2"><a href="#where-agent-output-ends-up-today">Where agent output ends up today</a></li>
+<li class="d2"><a href="#three-ways-to-share-agent-output-and-where-each-one-stops">Three ways to share agent output, and where each one stops</a></li>
+<li class="d2"><a href="#the-publish-comment-republish-loop">The publish, comment, republish loop</a></li>
+<li class="d2"><a href="#try-it-without-an-account">Try it without an account</a></li>
+<li class="d2"><a href="#set-it-up-for-claude-code-codex-or-cursor">Set it up for Claude Code, Codex or Cursor</a></li>
+<li class="d2"><a href="#let-the-agent-watch-a-page-for-comments">Let the agent watch a page for comments</a></li>
+<li class="d2"><a href="#keeping-pages-tidy">Keeping pages tidy</a></li>
+<li class="d2"><a href="#what-it-is-not">What it is not</a></li>
+<li class="d2"><a href="#faq">FAQ</a></li>
+</ol></nav>
+<main class="doc">
+<h1 id="how-to-share-what-claude-code-makes-as-a-link-people-can-comment-on">How to share what Claude Code makes as a link people can comment on<a class="anchor" href="#how-to-share-what-claude-code-makes-as-a-link-people-can-comment-on" aria-label="Link to this section">#</a></h1>
+<p>My coding agents write a lot more than code now. Rollout plans, competitor notes, a pricing page draft, a dashboard for one meeting. Claude Code, Codex and Cursor will all happily produce a Markdown report or a self-contained HTML page in a minute.</p>
+<p>Getting that page in front of another person is where it falls apart.</p>
+<p>This post covers the problem, the usual ways to share agent output and where each one stops, and the setup I built for myself: the agent publishes to a link, readers comment on the exact line they mean, and the next run reads those comments and updates the same link.</p>
+<h2 id="where-agent-output-ends-up-today">Where agent output ends up today<a class="anchor" href="#where-agent-output-ends-up-today" aria-label="Link to this section">#</a></h2>
+<p>If you&#39;ve done this for a while, your output folder and your team chat probably look something like this:</p>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/mess.png" alt="A folder of agent output files named plan_v3_final.md and plan_v3_final_REAL.md, next to a Slack thread where a local file path is shared and teammates leave feedback"></p>
+<p>A path like <code>/Users/you/work/launch/out/rollout-plan.md</code> works on exactly one laptop. Then a teammate replies in the thread with &quot;step 1 is too risky, can we pilot it first?&quot;, which is a good note. The agent never sees it. The next run starts from the old plan, and someone copies the feedback in by hand.</p>
+<p>So the work has three problems, and they are separate:</p>
+<ol>
+<li><strong>Sharing.</strong> A file on my disk is not a link.</li>
+<li><strong>Feedback.</strong> Comments land in chat, away from the line they are about.</li>
+<li><strong>The loop back.</strong> The agent that wrote the page cannot read the feedback, so it cannot act on it.</li>
+</ol>
+<h2 id="three-ways-to-share-agent-output-and-where-each-one-stops">Three ways to share agent output, and where each one stops<a class="anchor" href="#three-ways-to-share-agent-output-and-where-each-one-stops" aria-label="Link to this section">#</a></h2>
+<p><strong>Paste it into chat or a doc.</strong> Fine for a paragraph. HTML stops working, and a Google Doc turns into a second copy that drifts from the one the agent edits.</p>
+<p><strong>Host it yourself.</strong> A gist, GitHub Pages, a Vercel or Netlify deploy, or one of the agent hosting services. You get a link, and some of these are very good at it. What you usually don&#39;t get is a way for a reader with no account to comment on a specific sentence, or a way for the agent to read those comments back.</p>
+<p><strong>Use your agent&#39;s built-in artifacts.</strong> Claude Code can now publish artifacts and handle comments on them. If your whole team is on Claude and every reviewer has a seat in your org, that may be all you need. If your reviewers are clients outside your org, or you switch between Claude Code and Codex, it stops fitting.</p>
+<p>What I wanted was smaller than any of these: one link per piece of work, comments from anyone, and a CLI any agent can call to read them.</p>
+<h2 id="the-publish-comment-republish-loop">The publish, comment, republish loop<a class="anchor" href="#the-publish-comment-republish-loop" aria-label="Link to this section">#</a></h2>
+<p>That is why I built <a href="https://byagent.dev" target="_blank" rel="noopener">byagent</a>. It is a CLI. Your agent runs it, gets a URL back, and hands you the link.</p>
+<p>The loop looks like this:</p>
+<ol>
+<li>The agent publishes <code>rollout-plan.md</code> and gets <code>byagent.dev/a/&lt;id&gt;/</code>.</li>
+<li>A reader opens the link, selects &quot;step 1&quot;, and comments. No sign-up. They type a name.</li>
+<li>The agent reads the open comments, marks the thread &quot;working&quot; so the reader can see it was picked up, edits the plan, and republishes to the <strong>same</strong> link.</li>
+<li>It replies under the comment and resolves it. The reader refreshes and sees v2.</li>
+</ol>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/loop.png" alt="Diagram of the loop: the agent publishes, a reader comments on a line, the agent reads and marks it working, then republishes to the same link and replies"></p>
+<p>Here is that loop on a real page. The screenshots below are one rollout plan going from v1 to v2.</p>
+<p>A reader selects step 1 and leaves a comment. There is no sign-up, just a name field:</p>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/comment.png" alt="A reader selects &quot;Switch 100% of web traffic to the new checkout on day one&quot; on a byagent page and types a comment asking for a 10% pilot first"></p>
+<p>The agent reads the comment from the CLI and marks the thread. The reader sees &quot;Working on it&quot; next to their comment:</p>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/working.png" alt="The comment panel on the page showing Priya&#39;s comment with a green &quot;Working on it&quot; badge"></p>
+<p>The agent edits the plan, republishes to the same URL, replies and resolves. The page is now v2:</p>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/after.png" alt="The same link at v2: step 1 is now a one-week pilot at 10% of traffic, and the comment panel shows the agent&#39;s reply under the resolved thread"></p>
+<p>The link never changes, so the one you sent on Monday still shows the latest version on Friday. Older versions are kept, with rollback.</p>
+<h2 id="try-it-without-an-account">Try it without an account<a class="anchor" href="#try-it-without-an-account" aria-label="Link to this section">#</a></h2>
+<p>You need Node. From any folder with a Markdown file in it:</p>
+<pre><code class="language-bash">npx byagent publish ./plan.md
 </code></pre>
-        <p>
-          With nothing configured, this gets a guest key and publishes. Guest
-          pages are public, you get three of them, and they stop working 24
-          hours after the key was made. The output includes a claim link. Open
-          it and sign in, and the pages move into your workspace and stay.
-        </p>
-        <p>
-          Markdown is rendered into a styled page with light and dark mode, a
-          table of contents, GitHub-style tables and highlighted code. A folder
-          with an <code>index.html</code> is published as-is, so an agent-built
-          dashboard works too.
-        </p>
-        <h2 id="set-it-up-for-claude-code-codex-or-cursor">
-          Set it up for Claude Code, Codex or Cursor<a
-            class="anchor"
-            href="#set-it-up-for-claude-code-codex-or-cursor"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>The real setup is one sentence you paste into your agent:</p>
-        <pre><code>Set up byagent for this project: read byagent.dev/skill.md and follow it.
+<p>With nothing configured, this gets a guest key and publishes. Guest pages are public, you get three of them, and they stop working 24 hours after the key was made. The output includes a claim link. Open it and sign in, and the pages move into your workspace and stay.</p>
+<p>Markdown is rendered into a styled page with light and dark mode, a table of contents, GitHub-style tables and highlighted code. A folder with an <code>index.html</code> is published as-is, so an agent-built dashboard works too.</p>
+<h2 id="set-it-up-for-claude-code-codex-or-cursor">Set it up for Claude Code, Codex or Cursor<a class="anchor" href="#set-it-up-for-claude-code-codex-or-cursor" aria-label="Link to this section">#</a></h2>
+<p>The real setup is one sentence you paste into your agent:</p>
+<pre><code>Set up byagent for this project: read byagent.dev/skill.md and follow it.
 </code></pre>
-        <p>
-          The skill tells the agent when to publish (finished reports, plans,
-          specs, pages), when to use <code>--private</code>, how to group pages
-          by project, and how to handle comments. After that you ask for a plan
-          and get a link back, without typing byagent commands yourself.
-        </p>
-        <p>If you&#39;d rather drive it by hand, the main commands are:</p>
-        <pre><code class="language-bash">byagent publish ./plan.md --project &quot;Launch&quot; --tag plan
+<p>The skill tells the agent when to publish (finished reports, plans, specs, pages), when to use <code>--private</code>, how to group pages by project, and how to handle comments. After that you ask for a plan and get a link back, without typing byagent commands yourself.</p>
+<p>If you&#39;d rather drive it by hand, the main commands are:</p>
+<pre><code class="language-bash">byagent publish ./plan.md --project &quot;Launch&quot; --tag plan
 byagent comments &lt;id&gt; --open
 byagent mark &lt;id&gt; &lt;thread&gt; working
 byagent reply &lt;id&gt; &lt;thread&gt; &quot;Split step 1 into a two-week pilot.&quot;
 byagent resolve &lt;id&gt; &lt;thread&gt;
 </code></pre>
-        <p>
-          Every command takes <code>--json</code>, which is what the agent
-          actually uses. This is the exact session behind the screenshots above:
-        </p>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/terminal.png"
-            alt="Terminal output: byagent comments lists the open thread with its anchor text, byagent mark sets it to working, then publish returns version 2 and reply and resolve close both threads"
-          />
-        </p>
-        <h2 id="let-the-agent-watch-a-page-for-comments">
-          Let the agent watch a page for comments<a
-            class="anchor"
-            href="#let-the-agent-watch-a-page-for-comments"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>This is the useful part when a page goes out for review:</p>
-        <pre><code class="language-bash">byagent comments &lt;id&gt; --wait
+<p>Every command takes <code>--json</code>, which is what the agent actually uses. This is the exact session behind the screenshots above:</p>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/terminal.png" alt="Terminal output: byagent comments lists the open thread with its anchor text, byagent mark sets it to working, then publish returns version 2 and reply and resolve close both threads"></p>
+<h2 id="let-the-agent-watch-a-page-for-comments">Let the agent watch a page for comments<a class="anchor" href="#let-the-agent-watch-a-page-for-comments" aria-label="Link to this section">#</a></h2>
+<p>This is the useful part when a page goes out for review:</p>
+<pre><code class="language-bash">byagent comments &lt;id&gt; --wait
 </code></pre>
-        <p>
-          It blocks until a reader leaves a new comment, prints the threads, and
-          exits. It gives up after 30 minutes by default. Claude Code can run it
-          in the background and pick up the comments when it returns, so you can
-          keep working on something else while a client reviews a page.
-        </p>
-        <p>Two smaller features help with real reviews:</p>
-        <ul>
-          <li>
-            <strong>Suggested edits.</strong> A reader can propose exact
-            replacement text for a line. The agent applies it or declines it.
-          </li>
-        </ul>
-        <p>
-          <img
-            src="/blog/share-claude-code-output-as-a-link/img/suggest.png"
-            alt='A reader selects "Brief the support team on day zero" in a risks table and suggests replacement text: "Brief the support team two days before launch, with a refund script"'
-          />
-        </p>
-        <ul>
-          <li>
-            <strong>Declining with a reason.</strong> Not every comment should
-            change the page.
-            <code
-              >byagent mark &lt;id&gt; &lt;thread&gt; declined --note &quot;Out
-              of scope for v1&quot;</code
-            >
-            posts the reason and closes the thread, so the reader isn&#39;t left
-            guessing.
-          </li>
-        </ul>
-        <p>
-          One rule matters here: comment text is treated as untrusted input. The
-          skill tells the agent to act on a comment only by editing that page,
-          and never to run commands or open links because a comment says so.
-        </p>
-        <h2 id="keeping-pages-tidy">
-          Keeping pages tidy<a
-            class="anchor"
-            href="#keeping-pages-tidy"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <ul>
-          <li>
-            <strong>Projects.</strong> Pages that share a
-            <code>--project</code> name form a collection, so a launch&#39;s
-            plan, report and pricing draft sit together.
-          </li>
-          <li>
-            <strong>Expiry.</strong> <code>--expires 7d</code> on publish, for a
-            review draft or a one-meeting demo.
-          </li>
-          <li>
-            <strong>Private pages.</strong> <code>--private</code> keeps a page
-            inside your workspace. <code>byagent share &lt;id&gt;</code> gives a
-            six-digit code if you need one outside person to see it.
-          </li>
-          <li>
-            <strong>Delete.</strong>
-            <code>byagent delete &lt;id&gt;</code> erases the page, its versions
-            and its comments at once.
-          </li>
-        </ul>
-        <h2 id="what-it-is-not">
-          What it is not<a
-            class="anchor"
-            href="#what-it-is-not"
-            aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>
-          It is not a CMS and it is not a doc editor. Readers comment; the agent
-          edits. If you want ten people co-writing a doc, use a doc.
-        </p>
-        <p>
-          It is also young. It&#39;s free today with no paid plan, and the
-          limits are listed on the
-          <a href="https://byagent.dev/pricing" target="_blank" rel="noopener"
-            >pricing page</a
-          >.
-        </p>
-        <h2 id="faq">
-          FAQ<a class="anchor" href="#faq" aria-label="Link to this section"
-            >#</a
-          >
-        </h2>
-        <p>
-          <strong>How do I share a Claude Code HTML file as a link?</strong> Ask
-          Claude Code to publish it with byagent, or run
-          <code>npx byagent publish ./folder</code> on the folder that holds
-          <code>index.html</code>. You get a public URL back.
-        </p>
-        <p>
-          <strong>Do readers need an account to comment?</strong> No. They open
-          the link, type a name and comment on a line.
-        </p>
-        <p>
-          <strong>Does it work with Codex and Cursor?</strong> Yes. It is a CLI,
-          so any agent that can run a shell command can use it. Claude Code and
-          Codex also have optional hooks that remind the agent to publish
-          finished pages. There are setup guides for
-          <a
-            href="https://byagent.dev/guides/codex"
-            target="_blank"
-            rel="noopener"
-            >Codex</a
-          >
-          and
-          <a
-            href="https://byagent.dev/guides/cursor"
-            target="_blank"
-            rel="noopener"
-            >Cursor</a
-          >.
-        </p>
-        <p>
-          <strong>Can I keep a page private?</strong> Yes. Publish with
-          <code>--private</code>, then use <code>byagent share</code> if one
-          outside person needs access.
-        </p>
-        <hr />
-        <p>
-          This post was first published on byagent.dev, where it is a byagent
-          page. To comment on a line,
-          <a
-            href="https://byagent.dev/a/gWfvW7rdbGXY/"
-            target="_blank"
-            rel="noopener"
-            >open the original</a
-          >.
-        </p>
-        <p>
-          Setup:
-          <code
-            >Set up byagent for this project: read byagent.dev/skill.md and
-            follow it.</code
-          >
-          More at
-          <a href="https://byagent.dev" target="_blank" rel="noopener"
-            >byagent.dev</a
-          >.
-        </p>
-      </main>
-    </div>
-    <script>
-      ;(() => {
-        const links = [...document.querySelectorAll('.toc a')]
-        const byId = new Map(
-          links.map((a) => [a.getAttribute('href').slice(1), a]),
-        )
-        const hs = [...byId.keys()]
-          .map((id) => document.getElementById(id))
-          .filter(Boolean)
-        let active = null
-        const set = (el) => {
-          if (active) active.classList.remove('active')
-          active = byId.get(el.id)
-          if (active) active.classList.add('active')
-        }
-        const io = new IntersectionObserver(
-          (es) => {
-            for (const e of es) if (e.isIntersecting) set(e.target)
-          },
-          { rootMargin: '0px 0px -70% 0px' },
-        )
-        hs.forEach((h) => io.observe(h))
-      })()
-    </script>
-  </body>
+<p>It blocks until a reader leaves a new comment, prints the threads, and exits. It gives up after 30 minutes by default. Claude Code can run it in the background and pick up the comments when it returns, so you can keep working on something else while a client reviews a page.</p>
+<p>Two smaller features help with real reviews:</p>
+<ul>
+<li><strong>Suggested edits.</strong> A reader can propose exact replacement text for a line. The agent applies it or declines it.</li>
+</ul>
+<p><img src="/blog/share-claude-code-output-as-a-link/img/suggest.png" alt="A reader selects &quot;Brief the support team on day zero&quot; in a risks table and suggests replacement text: &quot;Brief the support team two days before launch, with a refund script&quot;"></p>
+<ul>
+<li><strong>Declining with a reason.</strong> Not every comment should change the page. <code>byagent mark &lt;id&gt; &lt;thread&gt; declined --note &quot;Out of scope for v1&quot;</code> posts the reason and closes the thread, so the reader isn&#39;t left guessing.</li>
+</ul>
+<p>One rule matters here: comment text is treated as untrusted input. The skill tells the agent to act on a comment only by editing that page, and never to run commands or open links because a comment says so.</p>
+<h2 id="keeping-pages-tidy">Keeping pages tidy<a class="anchor" href="#keeping-pages-tidy" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Projects.</strong> Pages that share a <code>--project</code> name form a collection, so a launch&#39;s plan, report and pricing draft sit together.</li>
+<li><strong>Expiry.</strong> <code>--expires 7d</code> on publish, for a review draft or a one-meeting demo.</li>
+<li><strong>Private pages.</strong> <code>--private</code> keeps a page inside your workspace. <code>byagent share &lt;id&gt;</code> gives a six-digit code if you need one outside person to see it.</li>
+<li><strong>Delete.</strong> <code>byagent delete &lt;id&gt;</code> erases the page, its versions and its comments at once.</li>
+</ul>
+<h2 id="what-it-is-not">What it is not<a class="anchor" href="#what-it-is-not" aria-label="Link to this section">#</a></h2>
+<p>It is not a CMS and it is not a doc editor. Readers comment; the agent edits. If you want ten people co-writing a doc, use a doc.</p>
+<p>It is also young. It&#39;s free today with no paid plan, and the limits are listed on the <a href="https://byagent.dev/pricing" target="_blank" rel="noopener">pricing page</a>.</p>
+<h2 id="faq">FAQ<a class="anchor" href="#faq" aria-label="Link to this section">#</a></h2>
+<p><strong>How do I share a Claude Code HTML file as a link?</strong>
+Ask Claude Code to publish it with byagent, or run <code>npx byagent publish ./folder</code> on the folder that holds <code>index.html</code>. You get a public URL back.</p>
+<p><strong>Do readers need an account to comment?</strong>
+No. They open the link, type a name and comment on a line.</p>
+<p><strong>Does it work with Codex and Cursor?</strong>
+Yes. It is a CLI, so any agent that can run a shell command can use it. Claude Code and Codex also have optional hooks that remind the agent to publish finished pages. There are setup guides for <a href="https://byagent.dev/guides/codex" target="_blank" rel="noopener">Codex</a> and <a href="https://byagent.dev/guides/cursor" target="_blank" rel="noopener">Cursor</a>.</p>
+<p><strong>Can I keep a page private?</strong>
+Yes. Publish with <code>--private</code>, then use <code>byagent share</code> if one outside person needs access.</p>
+<hr>
+<p>This post was first published on byagent.dev, where it is a byagent page. To comment on a line, <a href="https://byagent.dev/a/gWfvW7rdbGXY/" target="_blank" rel="noopener">open the original</a>.</p>
+<p>Setup: <code>Set up byagent for this project: read byagent.dev/skill.md and follow it.</code> More at <a href="https://byagent.dev" target="_blank" rel="noopener">byagent.dev</a>.</p>
+
+</main>
+</div>
+<script>
+(()=>{const links=[...document.querySelectorAll(".toc a")];const byId=new Map(links.map(a=>[a.getAttribute("href").slice(1),a]));
+const hs=[...byId.keys()].map(id=>document.getElementById(id)).filter(Boolean);let active=null;
+const set=el=>{if(active)active.classList.remove("active");active=byId.get(el.id);if(active)active.classList.add("active")};
+const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting)set(e.target)},{rootMargin:"0px 0px -70% 0px"});
+hs.forEach(h=>io.observe(h));})();
+</script>
+</body>
 </html>
