@@ -112,7 +112,7 @@ const Banner = ({ isDark = false }) => {
           >
             New: SVG Wave is in the{' '}
             <span style={{ textDecoration: 'underline' }}>Creatica CLI</span>
-            <span class="not-mobile">
+            <span className="not-mobile">
               {' '}
               — run{' '}
               <code
@@ -144,7 +144,7 @@ const Banner = ({ isDark = false }) => {
           </a>
           <a
             href="https://creatica.app"
-            class="not-mobile"
+            className="not-mobile"
             style={{
               borderRadius: '6px',
               textWrap: 'nowrap',
