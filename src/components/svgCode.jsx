@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks'
+import { useCallback, useState } from 'preact/hooks'
 import { ReactComponent as CopyBtn } from './../assets/001-copy.svg'
 
 import { CREATICA_CLI_URL } from '../helpers/creaticaCli'
@@ -8,11 +8,11 @@ function SVGCode({ code, cliCommand, toggleModal }) {
   const [copySuccess, setCopySuccess] = useState(false)
   const [cliCopied, setCliCopied] = useState(false)
 
-  const handleCopyCli = () => {
+  const handleCopyCli = useCallback(() => {
     navigator.clipboard.writeText(cliCommand)
     setCliCopied(true)
     setTimeout(() => setCliCopied(false), 1000)
-  }
+  }, [cliCommand])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code)
@@ -69,7 +69,8 @@ function SVGCode({ code, cliCommand, toggleModal }) {
                       Generate this wave from your terminal
                     </p>
                     <p className="mt-1 text-xs text-gray-500">
-                      SVG Wave now ships in the{' '}
+                      Script it, batch it, or let your AI agent call it. SVG
+                      Wave now ships in the{' '}
                       <a
                         href={CREATICA_CLI_URL}
                         target="_blank"
@@ -78,7 +79,6 @@ function SVGCode({ code, cliCommand, toggleModal }) {
                       >
                         Creatica CLI
                       </a>
-                      . Script it, batch it, or let your AI agent call it.
                     </p>
                     <div className="relative mt-2">
                       <pre className="p-3 pr-16 text-xs whitespace-pre-wrap break-words bg-black rounded-lg">
