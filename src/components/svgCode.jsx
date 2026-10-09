@@ -63,7 +63,7 @@ function SVGCode({ code, cliCommand, toggleModal }) {
                     <code className="text-white ">{code}</code>
                   </pre>
                 </div>
-                {cliCommand && (
+                {cliCommand ? (
                   <div className="mt-5">
                     <p className="text-sm font-medium text-gray-900">
                       Generate this wave from your terminal
@@ -73,7 +73,7 @@ function SVGCode({ code, cliCommand, toggleModal }) {
                       <a
                         href={CREATICA_CLI_URL}
                         target="_blank"
-                        rel="noopener"
+                        rel="noopener noreferrer"
                         className="underline"
                       >
                         Creatica CLI
@@ -93,7 +93,7 @@ function SVGCode({ code, cliCommand, toggleModal }) {
                       </button>
                     </div>
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
           </div>

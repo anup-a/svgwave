@@ -111,25 +111,49 @@ const Banner = ({ isDark = false }) => {
             href={CREATICA_CLI_URL}
           >
             New: SVG Wave is in the{' '}
-            <span style="text-decoration: underline;">Creatica CLI</span>
+            <span style={{ textDecoration: 'underline' }}>Creatica CLI</span>
             <span class="not-mobile">
               {' '}
               — run{' '}
-              <code style="background: #fff; border-radius: 4px; padding: 2px 6px; font-size: 14px;">
+              <code
+                style={{
+                  background: '#fff',
+                  borderRadius: '4px',
+                  padding: '2px 6px',
+                  fontSize: '14px',
+                }}
+              >
                 npx @creatica/cli gen svgwave
               </code>
             </span>
           </a>
           <a
             href={CREATICA_CLI_URL}
-            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid white;background: #5A45FF;padding: 8px 16px;text-decoration:none;color: white; margin-left: 8px"
+            style={{
+              borderRadius: '6px',
+              textWrap: 'nowrap',
+              border: '1px solid white',
+              background: '#5A45FF',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              color: 'white',
+              marginLeft: '8px',
+            }}
           >
             ⌨️ Get the CLI
           </a>
           <a
             href="https://creatica.app"
             class="not-mobile"
-            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid #5A45FF;background: white;padding: 8px 16px;text-decoration:none;color: #5A45FF;"
+            style={{
+              borderRadius: '6px',
+              textWrap: 'nowrap',
+              border: '1px solid #5A45FF',
+              background: 'white',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              color: '#5A45FF',
+            }}
           >
             🚀 Creatica Editor
           </a>
