@@ -1,4 +1,5 @@
 import React from 'react'
+import { CREATICA_CLI_URL } from '../helpers/creaticaCli'
 
 const Banner = ({ isDark = false }) => {
   const bannerStyle = {
@@ -107,20 +108,54 @@ const Banner = ({ isDark = false }) => {
           </div>
           <a
             style="text-decoration: none;color: black; font-size: 16px; text-overflow: "
-            href="https://creatica.app"
+            href={CREATICA_CLI_URL}
           >
-            Introducing{' '}
-            <span style="text-decoration: underline;">Creatica</span>:{' '}
-            <span class="not-mobile">
-              Generate unlimited vector website backgrounds!
-            </span>{' '}
-            (Its free)
+            New: SVG Wave is in the{' '}
+            <span style={{ textDecoration: 'underline' }}>Creatica CLI</span>
+            <span className="not-mobile">
+              {' '}
+              — run{' '}
+              <code
+                style={{
+                  background: '#fff',
+                  borderRadius: '4px',
+                  padding: '2px 6px',
+                  fontSize: '14px',
+                }}
+              >
+                npx @creatica/cli gen svgwave
+              </code>
+            </span>
+          </a>
+          <a
+            href={CREATICA_CLI_URL}
+            style={{
+              borderRadius: '6px',
+              textWrap: 'nowrap',
+              border: '1px solid white',
+              background: '#5A45FF',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              color: 'white',
+              marginLeft: '8px',
+            }}
+          >
+            ⌨️ Get the CLI
           </a>
           <a
             href="https://creatica.app"
-            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid white;background: #5A45FF;padding: 8px 16px;text-decoration:none;color: white; margin-left: 8px"
+            className="not-mobile"
+            style={{
+              borderRadius: '6px',
+              textWrap: 'nowrap',
+              border: '1px solid #5A45FF',
+              background: 'white',
+              padding: '8px 16px',
+              textDecoration: 'none',
+              color: '#5A45FF',
+            }}
           >
-            🚀 Go to Editor
+            🚀 Creatica Editor
           </a>
         </div>
         <div className="not-mobile not-tablet">

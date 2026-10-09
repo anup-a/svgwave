@@ -10,6 +10,7 @@ import saveSvgAsPng from 'save-svg-as-png'
 import './../../lib/webcomponent/float-menu'
 import './../../lib/webcomponent/banner'
 import Banner from './Banner'
+import { buildCliCommand } from '../helpers/creaticaCli'
 
 function Home({ isDark, toggleDarkMode }) {
   const [bgColor, setBgColor] = useState('#ff0080')
@@ -165,6 +166,14 @@ function Home({ isDark, toggleDarkMode }) {
         {showModal && (
           <SVGCode
             code={svgElement.current.outerHTML}
+            cliCommand={buildCliCommand({
+              wave,
+              gradient,
+              gradColors,
+              bgColor,
+              gradAngle,
+              invert,
+            })}
             toggleModal={handleExportSVG}
           />
         )}
