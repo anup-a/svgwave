@@ -1,10 +1,18 @@
 import { useState } from 'preact/hooks'
 import { ReactComponent as CopyBtn } from './../assets/001-copy.svg'
 
+import { CREATICA_CLI_URL } from '../helpers/creaticaCli'
 import './../styles/highlight.css'
 
-function SVGCode({ code, toggleModal }) {
+function SVGCode({ code, cliCommand, toggleModal }) {
   const [copySuccess, setCopySuccess] = useState(false)
+  const [cliCopied, setCliCopied] = useState(false)
+
+  const handleCopyCli = () => {
+    navigator.clipboard.writeText(cliCommand)
+    setCliCopied(true)
+    setTimeout(() => setCliCopied(false), 1000)
+  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code)
@@ -55,6 +63,37 @@ function SVGCode({ code, toggleModal }) {
                     <code className="text-white ">{code}</code>
                   </pre>
                 </div>
+                {cliCommand && (
+                  <div className="mt-5">
+                    <p className="text-sm font-medium text-gray-900">
+                      Generate this wave from your terminal
+                    </p>
+                    <p className="mt-1 text-xs text-gray-500">
+                      SVG Wave now ships in the{' '}
+                      <a
+                        href={CREATICA_CLI_URL}
+                        target="_blank"
+                        rel="noopener"
+                        className="underline"
+                      >
+                        Creatica CLI
+                      </a>
+                      . Script it, batch it, or let your AI agent call it.
+                    </p>
+                    <div className="relative mt-2">
+                      <pre className="p-3 pr-16 text-xs whitespace-pre-wrap break-words bg-black rounded-lg">
+                        <code className="text-white">{cliCommand}</code>
+                      </pre>
+                      <button
+                        type="button"
+                        onClick={handleCopyCli}
+                        className="absolute px-2 py-1 text-xs text-white bg-gray-700 rounded top-2 right-2 hover:bg-gray-600"
+                      >
+                        {cliCopied ? 'Copied' : 'Copy'}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

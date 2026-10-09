@@ -36,8 +36,22 @@ SVG Wave is a tiny UI tool built with **Preact, tailwind and bundled with Webpac
  - New cool Dark mode 🖤
  - Gradient fill to waves 🌈
  - Added Animations
+ - Generate from the terminal with the [Creatica CLI](https://www.npmjs.com/package/@creatica/cli) ⌨️
  - Coming soon...
   
+
+---
+
+### ⌨️ SVG Wave in your terminal — Creatica CLI
+
+SVG Wave now ships as the `svgwave` generator in the [Creatica CLI](https://www.npmjs.com/package/@creatica/cli), so you can script, batch, or let an AI agent generate waves:
+
+```bash
+npx @creatica/cli gen svgwave -w 1440 -h 500 -c "#F78DA7,#8ED1FC" --bg "#0000" \
+  --set numRows=3 --set numCols=5 --set shapeHeight=7.5 -o wave.svg
+```
+
+The **Export SVG** dialog on [svgwave.in](https://www.svgwave.in) shows the exact command for the wave on your canvas. Option reference: [Creatica CLI docs](https://github.com/anup-a/web-backgrounds/blob/main/docs/CLI.md#svg-wave).
 
 ---
 

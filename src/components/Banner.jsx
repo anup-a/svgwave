@@ -1,4 +1,5 @@
 import React from 'react'
+import { CREATICA_CLI_URL } from '../helpers/creaticaCli'
 
 const Banner = ({ isDark = false }) => {
   const bannerStyle = {
@@ -107,20 +108,30 @@ const Banner = ({ isDark = false }) => {
           </div>
           <a
             style="text-decoration: none;color: black; font-size: 16px; text-overflow: "
-            href="https://creatica.app"
+            href={CREATICA_CLI_URL}
           >
-            Introducing{' '}
-            <span style="text-decoration: underline;">Creatica</span>:{' '}
+            New: SVG Wave is in the{' '}
+            <span style="text-decoration: underline;">Creatica CLI</span>
             <span class="not-mobile">
-              Generate unlimited vector website backgrounds!
-            </span>{' '}
-            (Its free)
+              {' '}
+              — run{' '}
+              <code style="background: #fff; border-radius: 4px; padding: 2px 6px; font-size: 14px;">
+                npx @creatica/cli gen svgwave
+              </code>
+            </span>
+          </a>
+          <a
+            href={CREATICA_CLI_URL}
+            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid white;background: #5A45FF;padding: 8px 16px;text-decoration:none;color: white; margin-left: 8px"
+          >
+            ⌨️ Get the CLI
           </a>
           <a
             href="https://creatica.app"
-            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid white;background: #5A45FF;padding: 8px 16px;text-decoration:none;color: white; margin-left: 8px"
+            class="not-mobile"
+            style="border-radius: 6px;text-wrap: nowrap;border: 1px solid #5A45FF;background: white;padding: 8px 16px;text-decoration:none;color: #5A45FF;"
           >
-            🚀 Go to Editor
+            🚀 Creatica Editor
           </a>
         </div>
         <div className="not-mobile not-tablet">
